@@ -1,20 +1,42 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, Alert } from 'react-native'
 import React from 'react'
 import Header from '../Components/Header'
 import Icon from '../Components/Icon'
 import { useNavigation } from '@react-navigation/native'
 import { useAuth } from '../context/AuthContext'
-import LogoutButton from '../Components/LogoutButton'
 
-const ContactUs = () => {
+const Profile = () => {
   const navigation = useNavigation<any>();
-  const { user } = useAuth();
+  const { logout, user } = useAuth();
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Logout',
+      'Are you sure you want to logout?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Logout',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await logout();
+            } catch (error) {
+              Alert.alert('Error', 'Failed to logout');
+            }
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <View style={styles.mainContainer}>
       <Header 
-        title='Contact Us' 
-        subTitle='Have questions? Reach out to us.' 
+        title='Profile' 
         leftComponent={
           <Pressable onPress={() => navigation.goBack()}>
             <Icon type='Entypo' name='chevron-left' size={22}/>
@@ -32,13 +54,16 @@ const ContactUs = () => {
           <Text style={styles.contactText}>🌐 Website: www.chefster.com</Text>
         </View>
 
-        <LogoutButton style={styles.logoutButton} />
+        <Pressable style={styles.logoutButton} onPress={handleLogout}>
+          <Icon type='MaterialIcons' name='logout' size={20} />
+          <Text style={styles.logoutText}>Logout</Text>
+        </Pressable>
       </View>
     </View>
   )
 }
 
-export default ContactUs
+export default Profile
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -74,6 +99,18 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FF4444',
+    padding: 15,
+    borderRadius: 10,
     marginTop: 'auto',
+  },
+  logoutText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 })

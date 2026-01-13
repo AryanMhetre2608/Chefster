@@ -19,7 +19,7 @@ import Toast from '../Components/Toast';
 
 const Home = () => {
   const navigation = useNavigation<any>();
-  const cuisineList = foodJson.cuisineList
+  const cuisineList = (foodJson as any).cuisineList
 
  
 

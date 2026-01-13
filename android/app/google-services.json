@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "402929012682",
+    "project_id": "chefster-d1e72",
+    "storage_bucket": "chefster-d1e72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402929012682:android:65c839634cf128ccae0933",
+        "android_client_info": {
+          "package_name": "com.chefster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOO6Oy36JG409v0GymcngQAqisW2gHAFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

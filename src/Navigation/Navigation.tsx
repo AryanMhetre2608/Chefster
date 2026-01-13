@@ -22,6 +22,9 @@ import Vegan from '../Screens/MainCuisines/Vegan'
 import Favourites from '../Screens/Favourites'
 import Icon from '../Components/Icon'
 import UniversalRecipe from '../Screens/UniversalRecipe'
+import Login from '../Screens/Login'
+import Registration from '../Screens/Registration'
+import Profile from '../Screens/Profile'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -52,6 +55,12 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="StreetFood" component={Street_Food}/>
       <Stack.Screen name="Vegan" component={Vegan}/>
       <Stack.Screen name="UniversalRecipe" component={UniversalRecipe}  options={{animation: 'slide_from_bottom', }}/>
+      <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name="Registration" component={Registration}/>
+
+
+
+
 
 
       
@@ -125,6 +134,20 @@ const TabNavigator = () => {
             focused?
             <Icon type='MaterialIcons' name='favorite' size={22}/>:
             <Icon type='MaterialIcons' name='favorite-border' size={22}/>
+            
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name='Profile' 
+        component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          title: 'Profile',
+          tabBarIcon: ({ color, size , focused }) => (
+            focused?
+            <Icon type='Ionicons' name='person' size={22}/>:
+            <Icon type='Ionicons' name='person-outline' size={22}/>
             
           ),
         }}
