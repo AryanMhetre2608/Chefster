@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image, TouchableOpacity, Pressable } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import foodJson from '../../Data/dataset.json'
+import foodJson from '../../data/dataset.json'
 import Toast from '../../components/Toast';
 import Header from '../../components/Header';
 import Icon from '../../components/Icon';

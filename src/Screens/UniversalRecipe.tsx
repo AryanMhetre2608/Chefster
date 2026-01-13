@@ -14,11 +14,11 @@ import { RootState } from '../redux/Store';
 import {
   addToFavorites,
   removeFromFavorites,
-} from '../redux/Slice/favoritesSlice';
+} from '../redux/slice/favoritesSlice';
 import Toast from '../components/Toast';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
-import recipeData from '../Data/dataset.json';
+import recipeData from '../data/dataset.json';
 
 type RouteParams = {
   UniversalRecipe: {

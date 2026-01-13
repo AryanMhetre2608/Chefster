@@ -7,14 +7,14 @@ import App from './App';
 import { name as appName } from './app.json';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import { Store } from './src/Redux/Store';
+import { Store } from './src/redux/Store';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { persistor } from './src/Redux/Store';
-import Loader from './src/Components/Loader';
-import Login from './src/Screens/Login'
-import Registration from './src/Screens/Registration'
+import { persistor } from './src/redux/Store';
+import Loader from './src/components/Loader';
+import Login from './src/screens/Login'
+import Registration from './src/screens/Registration'
 
 
 const Application = () => {

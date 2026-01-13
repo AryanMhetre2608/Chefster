@@ -12,7 +12,7 @@ import Icon from '../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/Store';
-import { removeFromFavorites } from '../redux/Slice/favoritesSlice';
+import { removeFromFavorites } from '../redux/slice/favoritesSlice';
 import Toast from '../components/Toast';
 
 const Favourites = () => {

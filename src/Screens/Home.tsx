@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React , {useRef} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import foodJson from '../Data/dataset.json'
+import foodJson from '../data/dataset.json'
 import Button from '../components/Button';
 import Toast from '../components/Toast';
 

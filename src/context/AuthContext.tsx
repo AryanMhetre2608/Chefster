@@ -19,8 +19,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user) => {
-      setUser(user);
+    const unsubscribe = auth().onAuthStateChanged((authUser) => {
+      console.log('Auth state changed:', authUser ? `User: ${authUser.email}` : 'No user');
+      setUser(authUser);
       setLoading(false);
     });
 
@@ -29,9 +30,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
+      console.log('AuthContext: Starting logout...');
       await auth().signOut();
+      console.log('AuthContext: Logout completed');
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error('AuthContext: Logout error:', error);
+      throw error;
     }
   };
 
