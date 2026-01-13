@@ -10,14 +10,14 @@ import React from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../Redux/Store';
+import { RootState } from '../redux/Store';
 import {
   addToFavorites,
   removeFromFavorites,
-} from '../Redux/Slice/favoritesSlice';
-import Toast from '../Components/Toast';
-import Header from '../Components/Header';
-import Icon from '../Components/Icon';
+} from '../redux/Slice/favoritesSlice';
+import Toast from '../components/Toast';
+import Header from '../components/Header';
+import Icon from '../components/Icon';
 import recipeData from '../Data/dataset.json';
 
 type RouteParams = {

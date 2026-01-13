@@ -1,79 +1,14 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Header from '../Components/Header'
-import Icon from '../Components/Icon'
-import { useNavigation } from '@react-navigation/native'
-import { useAuth } from '../context/AuthContext'
-import LogoutButton from '../Components/LogoutButton'
 
 const ContactUs = () => {
-  const navigation = useNavigation<any>();
-  const { user } = useAuth();
-
   return (
-    <View style={styles.mainContainer}>
-      <Header 
-        title='Contact Us' 
-        subTitle='Have questions? Reach out to us.' 
-        leftComponent={
-          <Pressable onPress={() => navigation.goBack()}>
-            <Icon type='Entypo' name='chevron-left' size={22}/>
-          </Pressable>
-        }
-      />
-      
-      <View style={styles.content}>
-        <Text style={styles.welcomeText}>Welcome, {user?.email}!</Text>
-        
-        <View style={styles.contactInfo}>
-          <Text style={styles.sectionTitle}>Get in Touch</Text>
-          <Text style={styles.contactText}>📧 Email: support@chefster.com</Text>
-          <Text style={styles.contactText}>📞 Phone: +1 (555) 123-4567</Text>
-          <Text style={styles.contactText}>🌐 Website: www.chefster.com</Text>
-        </View>
-
-        <LogoutButton style={styles.logoutButton} />
-      </View>
+    <View>
+      <Text>ContactUs</Text>
     </View>
   )
 }
 
 export default ContactUs
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1
-  },
-  content: {
-    flex: 1,
-    padding: 20,
-  },
-  welcomeText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 30,
-    textAlign: 'center',
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FF7A00',
-    marginBottom: 15,
-  },
-  contactInfo: {
-    backgroundColor: '#f8f8f8',
-    padding: 20,
-    borderRadius: 10,
-    marginBottom: 30,
-  },
-  contactText: {
-    fontSize: 16,
-    color: '#555',
-    marginBottom: 10,
-    lineHeight: 24,
-  },
-  logoutButton: {
-    marginTop: 'auto',
-  },
-})
+const styles = StyleSheet.create({})

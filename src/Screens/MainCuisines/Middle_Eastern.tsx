@@ -2,9 +2,9 @@ import { View, Text, FlatList, Image, TouchableOpacity, Pressable } from 'react-
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import foodJson from '../../Data/dataset.json'
-import Toast from '../../Components/Toast';
-import Header from '../../Components/Header';
-import Icon from '../../Components/Icon';
+import Toast from '../../components/Toast';
+import Header from '../../components/Header';
+import Icon from '../../components/Icon';
 
 
 

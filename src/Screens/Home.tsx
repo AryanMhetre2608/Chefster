@@ -11,8 +11,8 @@ import {
 import React , {useRef} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import foodJson from '../Data/dataset.json'
-import Button from '../Components/Button';
-import Toast from '../Components/Toast';
+import Button from '../components/Button';
+import Toast from '../components/Toast';
 
 
 

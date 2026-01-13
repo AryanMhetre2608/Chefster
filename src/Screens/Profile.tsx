@@ -1,13 +1,20 @@
-import { Pressable, StyleSheet, Text, View, Alert } from 'react-native'
-import React from 'react'
-import Header from '../Components/Header'
-import Icon from '../Components/Icon'
+import { Pressable, StyleSheet, Text, View, Alert  , Image} from 'react-native'
+import React, { useState } from 'react'
+import Header from '../components/Header'
+import Icon from '../components/Icon'
 import { useNavigation } from '@react-navigation/native'
 import { useAuth } from '../context/AuthContext'
+import ImagePicker from '../components/ImagePicker'
 
 const Profile = () => {
-  const navigation = useNavigation<any>();
   const { logout, user } = useAuth();
+  const getNamePart = email => email?.split('@')[0] ?? '';
+  const userName = getNamePart(user?.email)
+
+  const [pickerVisible  , setPickerVisible] = useState(false)
+  const [image , setImage] = useState(null)
+  const navigation = useNavigation<any>();
+  
 
   const handleLogout = () => {
     Alert.alert(
@@ -45,14 +52,25 @@ const Profile = () => {
       />
       
       <View style={styles.content}>
-        <Text style={styles.welcomeText}>Welcome, {user?.email}!</Text>
+        <Text style={styles.welcomeText}>Welcome, {userName}!!!</Text>
         
-        <View style={styles.contactInfo}>
-          <Text style={styles.sectionTitle}>Get in Touch</Text>
-          <Text style={styles.contactText}>📧 Email: support@chefster.com</Text>
-          <Text style={styles.contactText}>📞 Phone: +1 (555) 123-4567</Text>
-          <Text style={styles.contactText}>🌐 Website: www.chefster.com</Text>
-        </View>
+       <View style={{alignItems:'center'}}>
+        <Pressable onPress={()=>setPickerVisible(true)}>
+          {image ? (<Image source={{uri: image.uri}} style={{height:120 , width:120 , borderRadius:60}}/>):(<View style={{height:120 , width:120 , borderRadius:60 ,borderWidth:0.5 , alignItems:"center" , justifyContent:"center"}}><Icon type='Feather' name='plus-circle' size={25}/></View>)}
+        </Pressable>
+        <Text style={{margin:10}}>Profile</Text>
+
+
+
+        <ImagePicker
+        visible={pickerVisible}
+        showDelete={!!image}
+        onClose={()=>setPickerVisible(false)}
+        onPick={setImage}/>
+       
+
+          
+       </View>
 
         <Pressable style={styles.logoutButton} onPress={handleLogout}>
           <Icon type='MaterialIcons' name='logout' size={20} />

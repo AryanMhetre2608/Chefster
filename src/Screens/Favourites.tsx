@@ -7,13 +7,13 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
-import Header from '../Components/Header';
-import Icon from '../Components/Icon';
+import Header from '../components/Header';
+import Icon from '../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../Redux/Store';
-import { removeFromFavorites } from '../Redux/Slice/favoritesSlice';
-import Toast from '../Components/Toast';
+import { RootState } from '../redux/Store';
+import { removeFromFavorites } from '../redux/Slice/favoritesSlice';
+import Toast from '../components/Toast';
 
 const Favourites = () => {
   const navigation = useNavigation<any>();
