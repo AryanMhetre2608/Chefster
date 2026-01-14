@@ -90,41 +90,7 @@ const UniversalRecipe = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <Header
-        title={recipe.name}
-        subTitle={recipe.cuisine}
-        leftComponent={
-          <Pressable onPress={() => navigation.goBack()}>
-            <Icon type="Entypo" name="chevron-left" size={22} />
-          </Pressable>
-        }
-        rightComponent={
-          <Pressable
-            onPress={() => {
-              if (isFavorite) {
-                dispatch(removeFromFavorites(recipeId));
-                Toast(`${recipe.name} removed from favorites`);
-              } else {
-                dispatch(
-                  addToFavorites({
-                    id: recipe.id,
-                    name: recipe.name,
-                    image: recipe.image,
-                    cuisine: recipe.cuisine,
-                  }),
-                );
-                Toast(`${recipe.name} added to favorites`);
-              }
-            }}
-          >
-            {isFavorite ? (
-              <Icon type="FontAwesome" name="star" size={22} />
-            ) : (
-              <Icon type="FontAwesome" name="star-o" size={22} />
-            )}
-          </Pressable>
-        }
-      />
+      
       
       <ScrollView
         style={styles.scrollContainer}

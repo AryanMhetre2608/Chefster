@@ -76,11 +76,7 @@ const Favourites = () => {
       <Header
         title="Favourites"
         subTitle="Recipes you love!!!"
-        leftComponent={
-          <Pressable onPress={() => navigation.goBack()}>
-            <Icon type="Entypo" name="chevron-left" size={22} />
-          </Pressable>
-        }
+       
       />
 
       <View style={styles.container}>
