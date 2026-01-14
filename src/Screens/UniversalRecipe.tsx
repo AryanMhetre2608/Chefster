@@ -32,22 +32,22 @@ const UniversalRecipe = () => {
   const route = useRoute<UniversalRecipeRouteProp>();
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
-  
+
   const favoriteRecipes = useSelector(
     (state: RootState) => state.Favourites.favoriteRecipes,
   );
 
   const { recipeId } = route.params || { recipeId: '1' };
   const errorImg = (recipeData as any).recipeErrorImage;
-  
+
   // Function to find recipe across all cuisine categories
   const findRecipe = (id: string) => {
     const recipes = (recipeData as any).recipes[0];
-    
+
     // Search through all recipe categories
     const categories = [
       'AfricanRecipes',
-      'AmericanRecipes', 
+      'AmericanRecipes',
       'AsianRecipes',
       'EuropianRecipes',
       'MediterraneanRecipes',
@@ -57,12 +57,14 @@ const UniversalRecipe = () => {
       'VeganRecipes',
       'KetoRecipes',
       'GlutenFreeRecipes',
-      'StreetFoodRecipes'
+      'StreetFoodRecipes',
     ];
 
     for (const category of categories) {
       if (recipes[category]) {
-        const recipe = recipes[category].find((recipe: any) => recipe.id === id);
+        const recipe = recipes[category].find(
+          (recipe: any) => recipe.id === id,
+        );
         if (recipe) {
           return recipe;
         }
@@ -72,16 +74,23 @@ const UniversalRecipe = () => {
   };
 
   const recipe = findRecipe(recipeId);
-  const isFavorite = favoriteRecipes.some(fav => fav.id === recipeId);
 
   if (!recipe) {
     return (
       <View style={styles.container}>
-        <Text style={styles.errorText}>Recipe not found for ID: {recipeId}</Text>
-        <View style={{ marginTop: 20, alignItems: 'center', justifyContent: 'center' }}>
-          <Image 
-            source={{ uri: errorImg.image }} 
-            style={{ width: 200, height: 150, borderRadius: 10 }} 
+        <Text style={styles.errorText}>
+          Recipe not found for ID: {recipeId}
+        </Text>
+        <View
+          style={{
+            marginTop: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Image
+            source={{ uri: errorImg.image }}
+            style={{ width: 200, height: 150, borderRadius: 10 }}
           />
         </View>
       </View>
@@ -90,22 +99,25 @@ const UniversalRecipe = () => {
 
   return (
     <View style={styles.mainContainer}>
+      <View style={styles.imageContainer}>
+        <Image
+            source={{ uri: recipe.image }}
+            style={{ height: '100%', width: '100%', borderRadius: 10 }}
+            resizeMode='cover'
+          />
+      </View>
+      <ScrollView style={styles.recipeContainer}>
+         
       
-      
-      <ScrollView
-        style={styles.scrollContainer}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.itemImage}>
+        {/* <View style={styles.itemImage}>
           <Image
             source={{ uri: recipe.image }}
             style={{ height: '95%', width: '97%', borderRadius: 10 }}
           />
-        </View>
-        
-        <View style={styles.header}>
+        </View> */}
+
+        <View style={styles.section}>
           <Text style={styles.title}>{recipe.name}</Text>
-          <Text style={styles.cuisine}>{recipe.cuisine}</Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoText}>Servings: {recipe.servings}</Text>
             <Text style={styles.infoText}>Prep: {recipe.prepTime}</Text>
@@ -113,51 +125,81 @@ const UniversalRecipe = () => {
           </View>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Ingredients</Text>
-          {recipe.ingredients.map((ingredient: any, index: number) => (
-            <View key={index} style={styles.ingredientItem}>
-              <Text style={styles.ingredientText}>
-                • {ingredient.quantity} {ingredient.item}
-              </Text>
-            </View>
-          ))}
-        </View>
+          
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Instructions</Text>
-          {recipe.instructions.map((instruction: string, index: number) => (
-            <View key={index} style={styles.instructionItem}>
-              <Text style={styles.stepNumber}>{index + 1}.</Text>
-              <Text style={styles.instructionText}>{instruction}</Text>
-            </View>
-          ))}
-        </View>
-
-        {recipe.servingSuggestions && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Serving Suggestions</Text>
-            {recipe.servingSuggestions.map(
-              (suggestion: string, index: number) => (
-                <Text key={index} style={styles.suggestionText}>
-                  • {suggestion}
+            <Text style={styles.sectionTitle}>Ingredients</Text>
+            {recipe.ingredients.map((ingredient: any, index: number) => (
+              <View key={index} style={styles.ingredientItem}>
+                <Text style={styles.ingredientText}>
+                  • {ingredient.quantity} {ingredient.item}
                 </Text>
-              ),
-            )}
+              </View>
+            ))}
           </View>
-        )}
-      </ScrollView>
-    </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Instructions</Text>
+            {recipe.instructions.map((instruction: string, index: number) => (
+              <View key={index} style={styles.instructionItem}>
+                <Text style={styles.stepNumber}>{index + 1}.</Text>
+                <Text style={styles.instructionText}>{instruction}</Text>
+              </View>
+            ))}
+          </View>
+
+          {recipe.servingSuggestions && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Serving Suggestions</Text>
+              
+                {recipe.servingSuggestions.map(
+                (suggestion: string, index: number) => (
+                  <Text key={index} style={styles.suggestionText}>
+                    • {suggestion}
+                  </Text>
+                ),
+              )}
+             
+              
+            </View>
+          )}
+        </ScrollView>
+
+
+      </View>
+
+      
+
+    
   );
 };
 
 export default UniversalRecipe;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
+  
+  mainContainer:{
+    flex:1,
+    margin:0,
+    backgroundColor:"white",
+    height:"100%",
+    width:"100%"
   },
+  imageContainer:{
+    width:"100%",
+    height:"40%"
+  },
+  recipeContainer:{
+    backgroundColor:"white",
+    position:"relative",
+    marginTop:-30,
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
+    width:"100%",
+    height:"60%"
+  },
+ 
+
   scrollContainer: {
     flex: 1,
     padding: 16,
@@ -173,19 +215,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     marginBottom: '5%',
-    elevation: 9,
   },
-  header: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 12,
-    marginBottom: 16,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
+  
   title: {
     fontSize: 28,
     fontWeight: 'bold',
@@ -203,21 +234,33 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   infoText: {
-    width: '100%',
+    width: '40%',
     marginVertical: 2,
     fontSize: 14,
     color: '#888',
     backgroundColor: '#f0f0f0',
     paddingHorizontal: 8,
     paddingVertical: 4,
-    borderRadius: 6,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heading:{
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+
   },
   section: {
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 12,
-    marginBottom: 16,
-    elevation: 2,
+    marginBottom: -23,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -228,8 +271,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     marginBottom: 16,
-    borderBottomWidth: 2,
-    borderBottomColor: '#e91e63',
+
     paddingBottom: 8,
   },
   ingredientItem: {
@@ -270,4 +312,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 50,
   },
+
+
 });
+
+
+
