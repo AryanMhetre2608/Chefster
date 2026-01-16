@@ -10,12 +10,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface HeaderProps {
   title: string;
-  subTitle?: string;                 // ✅ NEW
+  subTitle?: string;
   onLeftPress?: () => void;
   leftComponent?: React.ReactNode;
   rightComponent?: React.ReactNode;
   titleColor?: string;
-  subTitleColor?: string;            // ✅ NEW
+  subTitleColor?: string;
+  titleStyle?: object;
+  subTitleStyle?: object;
 }
 
 const Header = ({
@@ -26,6 +28,8 @@ const Header = ({
   rightComponent,
   titleColor = '#000',
   subTitleColor = '#666',
+  titleStyle,
+  subTitleStyle,
 }: HeaderProps) => {
   const insets = useSafeAreaInsets();
 
@@ -38,7 +42,6 @@ const Header = ({
       />
 
       <View style={styles.wrapper}>
-        {/* LEFT */}
         <View style={styles.side}>
           {leftComponent ? (
             leftComponent
@@ -49,11 +52,10 @@ const Header = ({
           ) : null}
         </View>
 
-        {/* CENTER */}
         <View style={styles.center}>
           <Text
             numberOfLines={1}
-            style={[styles.title, { color: titleColor }]}
+            style={[styles.title, { color: titleColor }, titleStyle]}
           >
             {title}
           </Text>
@@ -61,17 +63,18 @@ const Header = ({
           {subTitle ? (
             <Text
               numberOfLines={1}
-              style={[styles.subTitle, { color: subTitleColor }]}
+              style={[
+                styles.subTitle,
+                { color: subTitleColor },
+                subTitleStyle,
+              ]}
             >
               {subTitle}
             </Text>
           ) : null}
         </View>
 
-        {/* RIGHT */}
-        <View style={styles.side}>
-          {rightComponent}
-        </View>
+        <View style={styles.side}>{rightComponent}</View>
       </View>
     </View>
   );
@@ -82,14 +85,13 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-   
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3.84,
     zIndex: 1000,
   },
   wrapper: {
-    height: 64,                // ⬆ slightly taller for subtitle
+    height: 64,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
@@ -111,10 +113,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
+    letterSpacing: 0.4,
   },
   subTitle: {
     fontSize: 12,
     marginTop: 2,
     fontWeight: '400',
+    opacity: 0.75,
   },
 });

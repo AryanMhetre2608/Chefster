@@ -5,9 +5,6 @@ import ContactUs from '../screens/ContactUs'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-// import IndianCuisine from '../Screens/IndianCuisine'
-
-
 import Favourites from '../screens/Favourites'
 import Icon from '../components/Icon'
 import UniversalRecipe from '../screens/UniversalRecipe'
@@ -15,6 +12,9 @@ import Login from '../screens/Login'
 import Registration from '../screens/Registration'
 import Profile from '../screens/Profile'
 import AllCuisines from '../screens/AllCuisines'
+import EditProfile from '../screens/EditProfile'
+import AboutUs from '../screens/AboutUs'
+import PrivacyPolicy from '../screens/PrivacyPolicy'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -23,29 +23,15 @@ const Stack = createNativeStackNavigator()
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="HomeScreen" component={Home} />
-        {/* <Stack.Screen name="IndianCuisine" component={IndianCuisine} /> */}
-
-
-      
-
-
-
-
+      <Stack.Screen name="HomeScreen" component={Home} />
       <Stack.Screen name='AllCuisines' component={AllCuisines}/>
       <Stack.Screen name="UniversalRecipe" component={UniversalRecipe}  options={{animation: 'slide_from_bottom', }}/>
       <Stack.Screen name="Login" component={Login}/>
       <Stack.Screen name="Registration" component={Registration}/>
-
-
-
-
-
-
-      
-
-
-      
+      <Stack.Screen name='Favourites' component={Favourites}/>
+      <Stack.Screen name='EditProfile' component={EditProfile}/>
+      <Stack.Screen name='AboutUs' component={AboutUs}/>
+      <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
     </Stack.Navigator>
   )
 }
@@ -63,7 +49,7 @@ const TabNavigator = () => {
           paddingBottom: 5,
           paddingTop: 5,
         },
-        tabBarActiveTintColor: '#0000FF',
+        tabBarActiveTintColor: '#FF5722',
         tabBarInactiveTintColor: '#666',
         headerStyle: {
           backgroundColor: '#fff',
@@ -100,20 +86,6 @@ const TabNavigator = () => {
               <Icon type='FontAwesome' name='phone' size={22}/>:
               <Icon type='Feather' name='phone' size={22}/>
               
-          ),
-        }}
-      />
-      <Tab.Screen 
-        name='Favourites' 
-        component={Favourites}
-        options={{
-          tabBarLabel: 'Favourites',
-          title: 'Favourites',
-          tabBarIcon: ({ color, size , focused }) => (
-            focused?
-            <Icon type='MaterialIcons' name='favorite' size={22}/>:
-            <Icon type='MaterialIcons' name='favorite-border' size={22}/>
-            
           ),
         }}
       />

@@ -10504,5 +10504,82 @@
   },
   "recipeErrorImage":{
     "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5D7hMC69lcznJ6FIhFiuw8eQbvtxA574LDw&s"
-  }
+  },
+
+  "profilepageFeatures":[
+    {
+      "id":"1",
+      "name":"Edit Profile",
+      "leftIconName":"edit-3",
+      "leftIconType":"Feather",
+      "leftIconSize":"26",
+      "leftIconColour":"orange",
+      "rightIconName":"chevron-right",
+      "rightIconType":"Feather",
+      "rightIconSize":"26",
+      "rightIconColour":"black",
+      "navigations":"EditProfile"
+
+
+    },
+    {
+      "id":"2",
+      "name":"My Favourites",
+      "leftIconName":"favorite",
+      "leftIconType":"MaterialIcons",
+      "leftIconSize":"26",
+      "leftIconColour":"red",
+      "rightIconName":"chevron-right",
+      "rightIconType":"Feather",
+      "rightIconSize":"26",
+      "rightIconColour":"black",
+      "navigations":"Favourites"
+      
+
+    },
+    {
+      "id":"3",
+      "name":"About App",
+      "leftIconName":"info",
+      "leftIconType":"Feather",
+      "leftIconSize":"26",
+      "leftIconColour":"blue",
+      
+
+      "rightIconName":"chevron-right",
+      "rightIconType":"Feather",
+      "rightIconSize":"26",
+      "rightIconColour":"black",
+      "navigations":"AboutUs"
+
+    },
+    {
+      "id":"4",
+      "name":"Privacy Policy",
+      "leftIconName":"shield",
+      "leftIconType":"Feather",
+      "leftIconSize":"26",
+      "leftIconColour":"green",
+      "rightIconName":"chevron-right",
+      "rightIconType":"Feather",
+      "rightIconSize":"26",
+      "rightIconColour":"black",
+      "navigations":"PrivacyPolicy"
+
+    },
+    {
+      "id":"5",
+      "name":"Logout",
+      "leftIconName":"log-out",
+      "leftIconType":"Feather",
+      "leftIconSize":"26",
+      "leftIconColour":"red",
+      "rightIconName":"",
+      "rightIconType":"",
+      "rightIconSize":"",
+      "rightIconColour":"",
+      "navigations":"Logout"
+
+    }
+  ]
 }

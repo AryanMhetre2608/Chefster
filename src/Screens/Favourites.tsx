@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/Store';
 import { removeFromFavorites } from '../redux/slice/favoritesSlice';
@@ -18,12 +18,21 @@ import Toast from '../components/Toast';
 const Favourites = () => {
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
+  const route = useRoute<any>();
+  
   const favoriteRecipes = useSelector(
     (state: RootState) => state.Favourites.favoriteRecipes,
   );
 
   const handleRemoveFromFavorites = (recipeId: string) => {
     dispatch(removeFromFavorites(recipeId));
+  };
+  const handleBackPress = () => {
+    if (route.params?.from === 'Profile') {
+      navigation.navigate('Profile');
+    } else {
+      navigation.goBack();
+    }
   };
 
   const handleViewRecipe = (recipeId: string) => {
@@ -76,6 +85,11 @@ const Favourites = () => {
       <Header
         title="Favourites"
         subTitle="Recipes you love!!!"
+        leftComponent={
+                  <Pressable onPress={()=> handleBackPress()}>
+                    <Icon type="Ionicons" name="arrow-back" size={24} />
+                  </Pressable>
+                }
        
       />
 
