@@ -251,6 +251,7 @@ const styles = StyleSheet.create({
     elevation: 7,
     borderWidth: 1,
     borderRadius: 15,
+    backgroundColor:"white"
   },
   featureContainer:{
     margin:20

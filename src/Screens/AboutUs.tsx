@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  ScrollView,
+} from 'react-native';
 import React from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
@@ -17,7 +24,7 @@ const AboutUs = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <Header
         title="About Chefster"
         titleStyle={{
@@ -30,7 +37,7 @@ const AboutUs = () => {
           </Pressable>
         }
       />
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.imageContainer}>
           <Image
             source={require('../../assets/images/CuisineList/AboutUs.png')}
@@ -97,7 +104,166 @@ const AboutUs = () => {
             </View>
           </LinearGradient>
         </View>
-      </View>
+
+        <View
+          style={{
+            marginTop: 30,
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+            marginRight: '68%',
+          }}
+        >
+          <Text style={{ fontWeight: 'bold', fontSize: 19 }}>Features</Text>
+        </View>
+        {/* <View
+          style={{
+            flexDirection: 'row',
+            width: '90%',
+            height: 50,
+            marginTop: 10,
+            gap: 10,
+          }}
+        >
+          <View style={{flexDirection:"row" , marginHorizontal:10 , width:"40%" , gap:10 , alignItems:"center" , justifyContent:"center" , marginLeft:30 , borderWidth:1}}>
+            <View><Icon type='Entypo' name='globe' size={28}/></View>
+            <View><Text style={{fontWeight:"bold" , fontSize:17}}>7+ World Cuisines</Text></View>
+          </View>
+          <View style={{flexDirection:"row" , width:"40%" ,  marginHorizontal:10}}>
+            <View></View>
+            <View><Text>Save Favourites</Text></View>
+          </View>
+        </View> */}
+        <View
+          style={{
+            width: '87%',
+            height: 60,
+            marginTop: 10,
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              borderWidth: 1,
+              borderColor:"grey",
+              height: 60,
+              width: '48.5%',
+              borderRadius: 15,
+            }}
+          >
+            <View
+              style={{
+                height: '100%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+              }}
+            >
+                
+              <View style={{ width: '40%', alignItems: 'center' }}>
+                
+                <Icon type="Entypo" name="globe" size={30} color="#FF5722" />
+              </View>
+              <View style={{ width: '60%', justifyContent: 'center' }}>
+                <Text style={{ fontWeight: 'bold' }}>7+ World Cuisines</Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={{
+              borderWidth: 1,
+              height: 60,
+              width: '48.5%',
+              borderRadius: 15,
+              borderColor:"grey",
+            }}
+          >
+            <View
+              style={{
+                height: '100%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+              }}
+            >
+              <View style={{ width: '40%', alignItems: 'center' }}>
+                <Icon type="FontAwesome" name="heart" size={30} color="#FF5722" />
+              </View>
+              <View style={{ width: '60%', justifyContent: 'center' }}>
+                <Text style={{ fontWeight: 'bold' }}>Save Favourites</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            width: '87%',
+            height: 60,
+            marginTop: 10,
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <View
+            style={{
+              borderWidth: 1,
+              height: 60,
+              width: '48.5%',
+              borderRadius: 15,
+              borderColor:"grey",
+            }}
+          >
+            <View
+              style={{
+                height: '100%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+              }}
+            >
+              <View style={{ width: '40%', alignItems: 'center' }}>
+                <Icon type="FontAwesome5" name="clock" size={30} color="#FF5722" />
+              </View>
+              <View style={{ width: '60%', justifyContent: 'center' }}>
+                <Text style={{ fontWeight: 'bold' }}>Quick Recipes</Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={{
+              borderWidth: 1,
+              height: 60,
+              width: '48.5%',
+              borderRadius: 15,
+              borderColor:"grey",
+            }}
+          >
+            <View
+              style={{
+                height: '100%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+              }}
+            >
+              <View style={{ width: '40%', alignItems: 'center' }}>
+                <Icon type="Entypo" name="star" size={30} color="#FF5722" />
+              </View>
+              <View style={{ width: '60%', justifyContent: 'center' }}>
+                <Text style={{ fontWeight: 'bold' }}>Easy Instructions</Text>
+              </View>
+            </View>
+          </View>
+          
+        </View>
+       
+      </ScrollView>
     </View>
   );
 };
@@ -149,9 +315,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 8,
     },
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.35,
     shadowRadius: 16,
-    elevation: 8,
+    elevation: 10,
   },
   gradientBorder: {
     borderRadius: 15,
