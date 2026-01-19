@@ -187,9 +187,16 @@ const Profile = () => {
     // </View>
 
     <View style={styles.container}>
-      <Header title={'Profile'} />
+      <Header
+        title="Terms of Service"
+        
+        height={180}
+        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+      />
       <View style={styles.profileContainer}>
-        <View
+        <View style={{marginTop:120}}>
+          <View style={{alignItems:"center" , justifyContent:"center"}}>
+            <View
           style={{
             height: 120,
             width: 120,
@@ -197,8 +204,9 @@ const Profile = () => {
             borderWidth: 0.5,
           }}
         ></View>
-      </View>
-      <View style={styles.infoContainer}>
+          </View>
+          
+        <View style={styles.infoContainer}>
         <Text style={{ fontWeight: 'bold', alignContent: 'center' }}>Name</Text>
         <Text style={{}}>Email</Text>
 
@@ -212,6 +220,10 @@ const Profile = () => {
           showsVerticalScrollIndicator={false}
         />
       </View>
+        </View>
+        
+      </View>
+      
     </View>
   );
 };
@@ -240,6 +252,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     justifyContent: 'center',
+    flex: 1,
+    margin: 0,
+    marginTop: -85,
+    backgroundColor: 'white',
+
+    borderTopRightRadius: 45,
+    borderTopLeftRadius: 45,
+
+    // 🔥 ADD THESE
+    zIndex: 10,
+    elevation: 7,
   },
 
   profileFeatures: {

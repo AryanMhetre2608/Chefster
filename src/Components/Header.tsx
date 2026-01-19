@@ -5,8 +5,11 @@ import {
   StyleSheet,
   Pressable,
   StatusBar,
+  ViewStyle,
+  TextStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LinearGradient from 'react-native-linear-gradient';
 
 interface HeaderProps {
   title: string;
@@ -14,10 +17,16 @@ interface HeaderProps {
   onLeftPress?: () => void;
   leftComponent?: React.ReactNode;
   rightComponent?: React.ReactNode;
+
   titleColor?: string;
   subTitleColor?: string;
-  titleStyle?: object;
-  subTitleStyle?: object;
+
+  titleStyle?: TextStyle;
+  subTitleStyle?: TextStyle;
+  subTitleContainerStyle?: ViewStyle;
+
+  height?: number;
+  gradientColors?: string[];
 }
 
 const Header = ({
@@ -26,22 +35,26 @@ const Header = ({
   onLeftPress,
   leftComponent,
   rightComponent,
-  titleColor = '#000',
-  subTitleColor = '#666',
+  titleColor = '#FFFFFF',
+  subTitleColor = '#FFE6CC',
   titleStyle,
   subTitleStyle,
+  subTitleContainerStyle,
+  height = 64,
+  gradientColors = ['#FF8A00', '#FF6A00'],
 }: HeaderProps) => {
   const insets = useSafeAreaInsets();
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
-      <StatusBar
-        backgroundColor="#FFFFFF"
-        barStyle="dark-content"
-        translucent
-      />
+      <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
 
-      <View style={styles.wrapper}>
+      <LinearGradient
+        colors={gradientColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={[styles.wrapper, { height }]}
+      >
         <View style={styles.side}>
           {leftComponent ? (
             leftComponent
@@ -61,21 +74,23 @@ const Header = ({
           </Text>
 
           {subTitle ? (
-            <Text
-              numberOfLines={1}
-              style={[
-                styles.subTitle,
-                { color: subTitleColor },
-                subTitleStyle,
-              ]}
-            >
-              {subTitle}
-            </Text>
+            <View style={[styles.subTitleContainer, subTitleContainerStyle]}>
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.subTitle,
+                  { color: subTitleColor },
+                  subTitleStyle,
+                ]}
+              >
+                {subTitle}
+              </Text>
+            </View>
           ) : null}
         </View>
 
         <View style={styles.side}>{rightComponent}</View>
-      </View>
+      </LinearGradient>
     </View>
   );
 };
@@ -84,17 +99,18 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
     zIndex: 1000,
   },
   wrapper: {
-    height: 64,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   side: {
     width: 40,
@@ -108,17 +124,19 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 22,
-    color: '#000',
+    color: '#FFFFFF',
   },
   title: {
     fontSize: 18,
     fontWeight: '600',
     letterSpacing: 0.4,
   },
+  subTitleContainer: {
+    marginTop: 4,
+  },
   subTitle: {
     fontSize: 12,
-    marginTop: 2,
     fontWeight: '400',
-    opacity: 0.75,
+    opacity: 0.9,
   },
 });

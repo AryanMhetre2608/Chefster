@@ -14,12 +14,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/Store';
 import { removeFromFavorites } from '../redux/slice/favoritesSlice';
 import Toast from '../components/Toast';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Favourites = () => {
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
   const route = useRoute<any>();
-  
+
   const favoriteRecipes = useSelector(
     (state: RootState) => state.Favourites.favoriteRecipes,
   );
@@ -27,30 +28,24 @@ const Favourites = () => {
   const handleRemoveFromFavorites = (recipeId: string) => {
     dispatch(removeFromFavorites(recipeId));
   };
-  const handleBackPress = () => {
-    if (route.params?.from === 'Profile') {
-      navigation.navigate('Profile');
-    } else {
-      navigation.goBack();
-    }
-  };
+ 
 
   const handleViewRecipe = (recipeId: string) => {
     const id = String(recipeId);
-    
+
     // Navigate to the universal recipe screen
     navigation.navigate('Home', {
       screen: 'UniversalRecipe',
       params: { recipeId: id },
-      options:{
-        animation:'slide_from_bottom'
-      }
-      
+      options: {
+        animation: 'slide_from_bottom',
+      },
     });
   };
 
   const renderFavoriteItem = ({ item }: any) => (
-    <Pressable style={styles.favoriteCard}>
+   
+      <Pressable style={styles.favoriteCard}>
       <Image source={{ uri: item.image }} style={styles.recipeImage} />
       <View style={styles.recipeInfo}>
         <Text style={styles.recipeName}>{item.name}</Text>
@@ -58,16 +53,21 @@ const Favourites = () => {
 
         {/* Remove Button */}
         <View style={styles.Buttons}>
-          
-
           <Pressable
             style={styles.removeButton}
             onPress={() => handleViewRecipe(item.id)}
           >
+            <LinearGradient
+                          colors={['#FF8A00', '#FF6A00']}
+                          start={{ x: 0, y: 0 }}
+                          end={{ x: 1, y: 0 }}
+                        >
+          
             <Text style={styles.removeButtonText}>View</Text>
+            </LinearGradient>
           </Pressable>
           <Pressable
-            style={[styles.removeButton, { backgroundColor: '#1E90FF' }]}
+            style={[styles.removeButton, { backgroundColor: '#e91e63' }]}
             onPress={() => {
               handleRemoveFromFavorites(item.id);
               Toast(`${item.name} Removed from the favourites`);
@@ -78,23 +78,24 @@ const Favourites = () => {
         </View>
       </View>
     </Pressable>
+    
   );
 
   return (
     <View style={styles.mainContainer}>
+      
+      
       <Header
         title="Favourites"
-        subTitle="Recipes you love!!!"
-        leftComponent={
-                  <Pressable onPress={()=> handleBackPress()}>
-                    <Icon type="Ionicons" name="arrow-back" size={24} />
-                  </Pressable>
-                }
+        
+        height={180}
+        titleStyle={{marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
        
       />
 
       <View style={styles.container}>
-        {favoriteRecipes.length === 0 ? (
+        <View style={{marginTop:15 }}>
+          {favoriteRecipes.length === 0 ? (
           <View style={styles.emptyContainer}>
             <Text style={styles.emptyText}>No favorite recipes yet!</Text>
           </View>
@@ -107,6 +108,8 @@ const Favourites = () => {
             contentContainerStyle={styles.listContainer}
           />
         )}
+        </View>
+        
       </View>
     </View>
   );
@@ -120,7 +123,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   container: {
-    flex: 1,
+    
+     flex: 1,
+    margin: 0,
+    marginTop: -85,
+    backgroundColor: 'white',
+
+    borderTopRightRadius: 45,
+    borderTopLeftRadius: 45,
+
+    // 🔥 ADD THESE
+    zIndex: 10,
+    elevation: 7,
   },
   listContainer: {
     padding: 16,
@@ -155,7 +169,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   removeButton: {
-    backgroundColor: '#e91e63',
+    // backgroundColor: '#e91e63',
+    backgroundColor: '#FF5722',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
