@@ -1,12 +1,33 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Linking,
+  Alert,
+} from 'react-native';
 import React from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-const PrivacyPolicy = () => {
+const TermsOfService = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
+  const sendMail = (email: string, message: string) => {
+    const to = 'rnmhetre2608@gmail.com';
+    const subject = 'Contact Us - Chefster App';
+    const body = `From: ${email}\n\nMessage:\n${message}`;
+
+    const mailUrl = `mailto:${to}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    Linking.openURL(mailUrl).catch(() => {
+      Alert.alert('Error', 'No email app found');
+    });
+  };
 
   const handleBackPress = () => {
     if (route.params?.from === 'Profile') {
@@ -20,31 +41,540 @@ const PrivacyPolicy = () => {
     <View style={styles.container}>
       <Header
         title="Privacy Policy"
+        titleStyle={{
+          fontWeight:"bold",
+          fontSize:23
+        }}
         leftComponent={
           <Pressable onPress={handleBackPress}>
-            <Icon type="Ionicons" name="arrow-back" size={24} />
+            <Icon type="Ionicons" name="arrow-back" size={24} color='#FF5722' />
+          </Pressable>
+        }
+        rightComponent={
+          <Pressable onPress={handleBackPress}>
+            <Icon type="Octicons" name="shield-check" size={24} color='#FF5722' />
           </Pressable>
         }
       />
-      <View style={styles.content}>
-        <Text style={styles.text}>Privacy Policy Screen</Text>
-        <Text style={styles.subText}>Coming Soon...</Text>
-      </View>
+      <ScrollView>
+        <View style={styles.content}>
+          <Text style={{color:"grey"}}>Last updated: January 2025</Text>
+          <View>
+            <View style={styles.policyContainer}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 27,
+                    width: 27,
+                    borderRadius: 13.5,
+                    backgroundColor: '#FF5722',
+                    margin: 13,
+                  }}
+                >
+                  <Text style={{ color: 'white' }}>1</Text>
+                </View>
+                <View style={{ marginLeft: -5 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                    1. Data Collection
+                  </Text>
+                </View>
+              </View>
+              <View style={{ marginTop: -7 }}>
+                <View style={{ marginHorizontal: 15 }}>
+                  <Text style={{ fontSize: 13 }}>
+                    At Chefster , we collect certain information to provide and
+                    improve our service, including:
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    marginHorizontal: 15,
+                    marginRight: 20,
+                    marginBottom: 13,
+                  }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Personal information (e.g., name, email address) for
+                        account creation and communication.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Recipe Preferences, dietary restrictions, and saved
+                        items to personalize your experience.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Usage data and device information for app optimization
+                        and analytics.
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={[styles.policyContainer, { marginTop: -5 }]}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 27,
+                    width: 27,
+                    borderRadius: 13.5,
+                    backgroundColor: '#FF5722',
+                    margin: 13,
+                  }}
+                >
+                  <Text style={{ color: 'white' }}>2</Text>
+                </View>
+                <View style={{ marginLeft: -5 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                    2. How We Use Your Data
+                  </Text>
+                </View>
+              </View>
+              <View style={{ marginTop: -7 }}>
+                <View style={{ marginHorizontal: 15 }}>
+                  <Text style={{ fontSize: 13 }}>
+                    We use the collected data to enhance your Chefster
+                    experience. This includes:
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    marginHorizontal: 15,
+                    marginRight: 20,
+                    marginBottom: 13,
+                  }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Personalizing recipe recommendations based on your
+                        preferences.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Improving app functionality and developing new features.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Communicating important updates, newsletters, and
+                        promotional offers (which you can opt-out of).
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Analyzing user trends to better understand our community
+                        needs.
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={[styles.policyContainer, { marginTop: -5 }]}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 27,
+                    width: 27,
+                    borderRadius: 13.5,
+                    backgroundColor: '#FF5722',
+                    margin: 13,
+                  }}
+                >
+                  <Text style={{ color: 'white' }}>3</Text>
+                </View>
+                <View style={{ marginLeft: -5 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                    3. Your Rights
+                  </Text>
+                </View>
+              </View>
+              <View style={{ marginTop: -7 }}>
+                <View style={{ marginHorizontal: 15 }}>
+                  <Text style={{ fontSize: 13 }}>
+                    You have full control over your data. Chefster respects your
+                    rights to:
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    marginHorizontal: 15,
+                    marginRight: 20,
+                    marginBottom: 13,
+                  }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Access, update, or delete your personal information at
+                        any time via app settings.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Withdraw consent for data processing and opt-out of
+                        marketing communications.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Request a copy of your data in a portable format.
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginLeft: 13,
+                      gap: 10,
+                      marginTop: 5,
+                    }}
+                  >
+                    <View
+                      style={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                    </View>
+                    <View
+                      style={{ justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontSize: 13 }}>
+                        Object to the processing your data under certain
+                        circumstances.
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={[styles.policyContainer, { marginTop: -5 }]}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: 27,
+                    width: 27,
+                    borderRadius: 13.5,
+                    backgroundColor: '#FF5722',
+                    margin: 13,
+                  }}
+                >
+                  <Text style={{ color: 'white' }}>4</Text>
+                </View>
+                <View style={{ marginLeft: -5 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                    4. Contact Us
+                  </Text>
+                </View>
+              </View>
+              <View style={{ marginTop: -7, marginBottom: 10 }}>
+                <View>
+                  <View style={{ marginHorizontal: 15 }}>
+                    <Text style={{ fontSize: 13 }}>
+                      If you have any questions or concerns regarding this
+                      Privacy Policy or our data practices, please contact our
+                      Privacy Team.
+                    </Text>
+                  </View>
+
+                  <View
+                    style={{
+                      marginHorizontal: 15,
+                      flexDirection: 'row',
+                      gap: 3,
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',
+                    }}
+                  >
+                    <Text style={{ fontSize: 13 }}>Email us at</Text>
+                    <Pressable onPress={sendMail}>
+                      <Text
+                        style={{
+                          textDecorationLine: 'underline',
+                          color: '#FF5722',
+                        }}
+                      >
+                        rnmhetre2608@gmail.com
+                      </Text>
+                    </Pressable>
+                  </View>
+                  <View style={{ marginHorizontal: 15 }}>
+                    <Text style={{ fontSize: 13 }}>
+                      We are commited to addressing your inquiries promptly.
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            marginTop: -10,
+            marginBottom: 15,
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            gap: 3,
+          }}
+        >
+          <Text style={{ color: 'grey', fontSize: 13 }}>
+            Questions? Reach out to us
+          </Text>
+          <Pressable onPress={sendMail}>
+            <Text style={{ textDecorationLine: 'underline', color: '#FF5722' }}>
+              rnmhetre2608@gmail.com
+            </Text>
+          </Pressable>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
-export default PrivacyPolicy;
+export default TermsOfService;
 
 const styles = StyleSheet.create({
+  policyContainer: {
+    marginVertical: 15,
+    elevation: 7,
+    height: 'auto',
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 13,
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
   content: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    margin: 15,
   },
   text: {
     fontSize: 24,
