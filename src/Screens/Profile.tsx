@@ -35,7 +35,7 @@ const Profile = () => {
           screen: 'Favourites',
           params: { from: 'Profile' }
         });
-      } else if (item.navigations === 'EditProfile' || item.navigations === 'AboutUs' || item.navigations === 'PrivacyPolicy'||item.navigations === 'Logout') {
+      } else if (item.navigations === 'EditProfile' || item.navigations === 'AboutUs' || item.navigations === 'PrivacyPolicy'||item.navigations === 'Logout'||item.navigations === 'Settings') {
         navigation.navigate('Home', { 
           screen: item.navigations,
           params: { from: 'Profile' }
@@ -193,8 +193,8 @@ const Profile = () => {
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
-      <View style={styles.profileContainer}>
-        <View style={{marginTop:120}}>
+      <ScrollView style={styles.profileContainer} showsVerticalScrollIndicator={false}>
+        <View style={{marginTop:30}}>
           <View style={{alignItems:"center" , justifyContent:"center"}}>
             <View
           style={{
@@ -222,7 +222,7 @@ const Profile = () => {
       </View>
         </View>
         
-      </View>
+      </ScrollView>
       
     </View>
   );
@@ -249,9 +249,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   profileContainer: {
-    alignItems: 'center',
-
-    justifyContent: 'center',
+    
     flex: 1,
     margin: 0,
     marginTop: -85,

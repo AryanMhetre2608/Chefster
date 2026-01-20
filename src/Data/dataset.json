@@ -10569,6 +10569,20 @@
     },
     {
       "id":"5",
+      "name":"Settings",
+      "leftIconName":"settings",
+      "leftIconType":"Feather",
+      "leftIconSize":"26",
+      "leftIconColour":"#FF5722",
+      "rightIconName":"chevron-right",
+      "rightIconType":"Feather",
+      "rightIconSize":"26",
+      "rightIconColour":"black",
+      "navigations":"Settings"
+
+    },
+    {
+      "id":"6",
       "name":"Logout",
       "leftIconName":"log-out",
       "leftIconType":"Feather",

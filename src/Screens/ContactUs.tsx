@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
 
     borderTopRightRadius: 45,
-    borderTopLeftRadius: 45,
+    borderTopLeftRadius: 45,  
 
     // 🔥 ADD THESE
     zIndex: 10,
@@ -351,6 +351,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
+   
   },
   innerTop: {
     position: 'absolute',

@@ -17,6 +17,8 @@ import AboutUs from '../screens/AboutUs'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import TermsOfService from '../screens/TermsOfService'
 import Logout from '../screens/Logout'
+import Setting from '../screens/Setting'
+import ChangePassword from '../screens/ChangePassword'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -36,6 +38,8 @@ const HomeStackNavigator = () => {
       <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
       <Stack.Screen name='TermsOfService' component={TermsOfService}/>
       <Stack.Screen name='Logout' component={Logout}/>
+      <Stack.Screen name='Settings' component={Setting}/>
+      <Stack.Screen name='ChangePassword' component={ChangePassword}/>
     </Stack.Navigator>
   )
 }
