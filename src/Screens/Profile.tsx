@@ -35,7 +35,7 @@ const Profile = () => {
           screen: 'Favourites',
           params: { from: 'Profile' }
         });
-      } else if (item.navigations === 'EditProfile' || item.navigations === 'AboutUs' || item.navigations === 'PrivacyPolicy') {
+      } else if (item.navigations === 'EditProfile' || item.navigations === 'AboutUs' || item.navigations === 'PrivacyPolicy'||item.navigations === 'Logout') {
         navigation.navigate('Home', { 
           screen: item.navigations,
           params: { from: 'Profile' }
@@ -188,7 +188,7 @@ const Profile = () => {
 
     <View style={styles.container}>
       <Header
-        title="Terms of Service"
+        title="Profile"
         
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}

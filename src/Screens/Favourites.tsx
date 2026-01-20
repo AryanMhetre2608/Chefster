@@ -28,7 +28,6 @@ const Favourites = () => {
   const handleRemoveFromFavorites = (recipeId: string) => {
     dispatch(removeFromFavorites(recipeId));
   };
- 
 
   const handleViewRecipe = (recipeId: string) => {
     const id = String(recipeId);
@@ -44,8 +43,7 @@ const Favourites = () => {
   };
 
   const renderFavoriteItem = ({ item }: any) => (
-   
-      <Pressable style={styles.favoriteCard}>
+    <Pressable style={styles.favoriteCard}>
       <Image source={{ uri: item.image }} style={styles.recipeImage} />
       <View style={styles.recipeInfo}>
         <Text style={styles.recipeName}>{item.name}</Text>
@@ -53,20 +51,47 @@ const Favourites = () => {
 
         {/* Remove Button */}
         <View style={styles.Buttons}>
-          <Pressable
-            style={styles.removeButton}
+          {/* <Pressable
             onPress={() => handleViewRecipe(item.id)}
           >
             <LinearGradient
-                          colors={['#FF8A00', '#FF6A00']}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 0 }}
-                        >
-          
-            <Text style={styles.removeButtonText}>View</Text>
+              colors={['#FF8A00', '#FF6A00']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.removeButton}
+            >
+              <Text style={styles.removeButtonText}>View</Text>
+            </LinearGradient>
+          </Pressable> */}
+          <Pressable
+            onPress={() => handleViewRecipe(item.id)}
+            style={({ pressed }) => [
+              {
+                borderRadius: 12,
+                overflow: 'hidden',
+                transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
+              },
+            ]}
+          >
+            <LinearGradient
+              colors={['#FF8A00', '#FF6A00']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={{
+                height: 36, // button height
+                width: 150, // button width
+                borderRadius: 10, // make corners rounded
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ color: '#fff', fontWeight: '600', fontSize: 16 }}>
+                View
+              </Text>
             </LinearGradient>
           </Pressable>
-          <Pressable
+
+          {/* <Pressable
             style={[styles.removeButton, { backgroundColor: '#e91e63' }]}
             onPress={() => {
               handleRemoveFromFavorites(item.id);
@@ -74,42 +99,66 @@ const Favourites = () => {
             }}
           >
             <Text style={styles.removeButtonText}>Remove</Text>
+          </Pressable> */}
+           <Pressable
+            onPress={() => {
+              handleRemoveFromFavorites(item.id);
+              Toast(`${item.name} Removed from the favourites`);
+            }}
+            style={({ pressed }) => [
+              {
+                borderRadius: 12,
+                overflow: 'hidden',
+                transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
+              },
+            ]}
+          >
+            <LinearGradient
+              colors={['#ff6090', '#e91e63']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={{
+                height: 36, // button height
+                width: 150, // button width
+                borderRadius: 10, // make corners rounded
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ color: '#fff', fontWeight: '600', fontSize: 16 }}>
+                Remove
+              </Text>
+            </LinearGradient>
           </Pressable>
         </View>
       </View>
     </Pressable>
-    
   );
 
   return (
     <View style={styles.mainContainer}>
-      
-      
       <Header
         title="Favourites"
-        
         height={180}
-        titleStyle={{marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
-       
+        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
 
       <View style={styles.container}>
-        <View style={{marginTop:15 }}>
+        <View style={{ marginTop: 15 }}>
           {favoriteRecipes.length === 0 ? (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>No favorite recipes yet!</Text>
-          </View>
-        ) : (
-          <FlatList
-            data={favoriteRecipes}
-            renderItem={renderFavoriteItem}
-            keyExtractor={item => item.id}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.listContainer}
-          />
-        )}
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>No favorite recipes yet!</Text>
+            </View>
+          ) : (
+            <FlatList
+              data={favoriteRecipes}
+              renderItem={renderFavoriteItem}
+              keyExtractor={item => item.id}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.listContainer}
+            />
+          )}
         </View>
-        
       </View>
     </View>
   );
@@ -123,8 +172,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   container: {
-    
-     flex: 1,
+    flex: 1,
     margin: 0,
     marginTop: -85,
     backgroundColor: 'white',

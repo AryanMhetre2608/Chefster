@@ -13,13 +13,9 @@ import { useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
-
-
-
 const AboutUs = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
-
 
   const handleBackPress = () => {
     if (route.params?.from === 'Profile') {
@@ -31,12 +27,22 @@ const AboutUs = () => {
 
   return (
     <View style={styles.container}>
-      <Header
+      {/* <Header
         title="About Chefster"
         titleStyle={{ fontWeight: 'bold', fontSize: 22 }}
         leftComponent={
           <Pressable onPress={handleBackPress}>
             <Icon type="Ionicons" name="arrow-back" size={24} color="#FF5722" />
+          </Pressable>
+        }
+      /> */}
+      <Header
+        title="About Chefster"
+        height={180}
+        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        leftComponent={
+          <Pressable onPress={handleBackPress} style={{marginBottom:65}}>
+            <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
           </Pressable>
         }
       />
@@ -45,6 +51,15 @@ const AboutUs = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        style={{
+          backgroundColor: '#f5f5f5',
+          marginTop: -85, // overlap amount
+          zIndex: 10,
+          elevation: 20, // Android
+          position: 'relative',
+          borderTopLeftRadius: 45,
+          borderTopRightRadius: 45,
+        }}
       >
         <View style={styles.innerWrapper}>
           {/* LOGO */}
@@ -85,9 +100,9 @@ const AboutUs = () => {
                 <View style={{ flex: 1 }}>
                   <Text style={styles.missionTitle}>Our Mission</Text>
                   <Text style={styles.missionText}>
-                    At Chefster, our mission is to bring the joy of global cuisines
-                    directly to your home kitchen, making every meal an adventure
-                    and inspiring home cooks everywhere.
+                    At Chefster, our mission is to bring the joy of global
+                    cuisines directly to your home kitchen, making every meal an
+                    adventure and inspiring home cooks everywhere.
                   </Text>
                 </View>
               </View>
@@ -114,15 +129,23 @@ const AboutUs = () => {
             <Text>Proudly made by Chefster Team</Text>
 
             <View style={styles.footerLinks}>
-              <Pressable onPress={()=>navigation.navigate('TermsOfService')}>
-                <Text style={{textDecorationLine: 'underline' , color:'#FF5722' }}>Terms of Service</Text>
+              <Pressable onPress={() => navigation.navigate('TermsOfService')}>
+                <Text
+                  style={{ textDecorationLine: 'underline', color: '#FF5722' }}
+                >
+                  Terms of Service
+                </Text>
               </Pressable>
-              <View style={{justifyContent:"center" , alignItems:"center"}}>
-                <Text style={{color:"grey" , fontSize:10}}>•</Text>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ color: 'grey', fontSize: 10 }}>•</Text>
               </View>
-              
-              <Pressable onPress={()=>navigation.navigate('PrivacyPolicy')}>
-                <Text style={{textDecorationLine: 'underline' , color:'#FF5722' }}>Privacy Policy</Text>
+
+              <Pressable onPress={() => navigation.navigate('PrivacyPolicy')}>
+                <Text
+                  style={{ textDecorationLine: 'underline', color: '#FF5722' }}
+                >
+                  Privacy Policy
+                </Text>
               </Pressable>
             </View>
           </View>

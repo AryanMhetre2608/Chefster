@@ -16,6 +16,7 @@ import EditProfile from '../screens/EditProfile'
 import AboutUs from '../screens/AboutUs'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import TermsOfService from '../screens/TermsOfService'
+import Logout from '../screens/Logout'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -34,6 +35,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name='AboutUs' component={AboutUs}/>
       <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
       <Stack.Screen name='TermsOfService' component={TermsOfService}/>
+      <Stack.Screen name='Logout' component={Logout}/>
     </Stack.Navigator>
   )
 }

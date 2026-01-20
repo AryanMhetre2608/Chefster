@@ -11,6 +11,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const TermsOfService = () => {
   const navigation = useNavigation<any>();
@@ -39,7 +40,7 @@ const TermsOfService = () => {
 
   return (
     <View style={styles.container}>
-      <Header
+      {/* <Header
         title="Privacy Policy"
         titleStyle={{
           fontWeight:"bold",
@@ -55,10 +56,25 @@ const TermsOfService = () => {
             <Icon type="Octicons" name="shield-check" size={24} color='#FF5722' />
           </Pressable>
         }
+      /> */}
+      <Header
+        title="Privacy Policy"
+        height={180}
+        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        leftComponent={
+          <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
+            <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
+          </Pressable>
+        }
+        rightComponent={
+          <Pressable style={{ marginBottom: 58 }}>
+            <Icon type="Octicons" name="shield-check" size={24} color="white" />
+          </Pressable>
+        }
       />
-      <ScrollView>
+      <ScrollView style={styles.overlapingContainer}>
         <View style={styles.content}>
-          <Text style={{color:"grey"}}>Last updated: January 2025</Text>
+          <Text style={{ color: 'grey' }}>Last updated: January 2025</Text>
           <View>
             <View style={styles.policyContainer}>
               <View
@@ -68,7 +84,10 @@ const TermsOfService = () => {
                   justifyContent: 'flex-start',
                 }}
               >
-                <View
+                <LinearGradient
+                  colors={['#FF8A00', '#FF6A00']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
                   style={{
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -80,7 +99,7 @@ const TermsOfService = () => {
                   }}
                 >
                   <Text style={{ color: 'white' }}>1</Text>
-                </View>
+                </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
                     1. Data Collection
@@ -187,7 +206,10 @@ const TermsOfService = () => {
                   justifyContent: 'flex-start',
                 }}
               >
-                <View
+                <LinearGradient
+                  colors={['#FF8A00', '#FF6A00']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
                   style={{
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -199,7 +221,7 @@ const TermsOfService = () => {
                   }}
                 >
                   <Text style={{ color: 'white' }}>2</Text>
-                </View>
+                </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
                     2. How We Use Your Data
@@ -330,7 +352,10 @@ const TermsOfService = () => {
                   justifyContent: 'flex-start',
                 }}
               >
-                <View
+                <LinearGradient
+                  colors={['#FF8A00', '#FF6A00']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
                   style={{
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -342,7 +367,7 @@ const TermsOfService = () => {
                   }}
                 >
                   <Text style={{ color: 'white' }}>3</Text>
-                </View>
+                </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
                     3. Your Rights
@@ -473,7 +498,10 @@ const TermsOfService = () => {
                   justifyContent: 'flex-start',
                 }}
               >
-                <View
+                <LinearGradient
+                  colors={['#FF8A00', '#FF6A00']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
                   style={{
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -485,7 +513,7 @@ const TermsOfService = () => {
                   }}
                 >
                   <Text style={{ color: 'white' }}>4</Text>
-                </View>
+                </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
                     4. Contact Us
@@ -560,6 +588,16 @@ const TermsOfService = () => {
 export default TermsOfService;
 
 const styles = StyleSheet.create({
+  overlapingContainer: {
+    backgroundColor: '#f5f5f5',
+    marginTop: -85, // overlap amount
+    zIndex: 20,
+    elevation: 20,
+    position: 'relative',
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
+    flex: 1,
+  },
   policyContainer: {
     marginVertical: 15,
     elevation: 7,

@@ -212,10 +212,16 @@ const TermsOfService = () => {
                 pressed && { transform: [{ scale: 0.98 }] }, // smoother press
               ]}
             >
-              
+              <LinearGradient
+                colors={['#FF8A00', '#FF6A00']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={{height:50 ,alignItems:"center" , justifyContent:"center" , width:"100%" }}
+              >
                 {/* 🔥 Bottom inner depth */}
 
                 <Text style={styles.buttonText}>Send Message</Text>
+              </LinearGradient>
             </Pressable>
           </View>
         </View>
@@ -313,6 +319,8 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     borderRadius: 12,
     overflow: 'hidden',
+    alignItems:"center",
+    justifyContent:"center",
   },
 
   button: {
@@ -338,7 +346,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#f5f5f5',
     marginTop: -85, // overlap amount
-    zIndex: 20,
+    zIndex: 10,
     elevation: 20, // Android
     position: 'relative',
     borderTopLeftRadius: 45,
