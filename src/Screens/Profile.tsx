@@ -193,7 +193,7 @@ const Profile = () => {
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
-      <ScrollView style={styles.profileContainer} showsVerticalScrollIndicator={false}>
+      <View style={styles.profileContainer} >
         <View style={{marginTop:30}}>
           <View style={{alignItems:"center" , justifyContent:"center"}}>
             <View
@@ -222,7 +222,7 @@ const Profile = () => {
       </View>
         </View>
         
-      </ScrollView>
+      </View>
       
     </View>
   );
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: 60,
+    height: 55,
     elevation: 7,
     borderWidth: 1,
     borderRadius: 15,
