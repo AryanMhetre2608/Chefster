@@ -12,11 +12,14 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import ImagePicker from '../components/ImagePicker'
+import ImagePicker from '../components/ImagePicker';
+import Toast from '../components/Toast';
+import { useTheme } from '../context/ThemeContext';
 
 const EditProfile = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
+  const { colors } = useTheme();
 
   const handleBackPress = () => {
     if (route.params?.from === 'Profile') {
@@ -34,21 +37,20 @@ const EditProfile = () => {
   const [phoneNumberError, setPhoneNumberError] = useState('');
   const [bioError, setBioError] = useState('');
 
- const handleSave = () => {
-  if (!fname || !mail || !phoneNumber || !bio) {
-    Alert.alert('Error', 'Please fill all fields');
-    return;
-  }
+  const handleSave = () => {
+    if (!fname || !mail || !phoneNumber || !bio) {
+      Toast.error('Please fill all fields');
+      return;
+    }
 
-  if (nameError || mailError || phoneNumberError || bioError) {
-    Alert.alert('Error', 'Please fix errors before saving');
-    return;
-  }
+    if (nameError || mailError || phoneNumberError || bioError) {
+      Toast.error('Please fix errors before saving');
+      return;
+    }
 
-  Alert.alert('Success', 'Information saved successfully');
-  navigation.goBack();
-};
-
+    Toast.success('Information saved successfully');
+    navigation.goBack();
+  };
 
   const handlePhoneNumber = text => {
     const numericText = text.replace(/[^0-9]/g, '');
@@ -110,7 +112,12 @@ const EditProfile = () => {
     }
   };
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: colors.editProfileContainer },
+      ]}
+    >
       {/* <Header
         title="Edit Profile"
         leftComponent={
@@ -125,11 +132,16 @@ const EditProfile = () => {
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
           <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
+            <Icon type="Ionicons" name="arrow-back" size={24}  />
           </Pressable>
         }
       />
-      <ScrollView style={styles.overlappingContainer}>
+      <ScrollView
+        style={[
+          styles.overlappingContainer,
+          { backgroundColor: colors.editProfileOverlayContainer },
+        ]}
+      >
         <View
           style={{
             alignItems: 'center',
@@ -139,17 +151,21 @@ const EditProfile = () => {
         >
           <View
             style={{
-              borderWidth: 0.5,
-              borderColor: 'grey',
+              borderWidth: 1,
+              borderColor: colors.editProfileAvatarBorder,
               height: 150,
               width: 150,
               borderRadius: 75,
+              backgroundColor: colors.editProfileAvatarPlaceholder,
             }}
           ></View>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Pressable onPress={ImagePicker}>
               <LinearGradient
-                colors={['#FF8A00', '#FF6A00']}
+                colors={[
+                  colors.editProfileCameraButton,
+                  colors.editProfileCameraButtonEnd,
+                ]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={{
@@ -168,7 +184,7 @@ const EditProfile = () => {
                 <Icon
                   type="FontAwesome"
                   name="camera"
-                  color="white"
+                  color={colors.editProfileCameraIcon}
                   size={22}
                 />
               </LinearGradient>
@@ -176,50 +192,91 @@ const EditProfile = () => {
           </View>
         </View>
 
-        <View style={styles.form}>
+        <View
+          style={[
+            styles.form,
+            { backgroundColor: colors.editProfileFormBackground },
+          ]}
+        >
           <View style={{ width: '100%' }}>
             <View
               style={{ alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Text style={{ color: 'grey', fontSize: 17 }}>Full Name</Text>
+              <Text
+                style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
+              >
+                Full Name
+              </Text>
             </View>
             <TextInput
               value={fname}
               onChangeText={handleFullName}
               placeholder="Name FatherName Surname"
+              placeholderTextColor={colors.editProfileInputPlaceholder}
               style={[
                 styles.textInputStyle,
-                nameError ? { borderColor: 'red' } : {},
+                {
+                  backgroundColor: colors.editProfileInputBackground,
+                  borderColor: colors.editProfileInputBorder,
+                  color: colors.editProfileInputText,
+                },
+                nameError
+                  ? { borderColor: colors.editProfileInputBorderError }
+                  : {},
               ]}
             />
             {nameError ? (
-              <Text style={{ color: 'red', marginTop: 5 }}>{nameError}</Text>
+              <Text
+                style={{ color: colors.editProfileErrorText, marginTop: 5 }}
+              >
+                {nameError}
+              </Text>
             ) : null}
           </View>
           <View style={{ width: '100%', marginTop: 20 }}>
             <View
               style={{ alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Text style={{ color: 'grey', fontSize: 17 }}>Email</Text>
+              <Text
+                style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
+              >
+                Email
+              </Text>
             </View>
             <TextInput
               value={mail}
               onChangeText={handleMail}
-              placeholder="john.smith@gmail.com "
+              placeholder="john.smith@gmail.com"
+              placeholderTextColor={colors.editProfileInputPlaceholder}
               style={[
                 styles.textInputStyle,
-                mailError ? { borderColor: 'red' } : {},
+                {
+                  backgroundColor: colors.editProfileInputBackground,
+                  borderColor: colors.editProfileInputBorder,
+                  color: colors.editProfileInputText,
+                },
+                mailError
+                  ? { borderColor: colors.editProfileInputBorderError }
+                  : {},
               ]}
             />
             {mailError ? (
-              <Text style={{ color: 'red', marginTop: 5 }}>{mailError}</Text>
+              <Text
+                style={{ color: colors.editProfileErrorText, marginTop: 5 }}
+              >
+                {mailError}
+              </Text>
             ) : null}
           </View>
           <View style={{ width: '100%', marginTop: 20 }}>
             <View
               style={{ alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Text style={{ color: 'grey', fontSize: 17 }}>Phone Number</Text>
+              <Text
+                style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
+              >
+                Phone Number
+              </Text>
             </View>
             <TextInput
               value={phoneNumber}
@@ -228,13 +285,23 @@ const EditProfile = () => {
               onChangeText={handlePhoneNumber}
               maxLength={10}
               placeholder="+91 9876543210"
+              placeholderTextColor={colors.editProfileInputPlaceholder}
               style={[
                 styles.textInputStyle,
-                phoneNumberError ? { borderColor: 'red' } : {},
+                {
+                  backgroundColor: colors.editProfileInputBackground,
+                  borderColor: colors.editProfileInputBorder,
+                  color: colors.editProfileInputText,
+                },
+                phoneNumberError
+                  ? { borderColor: colors.editProfileInputBorderError }
+                  : {},
               ]}
             />
             {phoneNumberError ? (
-              <Text style={{ color: 'red', marginTop: 5 }}>
+              <Text
+                style={{ color: colors.editProfileErrorText, marginTop: 5 }}
+              >
                 {phoneNumberError}
               </Text>
             ) : null}
@@ -244,20 +311,35 @@ const EditProfile = () => {
             <View
               style={{ alignItems: 'flex-start', justifyContent: 'center' }}
             >
-              <Text style={{ color: 'grey', fontSize: 17 }}>Bio</Text>
+              <Text
+                style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
+              >
+                Bio
+              </Text>
             </View>
             <TextInput
               value={bio}
               onChangeText={handleBio}
               placeholder="Your Bio"
-              placeholderStyle
+              placeholderTextColor={colors.editProfileInputPlaceholder}
               style={[
                 styles.textInputStyle,
-                bioError ? { borderColor: 'red' } : {},
+                {
+                  backgroundColor: colors.editProfileInputBackground,
+                  borderColor: colors.editProfileInputBorder,
+                  color: colors.editProfileInputText,
+                },
+                bioError
+                  ? { borderColor: colors.editProfileInputBorderError }
+                  : {},
               ]}
             />
             {bioError ? (
-              <Text style={{ color: 'red', marginTop: 5 }}>{bioError}</Text>
+              <Text
+                style={{ color: colors.editProfileErrorText, marginTop: 5 }}
+              >
+                {bioError}
+              </Text>
             ) : null}
           </View>
         </View>
@@ -267,12 +349,11 @@ const EditProfile = () => {
             height: 'auto',
             alignItems: 'center',
             justifyContent: 'center',
-            marginHorizontal:10
-            
+            marginHorizontal: 10,
           }}
         >
           <Pressable
-          onPress={handleSave}
+            onPress={handleSave}
             style={({ pressed }) => [
               {
                 width: '90%',
@@ -286,7 +367,7 @@ const EditProfile = () => {
             ]}
           >
             <LinearGradient
-              colors={['#FF8A00', '#FF6A00']}
+              colors={[colors.editProfileSaveButton, colors.editProfileSaveButtonEnd]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{
@@ -295,14 +376,14 @@ const EditProfile = () => {
                 borderRadius: 25,
                 alignItems: 'center',
                 justifyContent: 'center',
+                opacity:colors.editProfileSaveButtonPressed
               }}
             >
-              <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>
+              <Text style={{ color: colors.editProfileSaveButtonText, fontSize: 18, fontWeight: 'bold' }}>
                 Save Changes
               </Text>
             </LinearGradient>
           </Pressable>
-         
         </View>
       </ScrollView>
     </View>
@@ -332,7 +413,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   overlappingContainer: {
-    backgroundColor: '#f5f5f5',
     marginTop: -85, // overlap amount
     zIndex: 10,
     elevation: 20, // Android

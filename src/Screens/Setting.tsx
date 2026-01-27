@@ -3,9 +3,14 @@ import React from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '../context/ThemeContext';
 
 const Setting = () => {
-    const navigation = useNavigation<any>()
+  const navigation = useNavigation<any>();
+  const { isDarkMode, toggleTheme, colors } = useTheme();
+
+  const styles = createStyles(colors);
+
   return (
     <View style={styles.container}>
       <Header
@@ -20,54 +25,61 @@ const Setting = () => {
             width: '90%',
             height: 20,
             marginVertical: 20,
-            gap:15
+            gap: 15,
           }}
         >
+          {/* Change Password Button */}
           <Pressable
-            style={{
-              backgroundColor: 'white',
-              width: '100%',
-              height: 65,
-              borderRadius: 20,
-              elevation: 10,
-              flexDirection:"row"
-            }}
-            onPress={()=>navigation.navigate('ChangePassword')}
+            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
+            onPress={() => navigation.navigate('ChangePassword')}
           >
-            <View style={{alignItems:"center" , justifyContent:"center" , width:"18%" , height:"100%"}}>
+            <View style={styles.iconContainer}>
               <Icon
                 type="FontAwesome"
                 name="lock"
-                color="grey"
+                color={colors.textSecondary}
                 size={31}
               />
             </View>
-            <View style={{alignItems:"flex-start" , justifyContent:"center" , width:"82%" , height:"100%"}}>
-                <Text style={{fontWeight:'bold' , color:"grey" , fontSize:18}}>Change Password</Text>
-
+            <View style={styles.textContainer}>
+              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
+                Change Password
+              </Text>
             </View>
           </Pressable>
-           <Pressable
-            style={{
-              backgroundColor: 'white',
-              width: '100%',
-              height: 65,
-              borderRadius: 20,
-              elevation: 10,
-              flexDirection:"row"
-            }}
+
+          {/* Dark Mode Toggle Button */}
+          <Pressable
+            style={[
+              styles.buttonContainer,
+              {
+                backgroundColor: isDarkMode ? colors.surface : colors.surface,
+                borderWidth: isDarkMode ? 1 : 0,
+                borderColor: isDarkMode ? colors.border : 'transparent',
+              },
+            ]}
+            onPress={toggleTheme}
           >
-            <View style={{alignItems:"center" , justifyContent:"center" , width:"18%" , height:"100%"}}>
+            <View style={styles.iconContainer}>
               <Icon
-                type="Ionicons"
-                name="moon-sharp"
-                color="grey"
+                type={isDarkMode ? "Ionicons" : "Entypo"}
+                name={isDarkMode ? "moon-sharp" : "light-up"}
+                color={isDarkMode ? colors.gradient1 : colors.textSecondary}
                 size={31}
               />
             </View>
-            <View style={{alignItems:"flex-start" , justifyContent:"center" , width:"82%" , height:"100%"}}>
-                <Text style={{fontWeight:'bold' , color:"grey" , fontSize:18}}>Dark Mode</Text>
-
+            <View style={styles.textContainer}>
+              <Text 
+                style={[
+                  styles.buttonText, 
+                  { 
+                    color: isDarkMode ? colors.gradient1 : colors.textSecondary,
+                    fontWeight: isDarkMode ? 'bold' : 'bold'
+                  }
+                ]}
+              >
+                {isDarkMode ? 'Dark Mode' : 'Light Mode'}
+              </Text>
             </View>
           </Pressable>
         </View>
@@ -78,23 +90,49 @@ const Setting = () => {
 
 export default Setting;
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.background,
   },
   overlappingContainer: {
     alignItems: 'center',
-
     flex: 1,
     marginTop: -85,
-    backgroundColor: 'white',
-
+    backgroundColor: colors.background,
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
-
-    // 🔥 ADD THESE
     zIndex: 10,
     elevation: 7,
+  },
+  buttonContainer: {
+    width: '100%',
+    height: 65,
+    borderRadius: 20,
+    elevation: 10,
+    flexDirection: 'row',
+    shadowColor: colors.text,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+  },
+  iconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '18%',
+    height: '100%',
+  },
+  textContainer: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    width: '82%',
+    height: '100%',
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    fontSize: 18,
   },
 });

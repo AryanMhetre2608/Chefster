@@ -10,21 +10,17 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeaderProps {
   title: string;
   subTitle?: string;
   onLeftPress?: () => void;
-  leftComponent?: React.ReactNode;
-  rightComponent?: React.ReactNode;
-
-  titleColor?: string;
-  subTitleColor?: string;
-
+  leftComponent?: React.ReactElement;
+  rightComponent?: React.ReactElement;
   titleStyle?: TextStyle;
   subTitleStyle?: TextStyle;
   subTitleContainerStyle?: ViewStyle;
-
   height?: number;
   gradientColors?: string[];
 }
@@ -35,40 +31,82 @@ const Header = ({
   onLeftPress,
   leftComponent,
   rightComponent,
-  titleColor = '#FFFFFF',
-  subTitleColor = '#FFE6CC',
   titleStyle,
   subTitleStyle,
   subTitleContainerStyle,
   height = 64,
-  gradientColors = ['#FF8A00', '#FF6A00'],
+  gradientColors,
 }: HeaderProps) => {
   const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
+
+  const finalGradientColors =
+    gradientColors || [colors.gradient1, colors.gradient2];
+
+  /** LEFT COMPONENT COLOR */
+  const styledLeftComponent =
+    leftComponent &&
+    React.cloneElement(leftComponent, {
+      style: [
+        leftComponent.props.style,
+        { color: colors.headerLeftComponent },
+      ],
+    });
+
+  /** RIGHT COMPONENT COLOR */
+  const styledRightComponent =
+    rightComponent &&
+    React.cloneElement(rightComponent, {
+      style: [
+        rightComponent.props.style,
+        { color: colors.headerRightComponent },
+      ],
+    });
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View
+      style={[
+        styles.container,
+        { shadowColor: colors.shadow, paddingTop: insets.top },
+      ]}
+    >
       <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
 
       <LinearGradient
-        colors={gradientColors}
+        colors={finalGradientColors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.wrapper, { height }]}
       >
+        {/* LEFT */}
         <View style={styles.side}>
-          {leftComponent ? (
-            leftComponent
+          {styledLeftComponent ? (
+            <Pressable onPress={onLeftPress}>
+              {styledLeftComponent}
+            </Pressable>
           ) : onLeftPress ? (
             <Pressable onPress={onLeftPress}>
-              <Text style={styles.icon}>←</Text>
+              <Text
+                style={[
+                  styles.icon,
+                  { color: colors.headerLeftComponent },
+                ]}
+              >
+                ←
+              </Text>
             </Pressable>
           ) : null}
         </View>
 
+        {/* CENTER */}
         <View style={styles.center}>
           <Text
             numberOfLines={1}
-            style={[styles.title, { color: titleColor }, titleStyle]}
+            style={[
+              styles.title,
+              { color: colors.headerTittle },
+              titleStyle,
+            ]}
           >
             {title}
           </Text>
@@ -79,7 +117,7 @@ const Header = ({
                 numberOfLines={1}
                 style={[
                   styles.subTitle,
-                  { color: subTitleColor },
+                  { color: colors.headerSubTittle },
                   subTitleStyle,
                 ]}
               >
@@ -89,7 +127,8 @@ const Header = ({
           ) : null}
         </View>
 
-        <View style={styles.side}>{rightComponent}</View>
+        {/* RIGHT */}
+        <View style={styles.side}>{styledRightComponent}</View>
       </LinearGradient>
     </View>
   );
@@ -124,7 +163,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 22,
-    color: '#FFFFFF',
   },
   title: {
     fontSize: 18,

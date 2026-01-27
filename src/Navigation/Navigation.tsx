@@ -19,6 +19,7 @@ import TermsOfService from '../screens/TermsOfService'
 import Logout from '../screens/Logout'
 import Setting from '../screens/Setting'
 import ChangePassword from '../screens/ChangePassword'
+import { useTheme } from '../context/ThemeContext'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -45,12 +46,14 @@ const HomeStackNavigator = () => {
 }
 
 const TabNavigator = () => {
+  const { colors } = useTheme();
+  
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: colors.bottomTabBarBackground,
           borderTopWidth: 1,
           borderTopColor: '#e0e0e0',
           height: 60,

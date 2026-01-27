@@ -20,6 +20,7 @@ import foodJson from '../data/dataset.json';
 import Toast from '../components/Toast';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
+import { useTheme } from '../context/ThemeContext';
 
 type RouteParams = {
   AllCuisines: {
@@ -30,6 +31,7 @@ type RouteParams = {
 type AllCuisinesRouteProp = RouteProp<RouteParams, 'AllCuisines'>;
 
 const AllCuisines = () => {
+  const { colors } = useTheme()
   const navigation = useNavigation<any>();
   const route = useRoute<AllCuisinesRouteProp>();
   const dispatch = useDispatch();
@@ -82,7 +84,7 @@ const AllCuisines = () => {
     if (isFavorite(recipeId)) {
       // Remove from favorites
       dispatch(removeFromFavorites(recipeId));
-      Toast(`${item.name} removed from favorites`);
+      Toast.success(`${item.name} removed from favorites`);
     } else {
       // Add to favorites
       dispatch(
@@ -93,7 +95,7 @@ const AllCuisines = () => {
           cuisine: item.cuisine,
         }),
       );
-      Toast(`${item.name} added to favorites`);
+      Toast.success(`${item.name} added to favorites`);
     }
   };
 
@@ -104,7 +106,7 @@ const AllCuisines = () => {
     
     return (
       <TouchableOpacity
-        style={styles.foodItemContainer}
+        style={[styles.foodItemContainer , {backgroundColor:colors.background}]}
         onPress={() => {
           navigation.navigate('UniversalRecipe', { recipeId: recipeId });
           Toast(`Going to recipe of ${item.name}`);
@@ -121,7 +123,7 @@ const AllCuisines = () => {
           <View style={styles.foodInfoContainer}>
             <Text style={styles.foodName}>{item.name}</Text>
             <Text style={styles.foodCategory}>{item.category}</Text>
-            <View style={styles.prepTimeContainer}>
+            <View style={[styles.prepTimeContainer , {backgroundColor:colors.background}]}>
               <Text style={styles.prepTimeText}>
                 <Icon type='Feather' name='clock' size={12}/> {recipe?.prepTime || 'N/A'}
               </Text>
@@ -148,7 +150,7 @@ const AllCuisines = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container , {backgroundColor:colors.background}]}>
       <Header
         title={''}
         leftComponent={
@@ -248,7 +250,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 25,
-    backgroundColor: '#D9D9D9',
+    backgroundColor: 'white',
     width: '40%',
     borderRadius: 12.5,
   },

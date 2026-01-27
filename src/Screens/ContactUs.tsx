@@ -13,11 +13,14 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useTheme } from '../context/ThemeContext';
 
 const TermsOfService = () => {
+  const { colors } = useTheme();
   const [name, setName] = useState<any>(null);
   const [email, setEmail] = useState<any>(null);
   const [message, setMessage] = useState<any>(null);
+  const [isFocused, setIsFocused] = useState(false);
   const openInstagram = () => {
     const instagramAppUrl = 'instagram://user?username=chefsterapp';
 
@@ -74,16 +77,26 @@ const TermsOfService = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.contactUsMainBackground }]}>
       <Header
         title="Contact Us"
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
-      <ScrollView style={styles.mainContainer}>
-        <View style={styles.form}>
+      <ScrollView
+        style={[
+          styles.mainContainer,
+          { backgroundColor: colors.contactUsScrollBackground },
+        ]}
+      >
+        <View
+          style={[
+            styles.form,
+            { backgroundColor: colors.contactUsFormBackground },
+          ]}
+        >
           <View>
-            <Text>Name</Text>
+            <Text style={{ color: colors.contactUsFormLabel }}>Name</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -91,38 +104,37 @@ const TermsOfService = () => {
                 marginTop: 10,
                 borderWidth: 1,
                 borderRadius: 10,
-                borderColor: '#4F4F4F',
                 height: 50,
+                backgroundColor: colors.contactUsInputContainer,
+                borderColor: isFocused
+                  ? colors.contactUsInputBorderFocused
+                  : colors.contactUsInputBorder,
               }}
             >
-              {/* INNER SHADOW TOP (darker) */}
-              <LinearGradient
-                colors={['rgba(0,0,0,0.15)', 'transparent']}
-                style={styles.innerTop}
-              />
-
-              {/* INNER SHADOW BOTTOM (slightly darker) */}
-              <LinearGradient
-                colors={['transparent', 'rgba(255,255,255,1)']}
-                style={styles.innerBottom}
-              />
-
               <View style={{ marginHorizontal: 10 }}>
-                <Icon type="Ionicons" name="person" color="#4F4F4F" />
+                <Icon
+                  type="Ionicons"
+                  name="person"
+                  color={colors.contactUsPersonIcon}
+                />
               </View>
               <View>
                 <TextInput
                   value={name}
                   placeholder="Enter your name"
                   onChangeText={setName}
-                  placeholderTextColor={'black'}
+                  placeholderTextColor={colors.contactUsInputPlaceholder}
+                  style={{
+                    color: colors.contactUsInputText,
+                    shadowColor: colors.contactUsInputShadow,
+                  }}
                 />
               </View>
             </View>
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text>Email</Text>
+            <Text style={{ color: colors.contactUsFormLabel }}>Email</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -130,36 +142,30 @@ const TermsOfService = () => {
                 marginTop: 10,
                 borderWidth: 1,
                 borderRadius: 10,
-                borderColor: '#4F4F4F',
                 height: 50,
+                backgroundColor: colors.contactUsInputContainer,
+                borderColor: isFocused
+                  ? colors.contactUsInputBorderFocused
+                  : colors.contactUsInputBorder,
               }}
             >
-              <LinearGradient
-                colors={['rgba(0,0,0,0.15)', 'transparent']}
-                style={styles.innerTop}
-              />
-
-              {/* INNER SHADOW BOTTOM (slightly darker) */}
-              <LinearGradient
-                colors={['transparent', 'rgba(255,255,255,1)']}
-                style={styles.innerBottom}
-              />
               <View style={{ marginHorizontal: 10 }}>
-                <Icon type="Feather" name="mail" color="#4F4F4F" />
+                <Icon type="Feather" name="mail" color={colors.contactUsEmailIcon} />
               </View>
               <View>
                 <TextInput
                   value={email}
                   placeholder="Enter your email"
                   onChangeText={setEmail}
-                  placeholderTextColor={'black'}
+                  placeholderTextColor={colors.contactUsInputPlaceholder}
+                  style={{color:colors.contactUsInputText , shadowColor:colors.contactUsInputShadow}}
                 />
               </View>
             </View>
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text>Message</Text>
+            <Text style={{ color: colors.contactUsFormLabel }}>Message</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -167,37 +173,33 @@ const TermsOfService = () => {
                 marginTop: 10,
                 borderWidth: 1,
                 borderRadius: 10,
-                borderColor: '#4F4F4F',
                 height: 130,
+                backgroundColor: colors.contactUsInputContainer,
+                borderColor: isFocused
+                  ? colors.contactUsInputBorderFocused
+                  : colors.contactUsInputBorder,
               }}
             >
-              <LinearGradient
-                colors={['rgba(0,0,0,0.15)', 'transparent']}
-                style={styles.innerTop}
-              />
-
-              {/* INNER SHADOW BOTTOM (slightly darker) */}
-              <LinearGradient
-                colors={['transparent', 'rgba(255,255,255,1)']}
-                style={styles.innerBottom}
-              />
-
               <View style={{ marginHorizontal: 10, marginTop: 15 }}>
-                <Icon type="Feather" name="message-square" color="#4F4F4F" />
+                <Icon
+                  type="Feather"
+                  name="message-square"
+                  color={colors.contactUsMessageIcon}
+                />
               </View>
-              <View style={{ marginTop: 15 }}>
+              <View style={{ marginTop: 15, flex: 1 }}>
                 <TextInput
                   value={message}
                   placeholder="What would you like to tell us?"
-                  placeholderTextColor={'black'}
+                  placeholderTextColor={colors.contactUsInputPlaceholder}
                   onChangeText={setMessage}
                   multiline
                   textAlignVertical="top"
                   style={{
                     flex: 1,
-                    height: 150,
+                    height: "70%",
                     fontSize: 14,
-                    color: '#212121',
+                    color: colors.contactUsInputText,
                     padding: 0,
                   }}
                 />
@@ -213,14 +215,17 @@ const TermsOfService = () => {
               ]}
             >
               <LinearGradient
-                colors={['#FF8A00', '#FF6A00']}
+                colors={[colors.contactUsSendButtonGradient1, colors.contactUsSendButtonGradient2]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
-                style={{height:50 ,alignItems:"center" , justifyContent:"center" , width:"100%" }}
+                style={{
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                }}
               >
-                {/* 🔥 Bottom inner depth */}
-
-                <Text style={styles.buttonText}>Send Message</Text>
+                <Text style={[styles.buttonText, { color: colors.contactUsSendButtonText }]}>Send Message</Text>
               </LinearGradient>
             </Pressable>
           </View>
@@ -242,12 +247,13 @@ const TermsOfService = () => {
               width: 50,
               borderRadius: 25,
               borderWidth: 1,
-              borderColor: '#4F4F4F',
+              borderColor: colors.contactUsSocialBorder,
+              backgroundColor: colors.contactUsSocialBackground,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Icon type="Entypo" name="instagram" color="#4F4F4F" />
+            <Icon type="Entypo" name="instagram" color={colors.contactUsInstagramIcon} />
           </Pressable>
           <Pressable
             onPress={openFacebook}
@@ -256,26 +262,28 @@ const TermsOfService = () => {
               width: 50,
               borderRadius: 25,
               borderWidth: 1,
-              borderColor: '#4F4F4F',
+              borderColor: colors.contactUsSocialBorder,
+              backgroundColor: colors.contactUsSocialBackground,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Icon type="Entypo" name="facebook" color="#4F4F4F" />
+            <Icon type="Entypo" name="facebook" color={colors.contactUsFacebookIcon} />
           </Pressable>
           <Pressable
-            onPress={sendMailFromIcon}
+            onPress={() => sendMailFromIcon('', '')}
             style={{
               height: 50,
               width: 50,
               borderRadius: 25,
               borderWidth: 1,
-              borderColor: '#4F4F4F',
+              borderColor: colors.contactUsSocialBorder,
+              backgroundColor: colors.contactUsSocialBackground,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Icon type="Feather" name="mail" color="#4F4F4F" />
+            <Icon type="Feather" name="mail" color={colors.contactUsMailIcon} />
           </Pressable>
         </View>
       </ScrollView>
@@ -288,18 +296,13 @@ export default TermsOfService;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
   content: {
     flex: 1,
     margin: 0,
     marginTop: -85,
-    backgroundColor: 'white',
-
     borderTopRightRadius: 45,
-    borderTopLeftRadius: 45,  
-
-    // 🔥 ADD THESE
+    borderTopLeftRadius: 45,
     zIndex: 10,
     elevation: 7,
   },
@@ -319,55 +322,33 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     borderRadius: 12,
     overflow: 'hidden',
-    alignItems:"center",
-    justifyContent:"center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-
   button: {
     height: 54,
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   buttonInnerBottom: {
     position: 'absolute',
     bottom: 0,
-    height: 10, // controls depth
+    height: 10,
     width: '100%',
   },
-
   buttonText: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: '600',
   },
-
   mainContainer: {
-    backgroundColor: '#f5f5f5',
-    marginTop: -85, // overlap amount
+    marginTop: -85,
     zIndex: 10,
-    elevation: 20, // Android
+    elevation: 20,
     position: 'relative',
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
-   
   },
-  innerTop: {
-    position: 'absolute',
-    top: 0,
-    height: 12, // slightly stronger
-    width: '100%',
-    borderRadius: 10,
-  },
-
-  innerBottom: {
-    position: 'absolute',
-    bottom: 0,
-    height: 12,
-    width: '100%',
-  },
-
   heading: {
     margin: 30,
     alignItems: 'center',

@@ -1,5 +1,4 @@
 import {
-  Alert,
   Pressable,
   StyleSheet,
   Text,
@@ -12,8 +11,13 @@ import Icon from '../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import auth from '@react-native-firebase/auth';
+import { useTheme } from '../context/ThemeContext';
+import Toast from '../components/Toast';
+  
+
 
 const ChangePassword = () => {
+  const { colors } = useTheme()
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassWord, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -26,25 +30,22 @@ const ChangePassword = () => {
   const handleChangePassword = async () => {
     // Validation
     if (!currentPassword || !newPassWord || !confirmNewPassword) {
-      Alert.alert('Error', 'Please fill all fields');
+      Toast.error('Please fill all fields');
       return;
     }
 
     if (newPassWord !== confirmNewPassword) {
-      Alert.alert('Error', 'New passwords do not match');
+      Toast.error('New passwords do not match');
       return;
     }
 
     if (newPassWord.length < 6) {
-      Alert.alert('Error', 'New password must be at least 6 characters');
+      Toast.warning('New password must be at least 6 characters');
       return;
     }
 
     if (currentPassword === newPassWord) {
-      Alert.alert(
-        'Error',
-        'New password must be different from current password',
-      );
+      Toast.warning('New password must be different from current password');
       return;
     }
 
@@ -54,7 +55,8 @@ const ChangePassword = () => {
       const user = auth().currentUser;
 
       if (!user || !user.email) {
-        Alert.alert('Error', 'No user logged in');
+        Toast.error('No user logged in');
+        setLoading(false);
         return;
       }
 
@@ -68,14 +70,16 @@ const ChangePassword = () => {
       // Update password
       await user.updatePassword(newPassWord);
 
-      Alert.alert('Success', 'Password changed successfully', [
-        { text: 'OK', onPress: () => navigation.goBack() },
-      ]);
+      Toast.success('Password changed successfully');
 
-      // Clear form
-      setCurrentPassword('');
-      setNewPassword('');
-      setConfirmNewPassword('');
+      // Clear form and navigate back after success message
+      setTimeout(() => {
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        navigation.goBack();
+      }, 2000);
+
     } catch (error: any) {
       let errorMessage = 'Failed to change password';
 
@@ -84,23 +88,22 @@ const ChangePassword = () => {
       } else if (error.code === 'auth/weak-password') {
         errorMessage = 'New password is too weak';
       } else if (error.code === 'auth/requires-recent-login') {
-        errorMessage =
-          'Please log out and log in again before changing password';
+        errorMessage = 'Please log out and log in again before changing password';
       }
 
-      Alert.alert('Error', errorMessage);
+      Toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
   };
   return (
-    <View style={styles.container}>
+    <View style={[styles.container , {backgroundColor:colors.background}]}>
       <Header
         title="Change Password"
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
-      <View style={styles.overlappingContainer}>
+      <View style={[styles.overlappingContainer  , {backgroundColor:colors.changePasswordOverlayBackground}]}>
         <View
           style={{
             marginTop: 50,
@@ -112,12 +115,14 @@ const ChangePassword = () => {
         >
           <View
             style={{
-              backgroundColor: 'white',
+              backgroundColor: colors.changePasswordInputContainer,
               width: '100%',
               height: 65,
               borderRadius: 20,
               elevation: 10,
               flexDirection: 'row',
+              borderWidth:1,
+              borderColor:colors.changePasswordInputBorder
             }}
           >
             <View
@@ -131,7 +136,7 @@ const ChangePassword = () => {
               <Icon
                 type="MaterialCommunityIcons"
                 name="lock-outline"
-                color="grey"
+                color={colors.changePasswordLockIcon}
                 size={31}
               />
             </View>
@@ -147,11 +152,13 @@ const ChangePassword = () => {
                 placeholder="Current Password"
                 value={currentPassword}
                 onChangeText={setCurrentPassword}
-                placeholderTextColor={'grey'}
+                placeholderTextColor={colors.changePasswordInputPlaceholder}
                 secureTextEntry={!showCurrentPassword}
                 style={{
                   fontSize: 18,
                   fontWeight: 'bold', // 👈 affects placeholder on Android
+                  color:colors.changePasswordInputText,
+                  shadowColor:colors.changePasswordInputShadow
                 }}
               />
             </View>
@@ -167,7 +174,7 @@ const ChangePassword = () => {
                 <Icon 
                   type="MaterialCommunityIcons" 
                   name={showCurrentPassword ? "eye-off" : "eye"} 
-                  color="grey" 
+                  color={colors.changePasswordEyeIcon} 
                   size={24} 
                 />
               </Pressable>
@@ -175,12 +182,15 @@ const ChangePassword = () => {
           </View>
           <View
             style={{
-              backgroundColor: 'white',
+              backgroundColor: colors.changePasswordInputContainer,
               width: '100%',
               height: 65,
               borderRadius: 20,
               elevation: 10,
               flexDirection: 'row',
+              borderWidth:1,
+              borderColor:colors.changePasswordInputBorder
+
             }}
           >
             <View
@@ -194,7 +204,7 @@ const ChangePassword = () => {
               <Icon
                 type="MaterialCommunityIcons"
                 name="key-plus"
-                color="grey"
+                color={colors.changePasswordKeyIcon}
                 size={31}
               />
             </View>
@@ -210,11 +220,14 @@ const ChangePassword = () => {
                 placeholder="New Password"
                 value={newPassWord}
                 onChangeText={setNewPassword}
-                placeholderTextColor={'grey'}
+                placeholderTextColor={colors.changePasswordInputPlaceholder}
                 secureTextEntry={!showNewPassword}
+                
                 style={{
                   fontSize: 18,
-                  fontWeight: 'bold', // 👈 affects placeholder on Android
+                  fontWeight: 'bold', // 👈 affects placeholder on Android]
+                  color:colors.changePasswordInputText,
+                  shadowColor:colors.changePasswordInputShadow
                 }}
               />
             </View>
@@ -230,7 +243,7 @@ const ChangePassword = () => {
                 <Icon 
                   type="MaterialCommunityIcons" 
                   name={showNewPassword ? "eye-off" : "eye"} 
-                  color="grey" 
+                  color={colors.changePasswordEyeIcon} 
                   size={24} 
                 />
               </Pressable>
@@ -238,12 +251,14 @@ const ChangePassword = () => {
           </View>
           <View
             style={{
-              backgroundColor: 'white',
+              backgroundColor: colors.changePasswordInputContainer,
               width: '100%',
               height: 65,
               borderRadius: 20,
               elevation: 10,
               flexDirection: 'row',
+              borderWidth:1,
+              borderColor:colors.changePasswordInputBorder
             }}
           >
             <View
@@ -257,7 +272,7 @@ const ChangePassword = () => {
               <Icon
                 type="MaterialCommunityIcons"
                 name="lock-check"
-                color="grey"
+                color={colors.changePasswordCheckIcon}
                 size={31}
               />
             </View>
@@ -273,11 +288,13 @@ const ChangePassword = () => {
                 placeholder="Confirm New Password"
                 value={confirmNewPassword}
                 onChangeText={setConfirmNewPassword}
-                placeholderTextColor={'grey'}
+                placeholderTextColor={colors.changePasswordInputPlaceholder}
                 secureTextEntry={!showConfirmPassword}
                 style={{
                   fontSize: 18,
                   fontWeight: 'bold', // 👈 affects placeholder on Android
+                  color:colors.changePasswordInputText,
+                  shadowColor:colors.changePasswordInputShadow
                 }}
               />
             </View>
@@ -293,7 +310,7 @@ const ChangePassword = () => {
                 <Icon 
                   type="MaterialCommunityIcons" 
                   name={showConfirmPassword ? "eye-off" : "eye"} 
-                  color="grey" 
+                  color={colors.changePasswordEyeIcon} 
                   size={24} 
                 />
               </Pressable>
@@ -312,7 +329,7 @@ const ChangePassword = () => {
             disabled={loading}
           >
             <LinearGradient
-              colors={['#FF8A00', '#FF6A00']}
+              colors={[colors.changePasswordButtonGradient1, colors.changePasswordButtonGradient2]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{
@@ -321,16 +338,28 @@ const ChangePassword = () => {
                 borderRadius: 32.5,
                 alignItems: 'center',
                 justifyContent: 'center',
+                shadowColor:colors.changePasswordButtonShadow
               }}
             >
               <Text
-                style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}
+                style={{ color:colors.changePasswordButtonText, fontWeight: 'bold', fontSize: 20 }}
               >
                 {loading ? 'Changing...' : 'Change Password'}
               </Text>
             </LinearGradient>
           </Pressable>
         </View>
+
+        {/* Loading Overlay */}
+        {loading && (
+          <View style={[styles.loadingOverlay, { backgroundColor: colors.changePasswordLoadingBackground }]}>
+            <View style={styles.loadingContent}>
+              <Text style={[styles.loadingText, { color: colors.changePasswordLoadingText }]}>
+                Changing Password...
+              </Text>
+            </View>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -341,20 +370,36 @@ export default ChangePassword;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    // backgroundColor will be set inline with theme colors
   },
   overlappingContainer: {
     alignItems: 'center',
-
     flex: 1,
     marginTop: -85,
-    backgroundColor: 'white',
-
+    // backgroundColor will be set inline with theme colors
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
-
-    // 🔥 ADD THESE
     zIndex: 10,
     elevation: 7,
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 999,
+  },
+  loadingContent: {
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 10,
   },
 });

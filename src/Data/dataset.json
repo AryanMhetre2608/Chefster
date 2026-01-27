@@ -10513,11 +10513,9 @@
       "leftIconName":"edit-3",
       "leftIconType":"Feather",
       "leftIconSize":"26",
-      "leftIconColour":"orange",
       "rightIconName":"chevron-right",
       "rightIconType":"Feather",
       "rightIconSize":"26",
-      "rightIconColour":"black",
       "navigations":"EditProfile"
 
 
@@ -10528,11 +10526,9 @@
       "leftIconName":"favorite",
       "leftIconType":"MaterialIcons",
       "leftIconSize":"26",
-      "leftIconColour":"red",
       "rightIconName":"chevron-right",
       "rightIconType":"Feather",
       "rightIconSize":"26",
-      "rightIconColour":"black",
       "navigations":"Favourites"
       
 
@@ -10543,13 +10539,11 @@
       "leftIconName":"info",
       "leftIconType":"Feather",
       "leftIconSize":"26",
-      "leftIconColour":"blue",
       
 
       "rightIconName":"chevron-right",
       "rightIconType":"Feather",
       "rightIconSize":"26",
-      "rightIconColour":"black",
       "navigations":"AboutUs"
 
     },
@@ -10559,11 +10553,9 @@
       "leftIconName":"shield",
       "leftIconType":"Feather",
       "leftIconSize":"26",
-      "leftIconColour":"green",
       "rightIconName":"chevron-right",
       "rightIconType":"Feather",
       "rightIconSize":"26",
-      "rightIconColour":"black",
       "navigations":"PrivacyPolicy"
 
     },
@@ -10573,11 +10565,9 @@
       "leftIconName":"settings",
       "leftIconType":"Feather",
       "leftIconSize":"26",
-      "leftIconColour":"#FF5722",
       "rightIconName":"chevron-right",
       "rightIconType":"Feather",
       "rightIconSize":"26",
-      "rightIconColour":"black",
       "navigations":"Settings"
 
     },
@@ -10587,11 +10577,9 @@
       "leftIconName":"log-out",
       "leftIconType":"Feather",
       "leftIconSize":"26",
-      "leftIconColour":"red",
       "rightIconName":"",
       "rightIconType":"",
       "rightIconSize":"",
-      "rightIconColour":"",
       "navigations":"Logout"
 
     }

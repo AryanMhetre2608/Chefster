@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import authService from '../services/authService';
+import Toast from '../components/Toast';
 
 const Registration = () => {
   const [email, setEmail] = useState('');
@@ -25,28 +26,28 @@ const Registration = () => {
 
   const validateInputs = () => {
     if (!email.trim()) {
-      Alert.alert('Error', 'Please enter your email');
+      Toast.error('Please enter your email');
       return false;
     }
     
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
-      Alert.alert('Error', 'Please enter a valid email address');
+      Toast.error('Please enter a valid email address');
       return false;
     }
     
     if (!password.trim()) {
-      Alert.alert('Error', 'Please enter your password');
+      Toast.error('Please enter your password');
       return false;
     }
     
     if (password.length < 6) {
-      Alert.alert('Error', 'Password must be at least 6 characters');
+      Toast.error('Password must be at least 6 characters');
       return false;
     }
     
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Toast.error('Passwords do not match');
       return false;
     }
     
@@ -61,15 +62,12 @@ const Registration = () => {
       const result = await authService.registerWithEmail(email.trim(), password);
       
       if (result.success) {
-        Alert.alert(
-          'Registration Successful!', 
-          'Welcome to Chefster! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.'
-        );
+        Toast.success('Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.');
       } else {
-        Alert.alert('Registration Failed', result.error || 'An error occurred during registration');
+        Toast.error(result.error || 'An error occurred during registration');
       }
     } catch (error) {
-      Alert.alert('Error', 'An unexpected error occurred');
+      Toast.error('An unexpected error occurred');
       console.error('Registration error:', error);
     } finally {
       setLoading(false);

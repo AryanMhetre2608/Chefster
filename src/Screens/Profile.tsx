@@ -2,10 +2,7 @@ import {
   View,
   Text,
   FlatList,
-  Image,
-  TouchableOpacity,
   Pressable,
-  ScrollView,
   StyleSheet,
 } from 'react-native';
 import React from 'react';
@@ -22,9 +19,32 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import foodJson from '../data/dataset.json';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '../context/ThemeContext';
+
+// Helper function to get the correct icon color for each profile feature
+const getProfileFeatureIconColor = (featureName: string, colors: any) => {
+  switch (featureName) {
+    case 'Edit Profile':
+      return colors.profileEditIcon;
+    case 'My Favourites':
+      return colors.profileFavoriteIcon;
+    case 'About App':
+      return colors.profileAboutIcon;
+    case 'Privacy Policy':
+      return colors.profilePrivacyIcon;
+    case 'Settings':
+      return colors.profileSettingsIcon;
+    case 'Logout':
+      return colors.profileLogoutIcon;
+    default:
+      return colors.icon;
+  }
+};
 
 const Profile = () => {
   // const { user, logout } = useAuth();
+  const { colors } = useTheme()
+
   const profileFeatures = (foodJson as any).profilepageFeatures;
   const navigation = useNavigation<any>();
 
@@ -47,7 +67,11 @@ const Profile = () => {
 
     return (
       <Pressable
-        style={styles.profileFeatures}
+        style={[styles.profileFeatures, {
+          backgroundColor: colors.profileFeatureBackground,
+          borderColor: colors.profileFeatureBorder,
+          shadowColor: colors.profileFeatureShadow,
+        }]}
         onPress={handlePress}
       >
         <View
@@ -57,7 +81,7 @@ const Profile = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
-            backgroundColor: 'white',
+            backgroundColor: colors.profileFeatureBackground,
           }}
         >
           <View
@@ -74,10 +98,10 @@ const Profile = () => {
                 name={item.leftIconName}
                 size={Number(item.leftIconSize) || 24}
                 type={item.leftIconType}
-                color={item.leftIconColour}
+                color={getProfileFeatureIconColor(item.name, colors)}
               />
             ) : null}
-            <Text style={{ fontSize: 16 }}>{item.name}</Text>
+            <Text style={{ fontSize: 16 , color:colors.profileFeatureText }}>{item.name}</Text>
           </View>
 
           <View style={{ marginRight: 15 }}>
@@ -86,7 +110,7 @@ const Profile = () => {
                 name={item.rightIconName}
                 size={Number(item.rightIconSize) || 24}
                 type={item.rightIconType}
-                color={item.rightIconColour}
+                color={colors.profileChevronIcon}
               />
             ) : null}
           </View>
@@ -186,14 +210,14 @@ const Profile = () => {
     //   </View>
     // </View>
 
-    <View style={styles.container}>
+    <View style={[styles.container , {backgroundColor:colors.background}]}>
       <Header
         title="Profile"
         
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
-      <View style={styles.profileContainer} >
+      <View style={[styles.profileContainer , {backgroundColor:colors.background}]} >
         <View style={{marginTop:30}}>
           <View style={{alignItems:"center" , justifyContent:"center"}}>
             <View
@@ -202,15 +226,15 @@ const Profile = () => {
             width: 120,
             borderRadius: 60,
             borderWidth: 0.5,
+            backgroundColor: colors.profileAvatar,
+            borderColor: colors.profileAvatarBorder,
           }}
         ></View>
           </View>
           
         <View style={styles.infoContainer}>
-        <Text style={{ fontWeight: 'bold', alignContent: 'center' }}>Name</Text>
-        <Text style={{}}>Email</Text>
-
-
+        <Text style={{ fontWeight: 'bold', alignContent: 'center', color: colors.profileName }}>Name</Text>
+        <Text style={{ color: colors.profileEmail }}>Email</Text>
       </View>
       <View style={styles.featureContainer}>
         <FlatList
@@ -231,7 +255,7 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    // backgroundColor will be set inline with theme colors
   },
   infoContainer:{
     alignItems:"center",
@@ -249,16 +273,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   profileContainer: {
-    
     flex: 1,
     margin: 0,
     marginTop: -85,
-    backgroundColor: 'white',
-
+    // backgroundColor will be set inline with theme colors
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
-
-    // 🔥 ADD THESE
     zIndex: 10,
     elevation: 7,
   },
@@ -272,7 +292,8 @@ const styles = StyleSheet.create({
     elevation: 7,
     borderWidth: 1,
     borderRadius: 15,
-    backgroundColor:"white"
+    // backgroundColor will be set inline with theme colors
+    flex:1
   },
   featureContainer:{
     margin:20

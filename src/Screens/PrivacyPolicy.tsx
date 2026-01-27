@@ -13,9 +13,13 @@ import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { useTheme } from '../context/ThemeContext';
+
 const TermsOfService = () => {
+  const { colors } = useTheme();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
+  
   const sendMail = (email: string, message: string) => {
     const to = 'rnmhetre2608@gmail.com';
     const subject = 'Contact Us - Chefster App';
@@ -39,7 +43,7 @@ const TermsOfService = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: colors.privacyPolicyContainer}]}>
       {/* <Header
         title="Privacy Policy"
         titleStyle={{
@@ -63,20 +67,20 @@ const TermsOfService = () => {
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
           <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
+            <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent}/>
           </Pressable>
         }
         rightComponent={
           <Pressable style={{ marginBottom: 58 }}>
-            <Icon type="Octicons" name="shield-check" size={24} color="white" />
+            <Icon type="Octicons" name="shield-check" size={24} color={colors.headerRightComponent}/>
           </Pressable>
         }
       />
-      <ScrollView style={styles.overlapingContainer}>
-        <View style={styles.content}>
-          <Text style={{ color: 'grey' }}>Last updated: January 2025</Text>
+      <ScrollView style={[styles.overlapingContainer , {backgroundColor:colors.privacyPolicyOverlayContainer}]}>
+        <View style={[styles.content , {backgroundColor:colors.privacyPolicyContent}]}>
+          <Text style={{ color: colors.privacyPolicyLastUpdated }}>Last updated: January 2025</Text>
           <View>
-            <View style={styles.policyContainer}>
+            <View style={[styles.policyContainer, {backgroundColor: colors.privacyPolicySection , borderColor:colors.privacyPolicySectionBorder , shadowColor: colors.privacyPolicySectionShadow}]}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -85,7 +89,7 @@ const TermsOfService = () => {
                 }}
               >
                 <LinearGradient
-                  colors={['#FF8A00', '#FF6A00']}
+                  colors={[colors.privacyPolicyNumberBadge, colors.privacyPolicyNumberBadgeEnd]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={{
@@ -94,21 +98,20 @@ const TermsOfService = () => {
                     height: 27,
                     width: 27,
                     borderRadius: 13.5,
-                    backgroundColor: '#FF5722',
                     margin: 13,
                   }}
                 >
-                  <Text style={{ color: 'white' }}>1</Text>
+                  <Text style={{ color: colors.privacyPolicyNumberText }}>1</Text>
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
-                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
                     1. Data Collection
                   </Text>
                 </View>
               </View>
               <View style={{ marginTop: -7 }}>
                 <View style={{ marginHorizontal: 15 }}>
-                  <Text style={{ fontSize: 13 }}>
+                  <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
                     At Chefster , we collect certain information to provide and
                     improve our service, including:
                   </Text>
@@ -126,6 +129,7 @@ const TermsOfService = () => {
                       marginLeft: 13,
                       gap: 10,
                       marginTop: 5,
+
                     }}
                   >
                     <View
@@ -134,12 +138,12 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
+                      <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
                         Personal information (e.g., name, email address) for
                         account creation and communication.
                       </Text>
@@ -159,12 +163,12 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
                         Recipe Preferences, dietary restrictions, and saved
                         items to personalize your experience.
                       </Text>
@@ -184,12 +188,12 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
                         Usage data and device information for app optimization
                         and analytics.
                       </Text>
@@ -198,7 +202,7 @@ const TermsOfService = () => {
                 </View>
               </View>
             </View>
-            <View style={[styles.policyContainer, { marginTop: -5 }]}>
+            <View style={[styles.policyContainer, {backgroundColor: colors.privacyPolicySection , borderColor:colors.privacyPolicySectionBorder , shadowColor: colors.privacyPolicySectionShadow}]}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -207,7 +211,7 @@ const TermsOfService = () => {
                 }}
               >
                 <LinearGradient
-                  colors={['#FF8A00', '#FF6A00']}
+                  colors={[colors.privacyPolicyNumberBadge, colors.privacyPolicyNumberBadgeEnd]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={{
@@ -216,23 +220,21 @@ const TermsOfService = () => {
                     height: 27,
                     width: 27,
                     borderRadius: 13.5,
-                    backgroundColor: '#FF5722',
                     margin: 13,
                   }}
                 >
-                  <Text style={{ color: 'white' }}>2</Text>
+                  <Text style={{ color: colors.privacyPolicyNumberText }}>1</Text>
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
-                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
-                    2. How We Use Your Data
+                  <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
+                    2. How we use your data
                   </Text>
                 </View>
               </View>
               <View style={{ marginTop: -7 }}>
                 <View style={{ marginHorizontal: 15 }}>
-                  <Text style={{ fontSize: 13 }}>
-                    We use the collected data to enhance your Chefster
-                    experience. This includes:
+                  <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
+                    We use the collected data to enhance your Chefster experience. This includes:
                   </Text>
                 </View>
                 <View
@@ -248,6 +250,7 @@ const TermsOfService = () => {
                       marginLeft: 13,
                       gap: 10,
                       marginTop: 5,
+
                     }}
                   >
                     <View
@@ -256,14 +259,13 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
-                        Personalizing recipe recommendations based on your
-                        preferences.
+                      <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
+                        Personalizing recipe recommendations based on your preferences.
                       </Text>
                     </View>
                   </View>
@@ -281,12 +283,12 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
                         Improving app functionality and developing new features.
                       </Text>
                     </View>
@@ -305,14 +307,13 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
-                        Communicating important updates, newsletters, and
-                        promotional offers (which you can opt-out of).
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
+                        Communicating important updates, newsletters, and promotional offers (which you can pop-out of).
                       </Text>
                     </View>
                   </View>
@@ -330,21 +331,20 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
-                        Analyzing user trends to better understand our community
-                        needs.
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
+                        Analyzing user trends to better understand our community needs.
                       </Text>
                     </View>
                   </View>
                 </View>
               </View>
             </View>
-            <View style={[styles.policyContainer, { marginTop: -5 }]}>
+           <View style={[styles.policyContainer, {backgroundColor: colors.privacyPolicySection , borderColor:colors.privacyPolicySectionBorder , shadowColor: colors.privacyPolicySectionShadow}]}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -353,7 +353,7 @@ const TermsOfService = () => {
                 }}
               >
                 <LinearGradient
-                  colors={['#FF8A00', '#FF6A00']}
+                  colors={[colors.privacyPolicyNumberBadge, colors.privacyPolicyNumberBadgeEnd]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={{
@@ -362,23 +362,21 @@ const TermsOfService = () => {
                     height: 27,
                     width: 27,
                     borderRadius: 13.5,
-                    backgroundColor: '#FF5722',
                     margin: 13,
                   }}
                 >
-                  <Text style={{ color: 'white' }}>3</Text>
+                  <Text style={{ color: colors.privacyPolicyNumberText }}>3</Text>
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
-                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
                     3. Your Rights
                   </Text>
                 </View>
               </View>
               <View style={{ marginTop: -7 }}>
                 <View style={{ marginHorizontal: 15 }}>
-                  <Text style={{ fontSize: 13 }}>
-                    You have full control over your data. Chefster respects your
-                    rights to:
+                  <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
+                    You have full control over your data. Chefster respects your rights to:
                   </Text>
                 </View>
                 <View
@@ -394,6 +392,7 @@ const TermsOfService = () => {
                       marginLeft: 13,
                       gap: 10,
                       marginTop: 5,
+
                     }}
                   >
                     <View
@@ -402,14 +401,13 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
-                        Access, update, or delete your personal information at
-                        any time via app settings.
+                      <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
+                        Access, update, or delete your personal information at any time via app settings.
                       </Text>
                     </View>
                   </View>
@@ -427,14 +425,13 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
-                        Withdraw consent for data processing and opt-out of
-                        marketing communications.
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
+                        Withdraw consent for data processing and opt-out of marketing communications.
                       </Text>
                     </View>
                   </View>
@@ -452,45 +449,21 @@ const TermsOfService = () => {
                         alignItems: 'flex-start',
                       }}
                     >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
+                      <Text style={{ color: colors.privacyPolicyBulletPoint , fontSize: 20 }}>•</Text>
                     </View>
                     <View
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
-                      <Text style={{ fontSize: 13 }}>
+                      <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
                         Request a copy of your data in a portable format.
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      marginLeft: 13,
-                      gap: 10,
-                      marginTop: 5,
-                    }}
-                  >
-                    <View
-                      style={{
-                        justifyContent: 'flex-start',
-                        alignItems: 'flex-start',
-                      }}
-                    >
-                      <Text style={{ color: '#FF5722', fontSize: 20 }}>•</Text>
-                    </View>
-                    <View
-                      style={{ justifyContent: 'center', alignItems: 'center' }}
-                    >
-                      <Text style={{ fontSize: 13 }}>
-                        Object to the processing your data under certain
-                        circumstances.
                       </Text>
                     </View>
                   </View>
                 </View>
               </View>
             </View>
-            <View style={[styles.policyContainer, { marginTop: -5 }]}>
+                       <View style={[styles.policyContainer, {backgroundColor: colors.privacyPolicySection , borderColor:colors.privacyPolicySectionBorder , shadowColor: colors.privacyPolicySectionShadow}]}>
+
               <View
                 style={{
                   flexDirection: 'row',
@@ -499,7 +472,7 @@ const TermsOfService = () => {
                 }}
               >
                 <LinearGradient
-                  colors={['#FF8A00', '#FF6A00']}
+                  colors={[colors.privacyPolicyNumberBadge, colors.privacyPolicyNumberBadgeEnd]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={{
@@ -515,7 +488,7 @@ const TermsOfService = () => {
                   <Text style={{ color: 'white' }}>4</Text>
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
-                  <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
+                  <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
                     4. Contact Us
                   </Text>
                 </View>
@@ -523,10 +496,8 @@ const TermsOfService = () => {
               <View style={{ marginTop: -7, marginBottom: 10 }}>
                 <View>
                   <View style={{ marginHorizontal: 15 }}>
-                    <Text style={{ fontSize: 13 }}>
-                      If you have any questions or concerns regarding this
-                      Privacy Policy or our data practices, please contact our
-                      Privacy Team.
+                    <Text style={{color:colors.privacyPolicyContactText}}>
+                      Object to the processing your data under certain circumstances.
                     </Text>
                   </View>
 
@@ -539,12 +510,13 @@ const TermsOfService = () => {
                       justifyContent: 'flex-start',
                     }}
                   >
-                    <Text style={{ fontSize: 13 }}>Email us at</Text>
+                    <Text style={{ fontSize: 13 , color:colors.privacyPolicyContactText }}>Email us at </Text>
                     <Pressable onPress={sendMail}>
                       <Text
                         style={{
                           textDecorationLine: 'underline',
-                          color: '#FF5722',
+                          textDecorationColor:colors.privacyPolicyEmailLinkUnderline,
+                          color: colors.privacyPolicyEmailLink,
                         }}
                       >
                         rnmhetre2608@gmail.com
@@ -552,7 +524,7 @@ const TermsOfService = () => {
                     </Pressable>
                   </View>
                   <View style={{ marginHorizontal: 15 }}>
-                    <Text style={{ fontSize: 13 }}>
+                    <Text style={{ fontSize: 13 , color:colors.privacyPolicyContactText }}>
                       We are commited to addressing your inquiries promptly.
                     </Text>
                   </View>
@@ -571,11 +543,11 @@ const TermsOfService = () => {
             gap: 3,
           }}
         >
-          <Text style={{ color: 'grey', fontSize: 13 }}>
+          <Text style={{ color:colors.privacyPolicyFooterText, fontSize: 13 }}>
             Questions? Reach out to us
           </Text>
           <Pressable onPress={sendMail}>
-            <Text style={{ textDecorationLine: 'underline', color: '#FF5722' }}>
+            <Text style={{ textDecorationLine: 'underline' , textDecorationColor:colors.privacyPolicyEmailLinkUnderline, color: colors.privacyPolicyFooterLink }}>
               rnmhetre2608@gmail.com
             </Text>
           </Pressable>
@@ -605,12 +577,15 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     borderRadius: 13,
+    borderWidth:1
   },
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
   content: {
+    backgroundColor: 'white',
+
     flex: 1,
     margin: 15,
   },

@@ -5,8 +5,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import Navigation from '../navigation/Navigation';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
+
 
 const Logout = () => {
+  const { colors } = useTheme();
   const navigation = useNavigation<any>();
   const { logout, user } = useAuth();
   const handleLogout = async () => {
@@ -30,8 +33,8 @@ const Logout = () => {
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
-      <View style={styles.overlappingContainer}>
-        <View style={styles.subContainer}>
+      <View style={[styles.overlappingContainer , {backgroundColor:colors.logoutOverlayContainer}]}>
+        <View style={[styles.subContainer , {backgroundColor:colors.logoutSubContainer}]}>
           <View
             style={{
               alignItems: 'center',
@@ -40,7 +43,7 @@ const Logout = () => {
               width: 100,
               borderRadius: 50,
               elevation: 20,
-              shadowColor: '#FF8A00',
+              shadowColor: colors.logoutLogoShadow,
               shadowOpacity: 1,
               shadowRadius: 40,
               marginLeft: 70,
@@ -48,7 +51,7 @@ const Logout = () => {
           >
             <Image
               source={require('../../assets/images/CuisineList/missionLogo.png')}
-              style={{ height: 100, width: 100, borderRadius: 50 }}
+              style={{ height: 100, width: 100, borderRadius: 50 , borderWidth:1 , backgroundColor:colors.logoutLogoContainer  , borderColor:colors.logoutLogoBorder }}
               resizeMode="cover"
             />
           </View>
@@ -68,6 +71,7 @@ const Logout = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginLeft: 60,
+                color:colors.logoutMainTitle
               }}
             >
               Logout?
@@ -81,10 +85,10 @@ const Logout = () => {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: 'grey', fontSize: 17 }}>
+            <Text style={{ color: colors.logoutDescription, fontSize: 17 }}>
               Are you sure you want to logout
             </Text>
-            <Text style={{ color: 'grey', fontSize: 17 }}>
+            <Text style={{ color: colors.logoutDescription, fontSize: 17 }}>
               from your account
             </Text>
           </View>
@@ -101,7 +105,7 @@ const Logout = () => {
         >
           <Image
             source={require('../../assets/images/CuisineList/Logout.png')}
-            style={{ height: 200, width: 200 }}
+            style={{ height: 200, width: 200, backgroundColor:colors.logoutLogoContainer , resizeMode:'contain' , borderColor:colors.logoutLogoBorder , shadowColor:colors.logoutLogoShadow }}
             resizeMode="contain"
           />
         </View>
@@ -129,7 +133,7 @@ const Logout = () => {
             ]}
           >
             <LinearGradient
-              colors={['#FF7A18', '#B31217']}
+              colors={[colors.logoutButtonGradient1, colors.logoutButtonGradient2]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{
@@ -138,9 +142,11 @@ const Logout = () => {
                 borderRadius: 25,
                 alignItems: 'center',
                 justifyContent: 'center',
+                shadowColor:colors.logoutButtonShadow,
+                shadowOpacity:colors.logoutButtonPressed
               }}
             >
-              <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>
+              <Text style={{ color: colors.logoutButtonText, fontSize: 16, fontWeight: '600' }}>
                 Logout
               </Text>
             </LinearGradient>
@@ -154,11 +160,12 @@ const Logout = () => {
               marginTop: 20,
               borderWidth: 2,
               borderRadius: 25,
-              borderColor: '#B31217',
+              borderColor: colors.logoutCancelBorder,
+              backgroundColor:colors.logoutCancelBackground
             }}
             onPress={() => navigation.goBack()}
           >
-            <Text style={{ color: '#FF7A18', fontSize: 16, fontWeight: '600' }}>
+            <Text style={{ color: colors.logoutCancelText, fontSize: 16, fontWeight: '600' }}>
               Cancel
             </Text>
           </Pressable>

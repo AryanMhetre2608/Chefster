@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import authService from '../services/authService';
+import Toast from '../components/Toast';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,15 +21,15 @@ const Login = () => {
 
   const validateInputs = () => {
     if (!email.trim()) {
-      Alert.alert('Error', 'Please enter your email');
+      Toast.error('Please enter your email');
       return false;
     }
     if (!password.trim()) {
-      Alert.alert('Error', 'Please enter your password');
+      Toast.error('Please enter your password');
       return false;
     }
     if (password.length < 6) {
-      Alert.alert('Error', 'Password must be at least 6 characters');
+      Toast.error('Password must be at least 6 characters');
       return false;
     }
     return true;
@@ -46,28 +47,16 @@ const Login = () => {
         await authService.reloadUser(); // Reload to get latest verification status
         
         if (authService.isEmailVerified()) {
-          Alert.alert('Success', 'Login successful!');
+          Toast.success('Login successful!');
           // AuthContext will automatically redirect to main app
         } else {
-          Alert.alert(
-            'Email Not Verified', 
-            'Please verify your email address before logging in. You will be redirected to the verification screen.',
-            [
-              {
-                text: 'OK',
-                onPress: () => {
-                  // Don't logout - let AuthContext redirect to EmailVerification screen
-                  // The user is authenticated but needs to verify email
-                }
-              }
-            ]
-          );
+          Toast.warning('Please verify your email address before logging in. You will be redirected to the verification screen.');
         }
       } else {
-        Alert.alert('Login Failed', result.error || 'An error occurred during login');
+        Toast.error(result.error || 'An error occurred during login');
       }
     } catch (error) {
-      Alert.alert('Error', 'An unexpected error occurred');
+      Toast.error('An unexpected error occurred');
       console.error('Login error:', error);
     } finally {
       setLoading(false);
@@ -76,19 +65,19 @@ const Login = () => {
 
   const handleForgotPassword = async () => {
     if (!email.trim()) {
-      Alert.alert('Error', 'Please enter your email first');
+      Toast.error('Please enter your email first');
       return;
     }
 
     try {
       const result = await authService.resetPassword(email.trim());
       if (result.success) {
-        Alert.alert('Success', 'Password reset email sent! Check your inbox.');
+        Toast.success('Password reset email sent! Check your inbox.');
       } else {
-        Alert.alert('Error', result.error || 'Failed to send reset email');
+        Toast.error(result.error || 'Failed to send reset email');
       }
     } catch (error) {
-      Alert.alert('Error', 'An unexpected error occurred');
+      Toast.error('An unexpected error occurred');
     }
   };
 

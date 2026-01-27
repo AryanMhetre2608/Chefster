@@ -14,11 +14,13 @@ import foodJson from '../data/dataset.json'
 import Button from '../components/Button';
 import Toast from '../components/Toast';
 import LinearGradient from 'react-native-linear-gradient';
+import { useTheme } from '../context/ThemeContext';
 
 
 
 
 const Home = () => {
+  const { colors } = useTheme()
   const navigation = useNavigation<any>();
   const cuisineList = (foodJson as any).cuisineList
 
@@ -44,22 +46,25 @@ const Home = () => {
       {/* <View style={styles.overlay} /> */}
       <LinearGradient colors={item.overlayColors} style={styles.gradient}/>
 
-      <Text style={styles.text}>{item.name}</Text>
+      <Text style={[styles.text , {color:colors.cuisineTagText}]}>{item.name}</Text>
     </Pressable>  
   );
 
   return (
-    <View style={styles.container}>
-
-      <FlatList
+    <View style={[styles.container , {backgroundColor:colors.background}]}>
+      <View style={{margin:15}}>
+        <FlatList
         data={cuisineList}
         renderItem={renderItems}
         keyExtractor={item => item.id}
         numColumns={2}
         columnWrapperStyle={styles.row}
         showsVerticalScrollIndicator={false}  
-        contentContainerStyle={{backgroundColor:"white"}}
+        contentContainerStyle={{backgroundColor:colors.background}}
       />
+      </View>
+
+      
     </View>
   );
 };
@@ -73,9 +78,8 @@ const styles = StyleSheet.create({
   },
   
   container: {
-    backgroundColor:"white",
     flex: 1,
-    margin:20,
+    margin:0,
     marginBottom:0
     
   },

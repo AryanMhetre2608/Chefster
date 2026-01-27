@@ -15,8 +15,11 @@ import { RootState } from '../redux/Store';
 import { removeFromFavorites } from '../redux/slice/favoritesSlice';
 import Toast from '../components/Toast';
 import LinearGradient from 'react-native-linear-gradient';
+import { useTheme } from '../context/ThemeContext';
 
 const Favourites = () => {
+  const { colors } = useTheme();
+
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
   const route = useRoute<any>();
@@ -43,11 +46,39 @@ const Favourites = () => {
   };
 
   const renderFavoriteItem = ({ item }: any) => (
-    <Pressable style={styles.favoriteCard}>
-      <Image source={{ uri: item.image }} style={styles.recipeImage} />
+    <Pressable
+      style={({ pressed }) => [
+        styles.favoriteCard,
+        {
+          backgroundColor: pressed
+            ? colors.favouritesCardPressed
+            : colors.favouritesCardContainer,
+          borderColor: colors.favouritesCardBorder,
+          shadowColor: colors.favouritesCardShadow,
+        },
+      ]}
+    >
+      <Image
+        source={{ uri: item.image }}
+        style={[
+          styles.recipeImage,
+          { backgroundColor: colors.favouritesRecipeImage },
+        ]}
+      />
       <View style={styles.recipeInfo}>
-        <Text style={styles.recipeName}>{item.name}</Text>
-        <Text style={styles.recipeCuisine}>{item.cuisine}</Text>
+        <Text
+          style={[styles.recipeName, { color: colors.favouritesRecipeTitle }]}
+        >
+          {item.name}
+        </Text>
+        <Text
+          style={[
+            styles.recipeCuisine,
+            { color: colors.favouritesRecipeSubtitle },
+          ]}
+        >
+          {item.cuisine}
+        </Text>
 
         {/* Remove Button */}
         <View style={styles.Buttons}>
@@ -69,12 +100,14 @@ const Favourites = () => {
               {
                 borderRadius: 12,
                 overflow: 'hidden',
-                transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
+                transform: [{ scale: pressed ? 0.98 : 1 }],
+                shadowColor:colors.favouritesButtonShadow
+                
               },
             ]}
           >
             <LinearGradient
-              colors={['#FF8A00', '#FF6A00']}
+              colors={[colors.gradient1, colors.gradient2,]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{
@@ -85,7 +118,7 @@ const Favourites = () => {
                 alignItems: 'center',
               }}
             >
-              <Text style={{ color: '#fff', fontWeight: '600', fontSize: 16 }}>
+              <Text style={{ color: colors.favouritesViewButtonText, fontWeight: '600', fontSize: 16 }}>
                 View
               </Text>
             </LinearGradient>
@@ -100,7 +133,7 @@ const Favourites = () => {
           >
             <Text style={styles.removeButtonText}>Remove</Text>
           </Pressable> */}
-           <Pressable
+          <Pressable
             onPress={() => {
               handleRemoveFromFavorites(item.id);
               Toast(`${item.name} Removed from the favourites`);
@@ -110,11 +143,15 @@ const Favourites = () => {
                 borderRadius: 12,
                 overflow: 'hidden',
                 transform: pressed ? [{ scale: 0.98 }] : [{ scale: 1 }],
+                shadowColor:colors.favouritesButtonShadow,
+                opacity: pressed ? parseFloat(colors.favouritesButtonPressed) : 1
+
+                
               },
             ]}
           >
             <LinearGradient
-              colors={['#ff6090', '#e91e63']}
+              colors={[colors.removeButtonGradient1, colors.removeButtonGradient1]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{
@@ -125,7 +162,7 @@ const Favourites = () => {
                 alignItems: 'center',
               }}
             >
-              <Text style={{ color: '#fff', fontWeight: '600', fontSize: 16 }}>
+              <Text style={{ color: colors.favouritesRemoveButtonText, fontWeight: '600', fontSize: 16 }}>
                 Remove
               </Text>
             </LinearGradient>
@@ -136,18 +173,28 @@ const Favourites = () => {
   );
 
   return (
-    <View style={styles.mainContainer}>
+    <View
+      style={[
+        styles.mainContainer,
+        { backgroundColor: colors.favouritesEmptyBackground },
+      ]}
+    >
       <Header
         title="Favourites"
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
       />
 
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: colors.favouritesContentBackground },
+        ]}
+      >
         <View style={{ marginTop: 15 }}>
           {favoriteRecipes.length === 0 ? (
-            <View style={styles.emptyContainer}>
-              <Text style={styles.emptyText}>No favorite recipes yet!</Text>
+            <View style={[styles.emptyContainer,{ backgroundColor: colors.favouritesContentBackground }]}>
+              <Text style={styles.emptyText  }>No favorite recipes yet!</Text>
             </View>
           ) : (
             <FlatList
@@ -197,6 +244,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     overflow: 'hidden',
+    borderWidth: 1,
   },
   recipeImage: {
     width: '100%',

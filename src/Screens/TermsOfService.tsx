@@ -21,9 +21,9 @@ const TermsOfService = () => {
     <View style={styles.container}>
       <Header
         title="Terms of Service"
-        leftComponent={
+      leftComponent={
           <Pressable onPress={handleBackPress} style={{ marginBottom: 60 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
+            <Icon type="Ionicons" name="arrow-back" size={24}/>
           </Pressable>
         }
         height={180}
