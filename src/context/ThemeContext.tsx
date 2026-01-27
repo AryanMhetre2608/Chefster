@@ -491,6 +491,92 @@ interface ThemeContextType {
     contactUsMailIcon: string;               // Mail icon color
     contactUsSocialPressed: string;          // Social icon pressed state
     
+    // ===== UNIVERSAL RECIPE PAGE COLORS =====
+    // Main Layout & Containers
+    universalRecipeMainBackground: string;   // Main screen background
+    universalRecipeImageContainer: string;   // Recipe image container background
+    universalRecipeContentBackground: string; // Content area background
+    universalRecipeScrollBackground: string; // ScrollView background
+    
+    // Recipe Image Section
+    universalRecipeImageBackground: string;  // Recipe image background/placeholder
+    universalRecipeImageBorder: string;      // Recipe image border color
+    universalRecipeImageShadow: string;      // Recipe image shadow color
+    
+    // Recipe Header Section
+    universalRecipeTitle: string;            // Recipe title text color
+    universalRecipeCuisine: string;          // Recipe cuisine text color
+    universalRecipeInfoBackground: string;   // Info row background
+    universalRecipeInfoText: string;         // Info text color (servings, prep, cook time)
+    universalRecipeInfoBorder: string;       // Info item border color
+    
+    // Section Containers
+    universalRecipeSectionBackground: string; // Section container background
+    universalRecipeSectionBorder: string;    // Section container border
+    universalRecipeSectionShadow: string;    // Section container shadow
+    universalRecipeSectionTitle: string;     // Section title color (Ingredients, Instructions, etc.)
+    universalRecipeSectionTitleBorder: string; // Section title bottom border
+    
+    // Ingredients Section
+    universalRecipeIngredientText: string;   // Ingredient text color
+    universalRecipeIngredientBullet: string; // Ingredient bullet point color
+    universalRecipeIngredientBackground: string; // Ingredient item background
+    
+    // Instructions Section
+    universalRecipeStepNumber: string;       // Step number color
+    universalRecipeStepNumberBackground: string; // Step number background
+    universalRecipeInstructionText: string;  // Instruction text color
+    universalRecipeInstructionBackground: string; // Instruction item background
+    
+    // Serving Suggestions Section
+    universalRecipeSuggestionText: string;   // Suggestion text color
+    universalRecipeSuggestionBullet: string; // Suggestion bullet point color
+    universalRecipeSuggestionBackground: string; // Suggestion item background
+    
+    // Error State
+    universalRecipeErrorText: string;        // Error message text color
+    universalRecipeErrorBackground: string;  // Error container background
+    universalRecipeErrorImageBorder: string; // Error image border color
+    
+    // ===== ALL CUISINES PAGE COLORS =====
+    // Main Layout & Containers
+    allCuisinesMainBackground: string;       // Main screen background
+    allCuisinesContentBackground: string;    // Content area background
+    
+    // Header Section
+    allCuisinesHeaderBackground: string;     // Header background color
+    allCuisinesHeaderTitle: string;          // Header title text color
+    allCuisinesHeaderBackIcon: string;       // Back button icon color
+    
+    // Cuisine Title
+    allCuisinesTitleText: string;            // Cuisine title text color
+    
+    // Food Item Cards
+    allCuisinesFoodItemContainer: string;    // Food item card background
+    allCuisinesFoodItemBorder: string;       // Food item card border color
+    allCuisinesFoodItemShadow: string;       // Food item card shadow color
+    allCuisinesFoodItemPressed: string;      // Food item card pressed state
+    
+    // Food Item Content
+    allCuisinesFoodImage: string;            // Food image background/placeholder
+    allCuisinesFoodImageBorder: string;      // Food image border color
+    allCuisinesFoodName: string;             // Food name text color
+    allCuisinesFoodCategory: string;         // Food category text color
+    
+    // Prep Time Container
+    allCuisinesPrepTimeContainer: string;    // Prep time container background
+    allCuisinesPrepTimeText: string;         // Prep time text color
+    allCuisinesPrepTimeIcon: string;         // Prep time clock icon color
+    
+    // Favorite Button
+    allCuisinesFavoriteButton: string;       // Favorite button background
+    allCuisinesFavoriteIconActive: string;   // Active favorite icon color
+    allCuisinesFavoriteIconInactive: string; // Inactive favorite icon color
+    
+    // List Layout
+    allCuisinesListBackground: string;       // FlatList background
+    allCuisinesScrollIndicator: string;      // Scroll indicator color
+    
     // Settings
     settingsBackground: string;
     settingsCard: string;
@@ -604,7 +690,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     success: '#4CAF50',
     error: '#F44336',
     warning: '#FF9800',
-    info: '#2196F3',
+    info: '#FF8A00',
     successLight: '#E8F5E8',
     errorLight: '#FFEBEE',
     warningLight: '#FFF3E0',
@@ -701,7 +787,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     toastSuccess: '#4CAF50',
     toastError: '#F44336',
     toastWarning: '#FF9800',
-    toastInfo: '#2196F3',
+    toastInfo: '#FF8A00',
     
     // Loading/Spinner
     loaderPrimary: '#FF8A00',
@@ -742,7 +828,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Profile Feature Icons (specific colors for each feature)
     profileEditIcon: '#FF8A00',        // Edit Profile - orange
     profileFavoriteIcon: '#FF6B6B',    // My Favourites - red
-    profileAboutIcon: '#2196F3',       // About App - blue
+    profileAboutIcon: '#FF8A00',       // About App - orange
     profilePrivacyIcon: '#4CAF50',     // Privacy Policy - green
     profileSettingsIcon: '#FF5722',    // Settings - orange/red
     profileLogoutIcon: '#F44336',      // Logout - red
@@ -1051,6 +1137,92 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     contactUsMailIcon: '#4F4F4F',               // Mail icon color
     contactUsSocialPressed: '#F0F0F0',          // Social icon pressed state
     
+    // ===== UNIVERSAL RECIPE PAGE COLORS =====
+    // Main Layout & Containers
+    universalRecipeMainBackground: '#FFFFFF',   // Main screen background
+    universalRecipeImageContainer: '#FFFFFF',   // Recipe image container background
+    universalRecipeContentBackground: '#FFFFFF', // Content area background
+    universalRecipeScrollBackground: '#FFFFFF', // ScrollView background
+    
+    // Recipe Image Section
+    universalRecipeImageBackground: '#F0F0F0',  // Recipe image background/placeholder
+    universalRecipeImageBorder: '#E0E0E0',      // Recipe image border color
+    universalRecipeImageShadow: '#000000',      // Recipe image shadow color
+    
+    // Recipe Header Section
+    universalRecipeTitle: '#333333',            // Recipe title text color
+    universalRecipeCuisine: '#666666',          // Recipe cuisine text color
+    universalRecipeInfoBackground: '#F0F0F0',   // Info row background
+    universalRecipeInfoText: '#888888',         // Info text color (servings, prep, cook time)
+    universalRecipeInfoBorder: '#E0E0E0',       // Info item border color
+    
+    // Section Containers
+    universalRecipeSectionBackground: '#FFFFFF', // Section container background
+    universalRecipeSectionBorder: '#E0E0E0',    // Section container border
+    universalRecipeSectionShadow: '#000000',    // Section container shadow
+    universalRecipeSectionTitle: '#333333',     // Section title color (Ingredients, Instructions, etc.)
+    universalRecipeSectionTitleBorder: '#E0E0E0', // Section title bottom border
+    
+    // Ingredients Section
+    universalRecipeIngredientText: '#555555',   // Ingredient text color
+    universalRecipeIngredientBullet: '#FF8A00', // Ingredient bullet point color
+    universalRecipeIngredientBackground: 'transparent', // Ingredient item background
+    
+    // Instructions Section
+    universalRecipeStepNumber: '#E91E63',       // Step number color (pink/red)
+    universalRecipeStepNumberBackground: 'transparent', // Step number background
+    universalRecipeInstructionText: '#555555',  // Instruction text color
+    universalRecipeInstructionBackground: 'transparent', // Instruction item background
+    
+    // Serving Suggestions Section
+    universalRecipeSuggestionText: '#555555',   // Suggestion text color
+    universalRecipeSuggestionBullet: '#FF8A00', // Suggestion bullet point color
+    universalRecipeSuggestionBackground: 'transparent', // Suggestion item background
+    
+    // Error State
+    universalRecipeErrorText: '#E91E63',        // Error message text color
+    universalRecipeErrorBackground: '#FFFFFF',  // Error container background
+    universalRecipeErrorImageBorder: '#E0E0E0', // Error image border color
+    
+    // ===== ALL CUISINES PAGE COLORS =====
+    // Main Layout & Containers
+    allCuisinesMainBackground: '#FFFFFF',       // Main screen background
+    allCuisinesContentBackground: '#FFFFFF',    // Content area background
+    
+    // Header Section
+    allCuisinesHeaderBackground: '#FF8A00',     // Header background color
+    allCuisinesHeaderTitle: '#FFFFFF',          // Header title text color
+    allCuisinesHeaderBackIcon: '#FFFFFF',       // Back button icon color
+    
+    // Cuisine Title
+    allCuisinesTitleText: '#000000',            // Cuisine title text color
+    
+    // Food Item Cards
+    allCuisinesFoodItemContainer: '#FFFFFF',    // Food item card background
+    allCuisinesFoodItemBorder: '#FFFFFF',       // Food item card border color
+    allCuisinesFoodItemShadow: '#000000',       // Food item card shadow color
+    allCuisinesFoodItemPressed: '#F5F5F5',      // Food item card pressed state
+    
+    // Food Item Content
+    allCuisinesFoodImage: '#F0F0F0',            // Food image background/placeholder
+    allCuisinesFoodImageBorder: '#E0E0E0',      // Food image border color
+    allCuisinesFoodName: '#000000',             // Food name text color
+    allCuisinesFoodCategory: '#808080',         // Food category text color (grey)
+    
+    // Prep Time Container
+    allCuisinesPrepTimeContainer: '#FFFFFF',    // Prep time container background
+    allCuisinesPrepTimeText: '#333333',         // Prep time text color
+    allCuisinesPrepTimeIcon: '#333333',         // Prep time clock icon color
+    
+    // Favorite Button
+    allCuisinesFavoriteButton: 'transparent',   // Favorite button background
+    allCuisinesFavoriteIconActive: '#FF8A00',   // Active favorite icon color (orange)
+    allCuisinesFavoriteIconInactive: '#FF8A00', // Inactive favorite icon color (orange)
+    
+    // List Layout
+    allCuisinesListBackground: '#FFFFFF',       // FlatList background
+    allCuisinesScrollIndicator: '#CCCCCC',      // Scroll indicator color
+    
     // Legacy (for backward compatibility)
     darkGrey: '#4F4F4F',
   };
@@ -1110,7 +1282,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     success: '#66BB6A',
     error: '#EF5350',
     warning: '#FFA726',
-    info: '#42A5F5',
+    info: '#FF8A00',
     successLight: '#1B5E20',
     errorLight: '#B71C1C',
     warningLight: '#E65100',
@@ -1207,7 +1379,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     toastSuccess: '#66BB6A',
     toastError: '#EF5350',
     toastWarning: '#FFA726',
-    toastInfo: '#42A5F5',
+    toastInfo: '#FF8A00',
     
     // Loading/Spinner
     loaderPrimary: '#FF8A00',
@@ -1248,7 +1420,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // Profile Feature Icons (specific colors for each feature)
     profileEditIcon: '#FF8A00',        // Edit Profile - orange
     profileFavoriteIcon: '#FF6B6B',    // My Favourites - red
-    profileAboutIcon: '#42A5F5',       // About App - blue (lighter for dark mode)
+    profileAboutIcon: '#FF8A00',       // About App - orange
     profilePrivacyIcon: '#66BB6A',     // Privacy Policy - green (lighter for dark mode)
     profileSettingsIcon: '#FF5722',    // Settings - orange/red
     profileLogoutIcon: '#EF5350',      // Logout - red (lighter for dark mode)
@@ -1555,6 +1727,92 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     contactUsFacebookIcon: '#AAAAAA',           // Facebook icon color
     contactUsMailIcon: '#AAAAAA',               // Mail icon color
     contactUsSocialPressed: '#3D3D3D',          // Social icon pressed state
+    
+    // ===== UNIVERSAL RECIPE PAGE COLORS =====
+    // Main Layout & Containers
+    universalRecipeMainBackground: '#121212',   // Main screen background
+    universalRecipeImageContainer: '#1E1E1E',   // Recipe image container background
+    universalRecipeContentBackground: '#1E1E1E', // Content area background
+    universalRecipeScrollBackground: '#1E1E1E', // ScrollView background
+    
+    // Recipe Image Section
+    universalRecipeImageBackground: '#404040',  // Recipe image background/placeholder
+    universalRecipeImageBorder: '#555555',      // Recipe image border color
+    universalRecipeImageShadow: '#000000',      // Recipe image shadow color
+    
+    // Recipe Header Section
+    universalRecipeTitle: '#FFFFFF',            // Recipe title text color
+    universalRecipeCuisine: '#AAAAAA',          // Recipe cuisine text color
+    universalRecipeInfoBackground: '#404040',   // Info row background
+    universalRecipeInfoText: '#BBBBBB',         // Info text color (servings, prep, cook time)
+    universalRecipeInfoBorder: '#555555',       // Info item border color
+    
+    // Section Containers
+    universalRecipeSectionBackground: '#2D2D2D', // Section container background
+    universalRecipeSectionBorder: '#555555',    // Section container border
+    universalRecipeSectionShadow: '#000000',    // Section container shadow
+    universalRecipeSectionTitle: '#FFFFFF',     // Section title color (Ingredients, Instructions, etc.)
+    universalRecipeSectionTitleBorder: '#555555', // Section title bottom border
+    
+    // Ingredients Section
+    universalRecipeIngredientText: '#CCCCCC',   // Ingredient text color
+    universalRecipeIngredientBullet: '#FF8A00', // Ingredient bullet point color
+    universalRecipeIngredientBackground: 'transparent', // Ingredient item background
+    
+    // Instructions Section
+    universalRecipeStepNumber: '#E91E63',       // Step number color (pink/red)
+    universalRecipeStepNumberBackground: 'transparent', // Step number background
+    universalRecipeInstructionText: '#CCCCCC',  // Instruction text color
+    universalRecipeInstructionBackground: 'transparent', // Instruction item background
+    
+    // Serving Suggestions Section
+    universalRecipeSuggestionText: '#CCCCCC',   // Suggestion text color
+    universalRecipeSuggestionBullet: '#FF8A00', // Suggestion bullet point color
+    universalRecipeSuggestionBackground: 'transparent', // Suggestion item background
+    
+    // Error State
+    universalRecipeErrorText: '#E91E63',        // Error message text color
+    universalRecipeErrorBackground: '#1E1E1E',  // Error container background
+    universalRecipeErrorImageBorder: '#555555', // Error image border color
+    
+    // ===== ALL CUISINES PAGE COLORS =====
+    // Main Layout & Containers
+    allCuisinesMainBackground: '#121212',       // Main screen background
+    allCuisinesContentBackground: '#1E1E1E',    // Content area background
+    
+    // Header Section
+    allCuisinesHeaderBackground: '#FF8A00',     // Header background color
+    allCuisinesHeaderTitle: '#FFFFFF',          // Header title text color
+    allCuisinesHeaderBackIcon: '#FFFFFF',       // Back button icon color
+    
+    // Cuisine Title
+    allCuisinesTitleText: '#FFFFFF',            // Cuisine title text color
+    
+    // Food Item Cards
+    allCuisinesFoodItemContainer: '#2D2D2D',    // Food item card background
+    allCuisinesFoodItemBorder: '#404040',       // Food item card border color
+    allCuisinesFoodItemShadow: '#000000',       // Food item card shadow color
+    allCuisinesFoodItemPressed: '#3A3A3A',      // Food item card pressed state
+    
+    // Food Item Content
+    allCuisinesFoodImage: '#404040',            // Food image background/placeholder
+    allCuisinesFoodImageBorder: '#555555',      // Food image border color
+    allCuisinesFoodName: '#FFFFFF',             // Food name text color
+    allCuisinesFoodCategory: '#AAAAAA',         // Food category text color (grey)
+    
+    // Prep Time Container
+    allCuisinesPrepTimeContainer: '#2D2D2D',    // Prep time container background
+    allCuisinesPrepTimeText: '#CCCCCC',         // Prep time text color
+    allCuisinesPrepTimeIcon: '#CCCCCC',         // Prep time clock icon color
+    
+    // Favorite Button
+    allCuisinesFavoriteButton: 'transparent',   // Favorite button background
+    allCuisinesFavoriteIconActive: '#FF8A00',   // Active favorite icon color (orange)
+    allCuisinesFavoriteIconInactive: '#FF8A00', // Inactive favorite icon color (orange)
+    
+    // List Layout
+    allCuisinesListBackground: '#121212',       // FlatList background
+    allCuisinesScrollIndicator: '#666666',      // Scroll indicator color
     
     // Legacy (for backward compatibility)
     darkGrey: '#666666',

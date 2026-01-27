@@ -19,6 +19,7 @@ import Toast from '../components/Toast';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import recipeData from '../data/dataset.json';
+import { useTheme } from '../context/ThemeContext';
 
 type RouteParams = {
   UniversalRecipe: {
@@ -29,6 +30,8 @@ type RouteParams = {
 type UniversalRecipeRouteProp = RouteProp<RouteParams, 'UniversalRecipe'>;
 
 const UniversalRecipe = () => {
+    const { colors } = useTheme()
+  
   const route = useRoute<UniversalRecipeRouteProp>();
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
@@ -98,15 +101,15 @@ const UniversalRecipe = () => {
   }
 
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.imageContainer}>
+    <View style={[styles.mainContainer , {backgroundColor:colors.universalRecipeMainBackground}]}>
+      <View style={[styles.imageContainer , {backgroundColor:colors.universalRecipeImageContainer}]}>
         <Image
             source={{ uri: recipe.image }}
             style={{ height: '100%', width: '100%', borderRadius: 10 }}
             resizeMode='cover'
           />
       </View>
-      <ScrollView style={styles.recipeContainer}>
+      <ScrollView style={[styles.recipeContainer , {backgroundColor:colors.universalRecipeScrollBackground}]}>
          
       
         {/* <View style={styles.itemImage}>
@@ -116,8 +119,8 @@ const UniversalRecipe = () => {
           />
         </View> */}
 
-        <View style={styles.section}>
-          <Text style={styles.title}>{recipe.name}</Text>
+        <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground , shadowColor:colors.universalRecipeSectionShadow}]}>
+          <Text style={[styles.title , {color:colors.universalRecipeSectionTitle}]}>{recipe.name}</Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoText}>Servings: {recipe.servings}</Text>
             <Text style={styles.infoText}>Prep: {recipe.prepTime}</Text>
@@ -127,35 +130,35 @@ const UniversalRecipe = () => {
 
           
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Ingredients</Text>
+          <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground}]}>
+            <Text style={[styles.sectionTitle , {color:colors.universalRecipeIngredientText}]}>Ingredients</Text>
             {recipe.ingredients.map((ingredient: any, index: number) => (
               <View key={index} style={styles.ingredientItem}>
-                <Text style={styles.ingredientText}>
+                <Text style={[styles.ingredientText , {color:colors.universalRecipeIngredientBullet}]}>
                   • {ingredient.quantity} {ingredient.item}
                 </Text>
               </View>
             ))}
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Instructions</Text>
+          <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground}]}>
+            <Text style={[styles.sectionTitle , {color:colors.universalRecipeInstructionText}]}>Instructions</Text>
             {recipe.instructions.map((instruction: string, index: number) => (
               <View key={index} style={styles.instructionItem}>
-                <Text style={styles.stepNumber}>{index + 1}.</Text>
-                <Text style={styles.instructionText}>{instruction}</Text>
+                <Text style={[styles.stepNumber , {color:colors.universalRecipeStepNumber}]}>{index + 1}.</Text>
+                <Text style={[styles.instructionText , {color:colors.universalRecipeInstructionText}]}>{instruction}</Text>
               </View>
             ))}
           </View>
 
           {recipe.servingSuggestions && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Serving Suggestions</Text>
+            <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground}]}>
+              <Text style={[styles.sectionTitle  , {color:colors.universalRecipeSuggestionText}]}>Serving Suggestions</Text>
               
                 {recipe.servingSuggestions.map(
                 (suggestion: string, index: number) => (
-                  <Text key={index} style={styles.suggestionText}>
-                    • {suggestion}
+                  <Text key={index} style={[styles.suggestionText , {color:colors.universalRecipeSuggestionText}]}>
+                    <Text style={{color:colors.universalRecipeSuggestionText}}>•</Text> {suggestion}
                   </Text>
                 ),
               )}

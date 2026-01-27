@@ -239,7 +239,7 @@ Toast.info = (message: string) => Toast(message, 'info');
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 120, // Changed from top: 60 to bottom: 120 for bottom positioning
+    bottom: 50, // Changed from top: 60 to bottom: 120 for bottom positioning
     left: 20,
     right: 20,
     zIndex: 9999,

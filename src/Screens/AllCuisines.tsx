@@ -106,14 +106,14 @@ const AllCuisines = () => {
     
     return (
       <TouchableOpacity
-        style={[styles.foodItemContainer , {backgroundColor:colors.background}]}
+        style={[styles.foodItemContainer , {backgroundColor:colors.allCuisinesFoodItemContainer , borderColor:colors.allCuisinesFoodItemBorder , shadowColor:colors.allCuisinesFoodItemShadow}]}
         onPress={() => {
           navigation.navigate('UniversalRecipe', { recipeId: recipeId });
           Toast(`Going to recipe of ${item.name}`);
         }}
       >
         <View style={styles.foodItemContent}>
-          <View style={styles.imageContainer}>
+          <View style={[styles.imageContainer , {backgroundColor:colors.allCuisinesFoodImage , borderColor:colors.allCuisinesFoodImageBorder}]}>
             <Image
               source={{ uri: item.image }}
               style={styles.foodImage}
@@ -121,11 +121,11 @@ const AllCuisines = () => {
             />
           </View>
           <View style={styles.foodInfoContainer}>
-            <Text style={styles.foodName}>{item.name}</Text>
-            <Text style={styles.foodCategory}>{item.category}</Text>
-            <View style={[styles.prepTimeContainer , {backgroundColor:colors.background}]}>
+            <Text style={[styles.foodName , {color:colors.allCuisinesFoodName}]}>{item.name}</Text>
+            <Text style={[styles.foodCategory , {color:colors.allCuisinesFoodCategory}]}>{item.category}</Text>
+            <View style={[styles.prepTimeContainer , {backgroundColor:colors.allCuisinesPrepTimeContainer}]}>
               <Text style={styles.prepTimeText}>
-                <Icon type='Feather' name='clock' size={12}/> {recipe?.prepTime || 'N/A'}
+                <Icon type='Feather' name='clock' size={12} color={colors.allCuisinesPrepTimeIcon}/> <Text style={{color:colors.allCuisinesPrepTimeText}}>{recipe?.prepTime || 'N/A'}</Text>
               </Text>
             </View>
           </View>
@@ -139,7 +139,7 @@ const AllCuisines = () => {
               type="MaterialIcons" 
               name={isItemFavorite ? "favorite" : "favorite-border"} 
               size={24} 
-              color={isItemFavorite ? "orange" : "orange"}
+              color={isItemFavorite ? colors.allCuisinesFavoriteIconActive : colors.allCuisinesFavoriteIconInactive}
             />
           </Pressable>
         </View>
@@ -150,21 +150,22 @@ const AllCuisines = () => {
   };
 
   return (
-    <View style={[styles.container , {backgroundColor:colors.background}]}>
+    <View style={[styles.container, {backgroundColor: colors.allCuisinesMainBackground}]}>
       <Header
-        title={''}
+        title={`${foodData[0]?.cuisine || cuisineType} Cuisine`}
+        height={180}
+        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
-          <Pressable onPress={() => navigation.goBack()}>
+          <Pressable onPress={() => navigation.goBack()} style={{ marginBottom: 65 }}>
             <Icon type="Ionicons" name="arrow-back" size={24} />
           </Pressable>
         }
       />
       
-      <ScrollView style={styles.mainContent}>
-        <Text style={styles.cuisineTitle}>
+      <ScrollView style={[styles.overlapingContent, {backgroundColor: colors.allCuisinesContentBackground}]}>
+         <Text style={[styles.cuisineTitle , {color:colors.allCuisinesTitleText}]}>
           {foodData[0]?.cuisine || cuisineType} cuisine
         </Text>
-
         <FlatList
           data={foodData}
           keyExtractor={item => item.id}
@@ -180,23 +181,33 @@ const AllCuisines = () => {
 };
 
 const styles = StyleSheet.create({
+  cuisineTitle:{
+    
+    marginLeft: 22,
+    marginBottom: -15,
+    fontWeight: '800',
+    fontSize: 35,
+    marginTop:10,
+    color:"white"
+  
+
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  mainContent: {
+  overlapingContent: {
+    marginTop: -85,
+    zIndex: 10,
+    elevation: 20,
+    position: 'relative',
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
     flex: 1,
-  },
-  cuisineTitle: {
-    marginLeft: 22,
-    marginBottom: -15,
-    marginTop: -10,
-    fontWeight: '800',
-    fontSize: 35,
   },
   foodList: {
     paddingBottom: 20,
-    paddingTop: 10,
+    paddingTop: 30,
   },
   foodItemContainer: {
     borderWidth: 0.5,
@@ -224,6 +235,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignItems: 'flex-start',
     justifyContent: 'center',
+    borderRadius:14,
+    borderWidth:1
   },
   foodImage: {
     width: '100%',

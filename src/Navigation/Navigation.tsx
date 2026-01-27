@@ -55,13 +55,15 @@ const TabNavigator = () => {
         tabBarStyle: {
           backgroundColor: colors.bottomTabBarBackground,
           borderTopWidth: 1,
-          borderTopColor: '#e0e0e0',
+          shadowColor:colors.bottomTabBarShadow,
+          borderTopColor:colors.bottomTabBarBorder,
+
           height: 60,
           paddingBottom: 5,
           paddingTop: 5,
         },
-        tabBarActiveTintColor: '#FF5722',
-        tabBarInactiveTintColor: '#666',
+        tabBarActiveTintColor: colors.bottomTabActiveTint,
+        tabBarInactiveTintColor: colors.bottomTabInactiveTint,
         headerStyle: {
           backgroundColor: '#fff',
         },
@@ -76,11 +78,12 @@ const TabNavigator = () => {
         component={HomeStackNavigator}
         options={{
           tabBarLabel: 'Home',
+          
           title: 'Chefster',
           tabBarIcon: ({ color, size  , focused }) => (
             focused?
-            <Icon type='Entypo' name='home' size={22}/>:
-            <Icon type='AntDesign' name='home' size={22}/>
+            <Icon type='Entypo' name='home' size={22} color={colors.bottomTabActiveIconColor}/>:
+            <Icon type='AntDesign' name='home' size={22} color={colors.bottomTabInactiveIconColor}/>
 
             
           ),
@@ -94,8 +97,8 @@ const TabNavigator = () => {
           title: 'Contact Us',
           tabBarIcon: ({ color, size , focused }) => (
             focused?
-              <Icon type='FontAwesome' name='phone' size={22}/>:
-              <Icon type='Feather' name='phone' size={22}/>
+              <Icon type='FontAwesome' name='phone' size={22} color={colors.bottomTabActiveIconColor}/>:
+              <Icon type='Feather' name='phone' size={22} color={colors.bottomTabInactiveIconColor}/>
               
           ),
         }}
@@ -108,8 +111,8 @@ const TabNavigator = () => {
           title: 'Profile',
           tabBarIcon: ({ color, size , focused }) => (
             focused?
-            <Icon type='Ionicons' name='person' size={22}/>:
-            <Icon type='Ionicons' name='person-outline' size={22}/>
+            <Icon type='Ionicons' name='person' size={22} color={colors.bottomTabActiveIconColor}/>:
+            <Icon type='Ionicons' name='person-outline' size={22} color={colors.bottomTabInactiveIconColor}/>
             
           ),
         }}
