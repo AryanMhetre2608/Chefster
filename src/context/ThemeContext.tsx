@@ -577,6 +577,75 @@ interface ThemeContextType {
     allCuisinesListBackground: string;       // FlatList background
     allCuisinesScrollIndicator: string;      // Scroll indicator color
     
+    // ===== LOGIN PAGE COLORS =====
+    // Main Layout & Container
+    loginMainBackground: string;             // Main screen background
+    loginCardBackground: string;             // Card container background
+    loginCardShadow: string;                 // Card shadow color
+    
+    // Text Elements
+    loginTitle: string;                      // Login title text color
+    loginSubtitle: string;                   // Subtitle text color
+    
+    // Input Fields
+    loginInputBackground: string;            // Input field background
+    loginInputBorder: string;                // Input field border color
+    loginInputText: string;                  // Input field text color
+    loginInputPlaceholder: string;           // Input field placeholder color
+    
+    // Password Field
+    loginPasswordContainer: string;          // Password container background
+    loginPasswordBorder: string;             // Password container border
+    loginPasswordText: string;               // Password text color
+    loginShowHideText: string;               // Show/Hide button text color
+    
+    // Buttons
+    loginButtonBackground: string;           // Login button background
+    loginButtonText: string;                 // Login button text color
+    loginButtonDisabled: string;             // Login button disabled opacity
+    loginForgotPasswordText: string;         // Forgot password link color
+    
+    // Navigation Links
+    loginSignupText: string;                 // "Don't have account" text color
+    loginSignupLink: string;                 // Register link color
+    
+    // Loading
+    loginLoadingIndicator: string;           // Loading indicator color
+    
+    // ===== REGISTRATION PAGE COLORS =====
+    // Main Layout & Container
+    registrationMainBackground: string;      // Main screen background
+    registrationCardBackground: string;      // Card container background
+    registrationCardShadow: string;          // Card shadow color
+    
+    // Text Elements
+    registrationTitle: string;               // Registration title text color
+    registrationSubtitle: string;            // Subtitle text color
+    
+    // Input Fields
+    registrationInputBackground: string;     // Input field background
+    registrationInputBorder: string;         // Input field border color
+    registrationInputText: string;           // Input field text color
+    registrationInputPlaceholder: string;    // Input field placeholder color
+    
+    // Password Fields
+    registrationPasswordContainer: string;   // Password container background
+    registrationPasswordBorder: string;      // Password container border
+    registrationPasswordText: string;        // Password text color
+    registrationShowHideText: string;        // Show/Hide button text color
+    
+    // Buttons
+    registrationButtonBackground: string;    // Register button background
+    registrationButtonText: string;          // Register button text color
+    registrationButtonDisabled: string;      // Register button disabled opacity
+    
+    // Navigation Links
+    registrationLoginText: string;           // "Already have account" text color
+    registrationLoginLink: string;           // Login link color
+    
+    // Loading
+    registrationLoadingIndicator: string;    // Loading indicator color
+    
     // Settings
     settingsBackground: string;
     settingsCard: string;
@@ -1223,6 +1292,75 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     allCuisinesListBackground: '#FFFFFF',       // FlatList background
     allCuisinesScrollIndicator: '#CCCCCC',      // Scroll indicator color
     
+    // ===== LOGIN PAGE COLORS =====
+    // Main Layout & Container
+    loginMainBackground: '#F6F6F6',             // Main screen background
+    loginCardBackground: '#FFFFFF',             // Card container background
+    loginCardShadow: '#000000',                 // Card shadow color
+    
+    // Text Elements
+    loginTitle: '#222222',                      // Login title text color
+    loginSubtitle: '#777777',                   // Subtitle text color
+    
+    // Input Fields
+    loginInputBackground: '#FFFFFF',            // Input field background
+    loginInputBorder: '#DDDDDD',                // Input field border color
+    loginInputText: '#000000',                  // Input field text color
+    loginInputPlaceholder: '#999999',           // Input field placeholder color
+    
+    // Password Field
+    loginPasswordContainer: '#FFFFFF',          // Password container background
+    loginPasswordBorder: '#DDDDDD',             // Password container border
+    loginPasswordText: '#000000',               // Password text color
+    loginShowHideText: '#FF7A00',               // Show/Hide button text color
+    
+    // Buttons
+    loginButtonBackground: '#FF7A00',           // Login button background
+    loginButtonText: '#FFFFFF',                 // Login button text color
+    loginButtonDisabled: '0.7',                 // Login button disabled opacity
+    loginForgotPasswordText: '#FF7A00',         // Forgot password link color
+    
+    // Navigation Links
+    loginSignupText: '#666666',                 // "Don't have account" text color
+    loginSignupLink: '#FF7A00',                 // Register link color
+    
+    // Loading
+    loginLoadingIndicator: '#FFFFFF',           // Loading indicator color
+    
+    // ===== REGISTRATION PAGE COLORS =====
+    // Main Layout & Container
+    registrationMainBackground: '#F6F6F6',      // Main screen background
+    registrationCardBackground: '#FFFFFF',      // Card container background
+    registrationCardShadow: '#000000',          // Card shadow color
+    
+    // Text Elements
+    registrationTitle: '#222222',               // Registration title text color
+    registrationSubtitle: '#777777',            // Subtitle text color
+    
+    // Input Fields
+    registrationInputBackground: '#FFFFFF',     // Input field background
+    registrationInputBorder: '#DDDDDD',         // Input field border color
+    registrationInputText: '#000000',           // Input field text color
+    registrationInputPlaceholder: '#999999',    // Input field placeholder color
+    
+    // Password Fields
+    registrationPasswordContainer: '#FFFFFF',   // Password container background
+    registrationPasswordBorder: '#DDDDDD',      // Password container border
+    registrationPasswordText: '#000000',        // Password text color
+    registrationShowHideText: '#FF7A00',        // Show/Hide button text color
+    
+    // Buttons
+    registrationButtonBackground: '#FF7A00',    // Register button background
+    registrationButtonText: '#FFFFFF',          // Register button text color
+    registrationButtonDisabled: '0.7',          // Register button disabled opacity
+    
+    // Navigation Links
+    registrationLoginText: '#666666',           // "Already have account" text color
+    registrationLoginLink: '#FF7A00',           // Login link color
+    
+    // Loading
+    registrationLoadingIndicator: '#FFFFFF',    // Loading indicator color
+    
     // Legacy (for backward compatibility)
     darkGrey: '#4F4F4F',
   };
@@ -1813,6 +1951,75 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     // List Layout
     allCuisinesListBackground: '#121212',       // FlatList background
     allCuisinesScrollIndicator: '#666666',      // Scroll indicator color
+    
+    // ===== LOGIN PAGE COLORS =====
+    // Main Layout & Container
+    loginMainBackground: '#121212',             // Main screen background
+    loginCardBackground: '#2D2D2D',             // Card container background
+    loginCardShadow: '#000000',                 // Card shadow color
+    
+    // Text Elements
+    loginTitle: '#FFFFFF',                      // Login title text color
+    loginSubtitle: '#AAAAAA',                   // Subtitle text color
+    
+    // Input Fields
+    loginInputBackground: '#3D3D3D',            // Input field background
+    loginInputBorder: '#555555',                // Input field border color
+    loginInputText: '#FFFFFF',                  // Input field text color
+    loginInputPlaceholder: '#AAAAAA',           // Input field placeholder color
+    
+    // Password Field
+    loginPasswordContainer: '#3D3D3D',          // Password container background
+    loginPasswordBorder: '#555555',             // Password container border
+    loginPasswordText: '#FFFFFF',               // Password text color
+    loginShowHideText: '#FF7A00',               // Show/Hide button text color
+    
+    // Buttons
+    loginButtonBackground: '#FF7A00',           // Login button background
+    loginButtonText: '#FFFFFF',                 // Login button text color
+    loginButtonDisabled: '0.7',                 // Login button disabled opacity
+    loginForgotPasswordText: '#FF7A00',         // Forgot password link color
+    
+    // Navigation Links
+    loginSignupText: '#AAAAAA',                 // "Don't have account" text color
+    loginSignupLink: '#FF7A00',                 // Register link color
+    
+    // Loading
+    loginLoadingIndicator: '#FFFFFF',           // Loading indicator color
+    
+    // ===== REGISTRATION PAGE COLORS =====
+    // Main Layout & Container
+    registrationMainBackground: '#121212',      // Main screen background
+    registrationCardBackground: '#2D2D2D',      // Card container background
+    registrationCardShadow: '#000000',          // Card shadow color
+    
+    // Text Elements
+    registrationTitle: '#FFFFFF',               // Registration title text color
+    registrationSubtitle: '#AAAAAA',            // Subtitle text color
+    
+    // Input Fields
+    registrationInputBackground: '#3D3D3D',     // Input field background
+    registrationInputBorder: '#555555',         // Input field border color
+    registrationInputText: '#FFFFFF',           // Input field text color
+    registrationInputPlaceholder: '#AAAAAA',    // Input field placeholder color
+    
+    // Password Fields
+    registrationPasswordContainer: '#3D3D3D',   // Password container background
+    registrationPasswordBorder: '#555555',      // Password container border
+    registrationPasswordText: '#FFFFFF',        // Password text color
+    registrationShowHideText: '#FF7A00',        // Show/Hide button text color
+    
+    // Buttons
+    registrationButtonBackground: '#FF7A00',    // Register button background
+    registrationButtonText: '#FFFFFF',          // Register button text color
+    registrationButtonDisabled: '0.7',          // Register button disabled opacity
+    
+    // Navigation Links
+    registrationLoginText: '#AAAAAA',           // "Already have account" text color
+    registrationLoginLink: '#FF7A00',           // Login link color
+    
+    // Loading
+    registrationLoadingIndicator: '#FFFFFF',    // Loading indicator color
     
     // Legacy (for backward compatibility)
     darkGrey: '#666666',

@@ -11,8 +11,11 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import authService from '../services/authService';
 import Toast from '../components/Toast';
+import { useTheme } from '../context/ThemeContext';
 
 const Login = () => {
+  const { colors } = useTheme(); 
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secure, setSecure] = useState(true);
@@ -84,38 +87,41 @@ const Login = () => {
   
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>Login Page</Text>
-        <Text style={styles.subtitle}>
+    <View style={[styles.container , {backgroundColor:colors.loginMainBackground}]}>
+      <View style={[styles.card , {backgroundColor:colors.loginCardBackground , shadowColor:colors.loginCardShadow}]}>
+        <Text style={[styles.title , {color:colors.loginTitle}]}>Login Page</Text>
+        <Text style={[styles.subtitle , {color:colors.loginSubtitle}]}>
           Login to continue cooking amazing dishes
         </Text>
 
         {/* Email */}
-        <TextInput
+        
+          <TextInput
           placeholder="Email"
-          placeholderTextColor="#999"
-          style={styles.input}
+          placeholderTextColor={colors.loginInputPlaceholder}
+          style={[styles.input , {backgroundColor:colors.loginInputBackground , paddingHorizontal:15 , borderColor:colors.loginInputBorder , color:colors.loginInputText}]}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
         />
+       
+       
 
         {/* Password */}
-        <View style={styles.passwordBox}>
+        <View style={[styles.passwordBox , {backgroundColor:colors.loginPasswordContainer , borderColor:colors.loginPasswordBorder}]}>
           <TextInput
             placeholder="Password"
             placeholderTextColor="#999"
-            style={styles.passwordInput}
+            style={[styles.passwordInput  , {color:colors.loginPasswordText}]}
             secureTextEntry={secure}
             value={password}
             onChangeText={setPassword}
             autoCapitalize="none"
           />
           <Pressable onPress={() => setSecure(!secure)}>
-            <Text style={styles.showText}>
+            <Text style={[styles.showText , {color:colors.loginShowHideText}]}>
               {secure ? 'Show' : 'Hide'}
             </Text>
           </Pressable>
@@ -123,28 +129,28 @@ const Login = () => {
 
         {/* Forgot Password */}
         <Pressable style={styles.forgot} onPress={handleForgotPassword}>
-          <Text style={styles.forgotText}>Forgot Password?</Text>
+          <Text style={[styles.forgotText , {color:colors.loginForgotPasswordText}]}>Forgot Password?</Text>
         </Pressable>
         
 
         {/* Login Button */}
         <Pressable 
-          style={[styles.button, loading && styles.buttonDisabled]} 
+          style={[[styles.button , {backgroundColor:colors.loginButtonBackground}], loading && styles.buttonDisabled]} 
           onPress={handleLogin}
           disabled={loading}
         >
           {loading ? (
-            <ActivityIndicator color="#FFF" />
+            <ActivityIndicator color={colors.loginLoadingIndicator} />
           ) : (
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={[styles.buttonText , {color:colors.loginButtonText}]}>Login</Text>
           )}
         </Pressable>
 
         {/* Signup */}
         <View style={styles.signupBox}>
-          <Text style={styles.signupText}>Don’t have an account?</Text>
+          <Text style={[styles.signupText , {color:colors.loginSignupText}]}>Don’t have an account?</Text>
           <Pressable onPress={() => navigation.navigate('Registration')}>
-            <Text style={styles.signupLink}> Register</Text>
+            <Text style={[styles.signupLink , {color:colors.loginSignupLink}]}> Register</Text>
           </Pressable>
         </View>
       </View>

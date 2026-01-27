@@ -10,12 +10,16 @@ import {
   Pressable,
   Alert,
   ActivityIndicator,
+  useColorScheme,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import authService from '../services/authService';
 import Toast from '../components/Toast';
+import { useTheme } from '../context/ThemeContext';
 
 const Registration = () => {
+  const { colors } = useTheme(); 
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -75,18 +79,19 @@ const Registration = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>Registration Page</Text>
-        <Text style={styles.subtitle}>
+    <View style={[styles.container, {backgroundColor:colors.registrationMainBackground}]}>
+      <View style={[styles.card , {backgroundColor:colors.registrationCardBackground , shadowColor:colors.registrationCardShadow}]}>
+        <Text style={[styles.title , {color:colors.registrationTitle}]}>Registration Page</Text>
+        <Text style={[styles.subtitle , {color:colors.registrationSubtitle}]}>
           Register to start cooking amazing dishes
         </Text>
 
-        {/* Email */}
-        <TextInput
+
+       
+          <TextInput
           placeholder="Email"
-          placeholderTextColor="#999"
-          style={styles.input}
+          placeholderTextColor={colors.registrationInputPlaceholder}
+          style={[styles.input , {backgroundColor:colors.registrationInputBackground , borderColor:colors.registrationInputBorder , color:colors.registrationInputText}]}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -94,37 +99,42 @@ const Registration = () => {
           autoCorrect={false}
         />
 
+
+        {/* Email */}
+        
+
         {/* Password */}
-        <View style={styles.passwordBox}>
+        <View style={[styles.passwordBox ,{backgroundColor:colors.registrationPasswordContainer , borderColor:colors.registrationPasswordBorder}]}>
           <TextInput
             placeholder="Password (min 6 characters)"
-            placeholderTextColor="#999"
-            style={styles.passwordInput}
+            placeholderTextColor={colors.registrationInputPlaceholder}
+            style={[styles.passwordInput , {color:colors.registrationPasswordText}]}
             secureTextEntry={secure}
             value={password}
             onChangeText={setPassword}
             autoCapitalize="none"
           />
           <Pressable onPress={() => setSecure(!secure)}>
-            <Text style={styles.showText}>
+            <Text style={[styles.showText , {color:colors.registrationShowHideText}]}>
               {secure ? 'Show' : 'Hide'}
             </Text>
           </Pressable>
         </View>
 
         {/* Confirm Password */}
-        <View style={styles.passwordBox}>
+        <View style={[styles.passwordBox , {backgroundColor:colors.registrationPasswordContainer , borderColor:colors.registrationPasswordBorder}]}>
           <TextInput
             placeholder="Confirm Password"
-            placeholderTextColor="#999"
-            style={styles.passwordInput}
+            placeholderTextColor={colors.registrationInputPlaceholder}
+            style={[styles.passwordInput , {color:colors.registrationPasswordText}]}
+            // style={styles.passwordInput}
             secureTextEntry={secureConfirm}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             autoCapitalize="none"
           />
           <Pressable onPress={() => setSecureConfirm(!secureConfirm)}>
-            <Text style={styles.showText}>
+            <Text style={[styles.showText ,  {color:colors.registrationShowHideText}]}>
               {secureConfirm ? 'Show' : 'Hide'}
             </Text>
           </Pressable>
@@ -132,22 +142,22 @@ const Registration = () => {
 
         {/* Register Button */}
         <Pressable 
-          style={[styles.button, loading && styles.buttonDisabled]} 
+          style={[[styles.button , {backgroundColor:colors.registrationButtonBackground}], loading && styles.buttonDisabled ]} 
           onPress={handleRegister}
           disabled={loading}
         >
           {loading ? (
-            <ActivityIndicator color="#FFF" />
+            <ActivityIndicator color={colors.registrationLoadingIndicator} />
           ) : (
-            <Text style={styles.buttonText}>Register</Text>
+            <Text style={[styles.buttonText , {color:colors.registrationButtonText}]}>Register</Text>
           )}
         </Pressable>
 
         {/* Login link */}
         <View style={styles.signupBox}>
-          <Text style={styles.signupText}>Already have an account?</Text>
+          <Text style={[styles.signupText  , {color:colors.registrationLoginText}]}>Already have an account?</Text>
           <Pressable onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.signupLink}> Log In</Text>
+            <Text style={[styles.signupLink , {color:colors.registrationLoginLink}]}> Log In</Text>
           </Pressable>
         </View>
       </View>
