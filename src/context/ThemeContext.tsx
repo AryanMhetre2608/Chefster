@@ -176,42 +176,50 @@ interface ThemeContextType {
     favoriteIcon: string;
     ratingStars: string;
     
-    // Profile/User
-    profileBackground: string;
-    profileCard: string;
-    profileText: string;
-    profileTextSecondary: string;
-    profileBorder: string;
+    // ===== PROFILE PAGE COLORS =====
+    // Main Layout
+    profileMainBackground: string;           // Main container background
+    profileContentBackground: string;       // Overlapping content background
+    profileHeaderBackground: string;        // Header background
     
-    // Profile Page Specific Features
-    profileAvatar: string;
-    profileAvatarBorder: string;
-    profileAvatarPlaceholder: string;
-    profileAvatarIcon: string;
-    profileName: string;
-    profileEmail: string;
-    profilePhone: string;
-    profileBio: string;
-    profileInfoContainer: string;
+    // Avatar Section
+    profileAvatarContainer: string;         // Avatar container background
+    profileAvatarBorder: string;            // Avatar border color
+    profileAvatarPlaceholder: string;       // Avatar placeholder background when no image
+    profileAvatarIcon: string;              // Avatar placeholder icon color
+    profileAvatarShadow: string;            // Avatar shadow color
     
-    // Profile Feature Items
-    profileFeatureBackground: string;
-    profileFeatureBorder: string;
-    profileFeatureText: string;
-    profileFeatureShadow: string;
+    // User Info Section
+    profileUserInfoContainer: string;       // User info container background
+    profileUserName: string;                // User name text color
+    profileUserEmail: string;               // User email text color
+    profileUserPhone: string;               // User phone text color
+    profileUserBio: string;                 // User bio text color
+    profileUserInfoShadow: string;          // User info container shadow
     
-    // Profile Feature Icons (specific colors for each feature)
-    profileEditIcon: string;           // Edit Profile - orange
-    profileFavoriteIcon: string;       // My Favourites - red
-    profileAboutIcon: string;          // About App - blue
-    profilePrivacyIcon: string;        // Privacy Policy - green
-    profileSettingsIcon: string;       // Settings - orange
-    profileLogoutIcon: string;         // Logout - red
-    profileChevronIcon: string;        // Right chevron arrows
+    // Feature List Section
+    profileFeatureListContainer: string;    // Feature list container background
+    profileFeatureItem: string;             // Individual feature item background
+    profileFeatureItemBorder: string;       // Feature item border color
+    profileFeatureItemShadow: string;       // Feature item shadow color
+    profileFeatureItemPressed: string;      // Feature item pressed state
     
-    // Profile Feature Hover/Press States
-    profileFeaturePressed: string;
-    profileFeatureHover: string;
+    // Feature Item Content
+    profileFeatureText: string;             // Feature item text color
+    profileFeatureIconContainer: string;    // Feature icon container background
+    profileFeatureChevron: string;          // Right chevron arrow color
+    
+    // Feature Icons (specific colors for each feature)
+    profileEditIcon: string;                // Edit Profile icon - orange
+    profileFavoriteIcon: string;            // My Favourites icon - red
+    profileAboutIcon: string;               // About App icon - blue
+    profilePrivacyIcon: string;             // Privacy Policy icon - green
+    profileSettingsIcon: string;            // Settings icon - gray
+    profileLogoutIcon: string;              // Logout icon - red
+    
+    // Spacing and Layout
+    profileContentPadding: string;          // Content padding color (for visual reference)
+    profileSectionSpacing: string;          // Section spacing color (for visual reference)
     
     // ===== EDIT PROFILE PAGE COLORS =====
     // Avatar Section
@@ -881,42 +889,50 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     favoriteIcon: '#FF6B6B',
     ratingStars: '#FFD700',
     
-    // Profile/User
-    profileBackground: '#F8F9FA',
-    profileCard: '#FFFFFF',
-    profileText: '#000000',
-    profileTextSecondary: '#666666',
-    profileBorder: '#E0E0E0',
+    // ===== PROFILE PAGE COLORS =====
+    // Main Layout
+    profileMainBackground: '#F8F9FA',           // Main container background
+    profileContentBackground: '#FFFFFF',       // Overlapping content background
+    profileHeaderBackground: '#FF8A00',        // Header background
     
-    // Profile Page Specific Features
-    profileAvatar: '#F0F0F0',
-    profileAvatarBorder: '#E0E0E0',
-    profileAvatarPlaceholder: '#CCCCCC',
-    profileAvatarIcon: '#999999',
-    profileName: '#000000',
-    profileEmail: '#666666',
-    profilePhone: '#888888',
-    profileBio: '#777777',
-    profileInfoContainer: '#FFFFFF',
+    // Avatar Section
+    profileAvatarContainer: '#FFFFFF',         // Avatar container background
+    profileAvatarBorder: '#E0E0E0',            // Avatar border color
+    profileAvatarPlaceholder: '#F5F5F5',       // Avatar placeholder background when no image
+    profileAvatarIcon: '#CCCCCC',              // Avatar placeholder icon color
+    profileAvatarShadow: '#00000020',          // Avatar shadow color
     
-    // Profile Feature Items
-    profileFeatureBackground: '#FFFFFF',
-    profileFeatureBorder: '#E0E0E0',
-    profileFeatureText: '#000000',
-    profileFeatureShadow: '#000000',
+    // User Info Section
+    profileUserInfoContainer: '#FFFFFF',       // User info container background
+    profileUserName: '#000000',                // User name text color
+    profileUserEmail: '#666666',               // User email text color
+    profileUserPhone: '#888888',               // User phone text color
+    profileUserBio: '#777777',                 // User bio text color
+    profileUserInfoShadow: '#00000010',        // User info container shadow
     
-    // Profile Feature Icons (specific colors for each feature)
-    profileEditIcon: '#FF8A00',        // Edit Profile - orange
-    profileFavoriteIcon: '#FF6B6B',    // My Favourites - red
-    profileAboutIcon: '#FF8A00',       // About App - orange
-    profilePrivacyIcon: '#4CAF50',     // Privacy Policy - green
-    profileSettingsIcon: '#FF5722',    // Settings - orange/red
-    profileLogoutIcon: '#F44336',      // Logout - red
-    profileChevronIcon: '#666666',     // Right chevron arrows
+    // Feature List Section
+    profileFeatureListContainer: '#FFFFFF',    // Feature list container background
+    profileFeatureItem: '#FFFFFF',             // Individual feature item background
+    profileFeatureItemBorder: '#E0E0E0',       // Feature item border color
+    profileFeatureItemShadow: '#00000015',     // Feature item shadow color
+    profileFeatureItemPressed: '#F0F0F0',      // Feature item pressed state
     
-    // Profile Feature Hover/Press States
-    profileFeaturePressed: '#F5F5F5',
-    profileFeatureHover: '#F8F9FA',
+    // Feature Item Content
+    profileFeatureText: '#000000',             // Feature item text color
+    profileFeatureIconContainer: '#F8F9FA',    // Feature icon container background
+    profileFeatureChevron: '#CCCCCC',          // Right chevron arrow color
+    
+    // Feature Icons (specific colors for each feature)
+    profileEditIcon: '#FF8A00',                // Edit Profile icon - orange
+    profileFavoriteIcon: '#FF4444',            // My Favourites icon - red
+    profileAboutIcon: '#4A90E2',               // About App icon - blue
+    profilePrivacyIcon: '#50C878',             // Privacy Policy icon - green
+    profileSettingsIcon: '#888888',            // Settings icon - gray
+    profileLogoutIcon: '#FF4444',              // Logout icon - red
+    
+    // Spacing and Layout
+    profileContentPadding: '#FFFFFF',          // Content padding color (for visual reference)
+    profileSectionSpacing: '#F8F9FA',          // Section spacing color (for visual reference)
     
     // ===== EDIT PROFILE PAGE COLORS =====
     // Avatar Section
@@ -1548,42 +1564,50 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     favoriteIcon: '#FF6B6B',
     ratingStars: '#FFD700',
     
-    // Profile/User
-    profileBackground: '#1E1E1E',
-    profileCard: '#2D2D2D',
-    profileText: '#FFFFFF',
-    profileTextSecondary: '#AAAAAA',
-    profileBorder: '#444444',
+    // ===== PROFILE PAGE COLORS =====
+    // Main Layout
+    profileMainBackground: '#1E1E1E',           // Main container background
+    profileContentBackground: '#2D2D2D',       // Overlapping content background
+    profileHeaderBackground: '#FF8A00',        // Header background
     
-    // Profile Page Specific Features
-    profileAvatar: '#3D3D3D',
-    profileAvatarBorder: '#555555',
-    profileAvatarPlaceholder: '#666666',
-    profileAvatarIcon: '#AAAAAA',
-    profileName: '#FFFFFF',
-    profileEmail: '#AAAAAA',
-    profilePhone: '#CCCCCC',
-    profileBio: '#BBBBBB',
-    profileInfoContainer: '#2D2D2D',
+    // Avatar Section
+    profileAvatarContainer: '#2D2D2D',         // Avatar container background
+    profileAvatarBorder: '#555555',            // Avatar border color
+    profileAvatarPlaceholder: '#3D3D3D',       // Avatar placeholder background when no image
+    profileAvatarIcon: '#888888',              // Avatar placeholder icon color
+    profileAvatarShadow: '#00000040',          // Avatar shadow color
     
-    // Profile Feature Items
-    profileFeatureBackground: '#2D2D2D',
-    profileFeatureBorder: '#444444',
-    profileFeatureText: '#FFFFFF',
-    profileFeatureShadow: '#000000',
+    // User Info Section
+    profileUserInfoContainer: '#2D2D2D',       // User info container background
+    profileUserName: '#FFFFFF',                // User name text color
+    profileUserEmail: '#AAAAAA',               // User email text color
+    profileUserPhone: '#CCCCCC',               // User phone text color
+    profileUserBio: '#BBBBBB',                 // User bio text color
+    profileUserInfoShadow: '#00000030',        // User info container shadow
     
-    // Profile Feature Icons (specific colors for each feature)
-    profileEditIcon: '#FF8A00',        // Edit Profile - orange
-    profileFavoriteIcon: '#FF6B6B',    // My Favourites - red
-    profileAboutIcon: '#FF8A00',       // About App - orange
-    profilePrivacyIcon: '#66BB6A',     // Privacy Policy - green (lighter for dark mode)
-    profileSettingsIcon: '#FF5722',    // Settings - orange/red
-    profileLogoutIcon: '#EF5350',      // Logout - red (lighter for dark mode)
-    profileChevronIcon: '#AAAAAA',     // Right chevron arrows
+    // Feature List Section
+    profileFeatureListContainer: '#2D2D2D',    // Feature list container background
+    profileFeatureItem: '#2D2D2D',             // Individual feature item background
+    profileFeatureItemBorder: '#444444',       // Feature item border color
+    profileFeatureItemShadow: '#00000025',     // Feature item shadow color
+    profileFeatureItemPressed: '#3D3D3D',      // Feature item pressed state
     
-    // Profile Feature Hover/Press States
-    profileFeaturePressed: '#3D3D3D',
-    profileFeatureHover: '#333333',
+    // Feature Item Content
+    profileFeatureText: '#FFFFFF',             // Feature item text color
+    profileFeatureIconContainer: '#1E1E1E',    // Feature icon container background
+    profileFeatureChevron: '#AAAAAA',          // Right chevron arrow color
+    
+    // Feature Icons (specific colors for each feature)
+    profileEditIcon: '#FF8A00',                // Edit Profile icon - orange
+    profileFavoriteIcon: '#FF6B6B',            // My Favourites icon - red
+    profileAboutIcon: '#5DADE2',               // About App icon - blue (lighter for dark mode)
+    profilePrivacyIcon: '#66BB6A',             // Privacy Policy icon - green (lighter for dark mode)
+    profileSettingsIcon: '#AAAAAA',            // Settings icon - gray
+    profileLogoutIcon: '#EF5350',              // Logout icon - red (lighter for dark mode)
+    
+    // Spacing and Layout
+    profileContentPadding: '#2D2D2D',          // Content padding color (for visual reference)
+    profileSectionSpacing: '#1E1E1E',          // Section spacing color (for visual reference)
     
     // ===== EDIT PROFILE PAGE COLORS =====
     // Avatar Section

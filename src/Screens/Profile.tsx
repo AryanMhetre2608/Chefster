@@ -6,10 +6,10 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../redux/Store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/Store';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import foodJson from '../data/dataset.json';
@@ -37,7 +37,6 @@ const getProfileFeatureIconColor = (featureName: string, colors: any) => {
 
 const Profile = () => {
   const { colors } = useTheme();
-  const dispatch = useDispatch<AppDispatch>();
   const { currentUser } = useSelector((state: RootState) => state.User);
 
   const profileFeatures = (foodJson as any).profilepageFeatures;
@@ -51,98 +50,61 @@ const Profile = () => {
     return undefined;
   };
 
-  // const handleLogout = () => {
-  //   Alert.alert('Logout', 'Are you sure you want to logout?', [
-  //     { text: 'Cancel', style: 'cancel' },
-  //     {
-  //       text: 'Logout',
-  //       style: 'destructive',
-  //       onPress: async () => {
-  //         try {
-  //           console.log('Starting logout process...');
-  //           console.log('Current user before logout:', user?.email);
-
-  //           await logout();
-
-  //           console.log('Logout completed successfully');
-  //         } catch (error) {
-  //           console.error('Logout failed:', error);
-  //           Alert.alert('Error', 'Failed to logout. Please try again.');
-  //         }
-  //       },
-  //     },
-  //   ]);
-  // };
-
-  // const handleRefresh = () => {
-  //   console.log(
-  //     'Current auth state:',
-  //     user ? `Logged in as ${user.email}` : 'Not logged in',
-  //   );
-  //   Alert.alert(
-  //     'Auth State',
-  //     user ? `Logged in as: ${user.email}` : 'Not logged in',
-  //   );
-  // };
+  // Render profile feature items
+  const renderProfileFeature = ({ item }: { item: any }) => (
+    <Pressable
+      style={[
+        styles.profileFeatures,
+        {
+          backgroundColor: colors.profileFeatureItem,
+          borderColor: colors.profileFeatureItemBorder,
+        },
+      ]}
+      onPress={() => {
+        if (item.screenName) {
+          navigation.navigate(item.screenName);
+        }
+      }}
+    >
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View
+            style={{
+              backgroundColor: colors.profileFeatureIconContainer,
+              padding: 8,
+              borderRadius: 8,
+              marginRight: 15,
+            }}
+          >
+            <Icon
+              type={item.iconType}
+              name={item.iconName}
+              size={20}
+              color={getProfileFeatureIconColor(item.name, colors)}
+            />
+          </View>
+          <Text
+            style={{
+              color: colors.profileFeatureText,
+              fontSize: 16,
+              fontWeight: '500',
+            }}
+          >
+            {item.name}
+          </Text>
+        </View>
+        <Icon
+          type="AntDesign"
+          name="right"
+          size={16}
+          color={colors.profileFeatureChevron}
+        />
+      </View>
+    </Pressable>
+  );
 
   return (
-    // <View style={styles.mainContainer}>
-    //   <Header title={'Profile'} />
-    //   {/* <View style={styles.content}>
-    //     <Text style={styles.title}>Profile</Text>
-
-    //     {user ? (
-    //       <>
-    //         <Text style={styles.email}>{user.email}</Text>
-    //         <Text style={styles.status}>
-    //           {user.emailVerified
-    //             ? '✅ Email Verified'
-    //             : '⚠️ Email Not Verified'}
-    //         </Text>
-
-    //         <TouchableOpacity
-    //           style={styles.refreshButton}
-    //           onPress={handleRefresh}
-    //         >
-    //           <Text style={styles.refreshButtonText}>Check Auth State</Text>
-    //         </TouchableOpacity>
-
-    //         <TouchableOpacity
-    //           style={styles.logoutButton}
-    //           onPress={handleLogout}
-    //         >
-    //           <Text style={styles.logoutButtonText}>Logout</Text>
-    //         </TouchableOpacity>
-    //       </>
-    //     ) : (
-    //       <>
-    //         <Text style={styles.notLoggedIn}>Not logged in</Text>
-    //         <TouchableOpacity
-    //           style={styles.refreshButton}
-    //           onPress={handleRefresh}
-    //         >
-    //           <Text style={styles.refreshButtonText}>Check Auth State</Text>
-    //         </TouchableOpacity>
-    //       </>
-    //     )}
-    //   </View> */}
-    //   <View style={styles.subContainer}>
-    //     <View style={styles.profileContainer}></View>
-    //     <Text>Name</Text>
-    //     <Text>Email</Text>
-    //     <View style={{margin:20}}>
-    //        <FlatList
-    //       data={profileFeatures}
-    //       keyExtractor={item => item.id}
-    //       renderItem={renderItemsFeatures}
-    //       showsVerticalScrollIndicator={false}
-    //     />
-
-    //     </View>
-    //   </View>
-    // </View>
-
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: colors.profileMainBackground }]}>
       <Header
         title="Profile"
         height={180}
@@ -160,7 +122,7 @@ const Profile = () => {
       <View
         style={[
           styles.profileContainer,
-          { backgroundColor: colors.background },
+          { backgroundColor: colors.profileContentBackground },
         ]}
       >
         <View style={{ marginTop: 30 }}>
@@ -171,7 +133,7 @@ const Profile = () => {
                 width: 120,
                 borderRadius: 60,
                 borderWidth: 0.5,
-                backgroundColor: colors.profileAvatar,
+                backgroundColor: colors.profileAvatarPlaceholder,
                 borderColor: colors.profileAvatarBorder,
                 overflow: 'hidden',
               }}
@@ -198,7 +160,7 @@ const Profile = () => {
                     type="Ionicons"
                     name="person"
                     size={50}
-                    color={colors.profileAvatarIcon || '#999'}
+                    color={colors.profileAvatarIcon}
                   />
                 </View>
               )}
@@ -210,31 +172,58 @@ const Profile = () => {
               style={{
                 fontWeight: 'bold',
                 alignContent: 'center',
-                color: colors.profileName,
+                color: colors.profileUserName,
                 fontSize: 25,
               }}
             >
               {currentUser?.name || 'User Name'}
             </Text>
-            <Text style={{ color: colors.profileEmail, marginTop: 5 }}>
+            <Text style={{ color: colors.profileUserEmail, marginTop: 5 }}>
               {currentUser?.email || 'user@example.com'}
             </Text>
-            {/* {currentUser?.phoneNumber ? (
-            <Text style={{ color: colors.profilePhone || colors.profileEmail, fontSize: 12, marginTop: 2 }}>
-              {currentUser.phoneNumber}
-            </Text>
-          ) : null} */}
             {currentUser?.bio ? (
-              <View style={{ alignItems: 'center', justifyContent: 'center' , marginTop:30  }}>
-                <View style={{margin:20 , justifyContent:"center"}}>
-                  <Text>Bio</Text>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: 20,
+                  width: '100%',
+                  marginVertical: 10,
+                }}
+              >
+                <View
+                  style={{
+                    margin: 20,
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: colors.profileFeatureItemBorder,
+                    width: '80%',
+                    borderRadius: 20,
+                    elevation: 10,
+                    backgroundColor: colors.profileUserInfoContainer,
+                    marginBottom: 100,
+                  }}
+                >
                   <Text
                     style={{
-                      color: colors.profileBio || colors.profileEmail,
-                      fontSize: 12,
-                      marginTop: 4,
-                      textAlign: 'center',
+                      paddingTop: 15,
                       paddingHorizontal: 20,
+                      fontSize: 14,
+                      fontWeight: '600',
+                      color: colors.profileUserName,
+                    }}
+                  >
+                    Bio
+                  </Text>
+
+                  <Text
+                    style={{
+                      color: colors.profileUserBio,
+                      fontSize: 13,
+                      lineHeight: 20, // ✅ space between lines
+                      paddingHorizontal: 20,
+                      paddingTop: 8,
+                      paddingBottom: 16, // ✅ space below last line
                     }}
                   >
                     {currentUser.bio}
@@ -243,6 +232,8 @@ const Profile = () => {
               </View>
             ) : null}
           </View>
+
+         
         </View>
       </View>
     </View>
@@ -259,16 +250,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 20,
   },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  subContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   profileContainer: {
     flex: 1,
     margin: 0,
@@ -279,7 +260,6 @@ const styles = StyleSheet.create({
     zIndex: 10,
     elevation: 7,
   },
-
   profileFeatures: {
     marginVertical: 5,
     alignItems: 'center',
@@ -289,11 +269,12 @@ const styles = StyleSheet.create({
     elevation: 7,
     borderWidth: 1,
     borderRadius: 15,
-    // backgroundColor will be set inline with theme colors
+    // backgroundColor and borderColor will be set inline with theme colors
     flex: 1,
   },
   featureContainer: {
     margin: 20,
+    marginTop: 10,
   },
 });
 

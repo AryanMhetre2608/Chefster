@@ -246,9 +246,9 @@ const styles = StyleSheet.create({
   avatar: {
     alignItems:"center",
     justifyContent:"center",
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.3)',
   },
