@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  
+  ScrollView,
 } from 'react-native';
 import React , {useRef} from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -14,7 +14,9 @@ import foodJson from '../data/dataset.json'
 import Button from '../components/Button';
 import Toast from '../components/Toast';
 import LinearGradient from 'react-native-linear-gradient';
+import Header from '../components/Header';
 import { useTheme } from '../context/ThemeContext';
+
 
 
 
@@ -52,19 +54,29 @@ const Home = () => {
 
   return (
     <View style={[styles.container , {backgroundColor:colors.background}]}>
-      <View style={{margin:15}}>
-        <FlatList
-        data={cuisineList}
-        renderItem={renderItems}
-        keyExtractor={item => item.id}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        showsVerticalScrollIndicator={false}  
-        contentContainerStyle={{backgroundColor:colors.background}}
+      <Header
+        title="Chefster"
+        showUserAvatar={true}
+        height={180}
+        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        onAvatarPress={()=>navigation.navigate('Profile')}
+        avatarContainerStyle={{marginBottom:"100%"}}
+        
       />
-      </View>
-
-      
+      <ScrollView style={[styles.overlappingContainer, {backgroundColor:colors.background}]} showsVerticalScrollIndicator={false}>
+        <View style={{margin:15, marginTop: 15}}>
+          <FlatList
+          data={cuisineList}
+          renderItem={renderItems}
+          keyExtractor={item => item.id}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+          showsVerticalScrollIndicator={false}  
+          contentContainerStyle={{backgroundColor:colors.background}}
+          scrollEnabled={false}
+        />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -82,6 +94,15 @@ const styles = StyleSheet.create({
     margin:0,
     marginBottom:0
     
+  },
+  overlappingContainer: {
+    marginTop: -85,
+    zIndex: 10,
+    elevation: 20,
+    position: 'relative',
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
+    flex: 1,
   },
   gradient:{
     position: 'absolute',

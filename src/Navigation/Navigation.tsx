@@ -1,9 +1,13 @@
 import {Text } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Home from '../screens/Home'
 import ContactUs from '../screens/ContactUs'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../redux/Store'
+import { loginUser } from '../redux/slice/userSlice'
+import auth from '@react-native-firebase/auth'
 
 import Favourites from '../screens/Favourites'
 import Icon from '../components/Icon'
@@ -39,7 +43,17 @@ const HomeStackNavigator = () => {
       <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
       <Stack.Screen name='TermsOfService' component={TermsOfService}/>
       <Stack.Screen name='Logout' component={Logout}/>
-      <Stack.Screen name='Settings' component={Setting}/>
+      <Stack.Screen name='Profile' component={Profile}/>
+      <Stack.Screen name='Contact_Us' component={ContactUs}/>
+    </Stack.Navigator>
+  )
+}
+
+// Stack Navigator for Settings screens
+const SettingsStackNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="SettingsScreen" component={Setting} />
       <Stack.Screen name='ChangePassword' component={ChangePassword}/>
     </Stack.Navigator>
   )
@@ -47,6 +61,25 @@ const HomeStackNavigator = () => {
 
 const TabNavigator = () => {
   const { colors } = useTheme();
+  const dispatch = useDispatch<AppDispatch>();
+
+  // Load user data on app start
+  useEffect(() => {
+    const checkAuthState = async () => {
+      const user = auth().currentUser;
+      if (user) {
+        try {
+          // Load user data from local storage
+          await dispatch(loginUser(user)).unwrap();
+          console.log('User data loaded on app start:', user.email);
+        } catch (error) {
+          console.error('Failed to load user data on app start:', error);
+        }
+      }
+    };
+    
+    checkAuthState();
+  }, [dispatch]);
   
   return (
     <Tab.Navigator
@@ -90,33 +123,39 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen 
-        name='Contact' 
-        component={ContactUs}
+        name='Favourites' 
+        component={Favourites}
         options={{
-          tabBarLabel: 'Contact Us',
-          title: 'Contact Us',
-          tabBarIcon: ({ color, size , focused }) => (
+          tabBarLabel: 'Favourites',
+          
+          title: 'Favourites',
+          tabBarIcon: ({ color, size  , focused }) => (
             focused?
-              <Icon type='FontAwesome' name='phone' size={22} color={colors.bottomTabActiveIconColor}/>:
-              <Icon type='Feather' name='phone' size={22} color={colors.bottomTabInactiveIconColor}/>
-              
-          ),
-        }}
-      />
-      <Tab.Screen 
-        name='Profile' 
-        component={Profile}
-        options={{
-          tabBarLabel: 'Profile',
-          title: 'Profile',
-          tabBarIcon: ({ color, size , focused }) => (
-            focused?
-            <Icon type='Ionicons' name='person' size={22} color={colors.bottomTabActiveIconColor}/>:
-            <Icon type='Ionicons' name='person-outline' size={22} color={colors.bottomTabInactiveIconColor}/>
+            <Icon type='FontAwesome' name='heart' size={22} color={colors.bottomTabActiveIconColor}/>:
+            <Icon type='FontAwesome' name='heart-o' size={22} color={colors.bottomTabInactiveIconColor}/>
+
             
           ),
         }}
       />
+      <Tab.Screen 
+        name='Settings' 
+        component={SettingsStackNavigator}
+        options={{
+          tabBarLabel: 'Settings',
+          
+          title: 'Settings',
+          tabBarIcon: ({ color, size  , focused }) => (
+            focused?
+            <Icon type='Ionicons' name='settings-sharp' size={22} color={colors.bottomTabActiveIconColor}/>:
+            <Icon type='Feather' name='settings' size={22} color={colors.bottomTabInactiveIconColor}/>
+
+            
+          ),
+        }}
+      />
+      
+      
     </Tab.Navigator>
   )
 }

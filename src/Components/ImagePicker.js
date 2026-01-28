@@ -110,7 +110,7 @@ const ImagePicker = ({
               text="🗑️ Delete"
               danger
               onPress={() => {
-                onPick('');
+                onPick(null);
                 onClose();
               }}
             />

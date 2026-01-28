@@ -4,8 +4,10 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useTheme } from '../context/ThemeContext';
 
 const TermsOfService = () => {
+  const { colors } = useTheme();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
 
@@ -23,7 +25,7 @@ const TermsOfService = () => {
         title="Terms of Service"
       leftComponent={
           <Pressable onPress={handleBackPress} style={{ marginBottom: 60 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24}/>
+            <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent}/>
           </Pressable>
         }
         height={180}

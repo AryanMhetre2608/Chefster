@@ -11,11 +11,11 @@ import {
 import React from 'react';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/Store';
+import { RootState, AppDispatch } from '../redux/Store';
 import {
-  addToFavorites,
-  removeFromFavorites,
-} from '../redux/slice/favoritesSlice';
+  addRecipeToFavorites,
+  removeRecipeFromFavorites,
+} from '../redux/slice/userSlice';
 import foodJson from '../data/dataset.json';
 import Toast from '../components/Toast';
 import Header from '../components/Header';
@@ -34,12 +34,11 @@ const AllCuisines = () => {
   const { colors } = useTheme()
   const navigation = useNavigation<any>();
   const route = useRoute<AllCuisinesRouteProp>();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   
-  // Get favorites from Redux store
-  const favoriteRecipes = useSelector(
-    (state: RootState) => state.Favourites.favoriteRecipes,
-  );
+  // Get current user and favorites from Redux store
+  const { currentUser } = useSelector((state: RootState) => state.User);
+  const favoriteRecipes = currentUser?.favoriteRecipes || [];
 
   // Get the cuisine type from navigation params
   const cuisineType = route.params?.cuisineType || 'African';
@@ -78,24 +77,34 @@ const AllCuisines = () => {
   };
 
   // Function to toggle favorite
-  const toggleFavorite = (item: any) => {
+  const toggleFavorite = async (item: any) => {
+    if (!currentUser) {
+      Toast.error('Please login to add favorites');
+      return;
+    }
+
     const recipeId = item.navigation.replace('RecipeId', '');
     
-    if (isFavorite(recipeId)) {
-      // Remove from favorites
-      dispatch(removeFromFavorites(recipeId));
-      Toast.success(`${item.name} removed from favorites`);
-    } else {
-      // Add to favorites
-      dispatch(
-        addToFavorites({
-          id: recipeId,
-          name: item.name,
-          image: item.image,
-          cuisine: item.cuisine,
-        }),
-      );
-      Toast.success(`${item.name} added to favorites`);
+    try {
+      if (isFavorite(recipeId)) {
+        // Remove from favorites
+        await dispatch(removeRecipeFromFavorites(recipeId)).unwrap();
+        Toast.success(`${item.name} removed from favorites`);
+      } else {
+        // Add to favorites
+        await dispatch(
+          addRecipeToFavorites({
+            id: recipeId,
+            name: item.name,
+            image: item.image,
+            cuisine: item.cuisine,
+          }),
+        ).unwrap();
+        Toast.success(`${item.name} added to favorites`);
+      }
+    } catch (error) {
+      Toast.error('Failed to update favorites');
+      console.error('Favorites error:', error);
     }
   };
 
@@ -157,15 +166,13 @@ const AllCuisines = () => {
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
           <Pressable onPress={() => navigation.goBack()} style={{ marginBottom: 65 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24} />
+            <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent} />
           </Pressable>
         }
       />
       
       <ScrollView style={[styles.overlapingContent, {backgroundColor: colors.allCuisinesContentBackground}]}>
-         <Text style={[styles.cuisineTitle , {color:colors.allCuisinesTitleText}]}>
-          {foodData[0]?.cuisine || cuisineType} cuisine
-        </Text>
+        
         <FlatList
           data={foodData}
           keyExtractor={item => item.id}

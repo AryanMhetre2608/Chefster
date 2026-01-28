@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "email": "test@example.com",
+      "name": "Test User",
+      "phoneNumber": "",
+      "bio": "",
+      "profileImage": null,
+      "favoriteRecipes": [],
+      "createdAt": "2026-01-28T07:04:05.862Z",
+      "updatedAt": "2026-01-28T07:04:05.863Z"
+    }
+  ],
+  "nextUserId": 1
+}

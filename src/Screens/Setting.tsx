@@ -28,6 +28,77 @@ const Setting = () => {
             gap: 15,
           }}
         >
+          {/* About App Button */}
+          <Pressable
+            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
+            onPress={() => navigation.navigate('Home', { 
+              screen: 'AboutUs',
+              params: { from: 'Settings' }
+            })}
+          >
+            <View style={styles.iconContainer}>
+              <Icon
+                type="Feather"
+                name="info"
+                color={colors.textSecondary}
+                size={31}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
+                About App
+              </Text>
+            </View>
+          </Pressable>
+          
+          
+
+          {/* Contact Us Button */}
+          <Pressable
+            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
+            onPress={() => navigation.navigate('Home', { 
+              screen: 'Contact_Us',
+              params: { from: 'Settings' }
+            })}
+          >
+            <View style={styles.iconContainer}>
+              <Icon
+                type="Feather"
+                name="phone"
+                color={colors.textSecondary}
+                size={31}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
+                Contact Us
+              </Text>
+            </View>
+          </Pressable>
+          
+          {/* Privacy Policy Button */}
+          <Pressable
+            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
+            onPress={() => navigation.navigate('Home', { 
+              screen: 'PrivacyPolicy',
+              params: { from: 'Settings' }
+            })}
+          >
+            <View style={styles.iconContainer}>
+              <Icon
+                type="Feather"
+                name="shield"
+                color={colors.textSecondary}
+                size={31}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
+                Privacy Policy
+              </Text>
+            </View>
+          </Pressable>
+
           {/* Change Password Button */}
           <Pressable
             style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
@@ -79,6 +150,29 @@ const Setting = () => {
                 ]}
               >
                 {isDarkMode ? 'Dark Mode' : 'Light Mode'}
+              </Text>
+            </View>
+          </Pressable>
+
+          {/* Logout Button */}
+          <Pressable
+            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
+            onPress={() => navigation.navigate('Home', { 
+              screen: 'Logout',
+              params: { from: 'Settings' }
+            })}
+          >
+            <View style={styles.iconContainer}>
+              <Icon
+                type="Feather"
+                name="log-out"
+                color={colors.textSecondary}
+                size={31}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
+                Logout
               </Text>
             </View>
           </Pressable>

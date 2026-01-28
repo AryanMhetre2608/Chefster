@@ -8,17 +8,19 @@ import {
   TextInput,
   StyleSheet,
   Pressable,
-  Alert,
   ActivityIndicator,
-  useColorScheme,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import authService from '../services/authService';
 import Toast from '../components/Toast';
 import { useTheme } from '../context/ThemeContext';
+import { loginUser } from '../redux/slice/userSlice';
 
 const Registration = () => {
   const { colors } = useTheme(); 
+  const dispatch = useDispatch();
+  const navigation = useNavigation<any>(); 
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +28,6 @@ const Registration = () => {
   const [secure, setSecure] = useState(true);
   const [secureConfirm, setSecureConfirm] = useState(true);
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation<any>();
 
   const validateInputs = () => {
     if (!email.trim()) {
@@ -63,9 +64,12 @@ const Registration = () => {
 
     setLoading(true);
     try {
-      const result = await authService.registerWithEmail(email.trim(), password);
+      const result = await authService.registerWithEmailAndDataset(email.trim(), password);
       
       if (result.success) {
+        // Add user to local dataset using Redux
+        await dispatch(loginUser(result.user));
+        
         Toast.success('Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.');
       } else {
         Toast.error(result.error || 'An error occurred during registration');

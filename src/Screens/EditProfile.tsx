@@ -5,21 +5,26 @@ import {
   Pressable,
   ScrollView,
   TextInput,
-  Alert,
+  Image,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import ImagePicker from '../components/ImagePicker';
 import Toast from '../components/Toast';
 import { useTheme } from '../context/ThemeContext';
+import { updateUserProfile } from '../redux/slice/userSlice';
+import { RootState, AppDispatch } from '../redux/Store';
 
 const EditProfile = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const { colors } = useTheme();
+  const dispatch = useDispatch<AppDispatch>();
+  const { currentUser, isLoading } = useSelector((state: RootState) => state.User);
 
   const handleBackPress = () => {
     if (route.params?.from === 'Profile') {
@@ -28,6 +33,7 @@ const EditProfile = () => {
       navigation.goBack();
     }
   };
+
   const [fname, setFname] = useState('');
   const [mail, setMail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -36,8 +42,21 @@ const EditProfile = () => {
   const [mailError, setMailError] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
   const [bioError, setBioError] = useState('');
+  const [showImagePicker, setShowImagePicker] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{uri: string} | null>(null);
 
-  const handleSave = () => {
+  // Initialize form with current user data - ADDED
+  useEffect(() => {
+    if (currentUser) {
+      setFname(currentUser.name || '');
+      setMail(currentUser.email || '');
+      setPhoneNumber(currentUser.phoneNumber || '');
+      setBio(currentUser.bio || '');
+    }
+  }, [currentUser]);
+
+  // MODIFIED HANDLE SAVE
+  const handleSave = async () => {
     if (!fname || !mail || !phoneNumber || !bio) {
       Toast.error('Please fill all fields');
       return;
@@ -48,11 +67,37 @@ const EditProfile = () => {
       return;
     }
 
-    Toast.success('Information saved successfully');
-    navigation.goBack();
+    try {
+      const profileData = {
+        name: fname,
+        phoneNumber: phoneNumber,
+        bio: bio
+      };
+
+      // Handle image deletion or update
+      let imageUri = undefined;
+      if (selectedImage === null) {
+        // User deleted the image
+        imageUri = null;
+      } else if (selectedImage) {
+        // User selected a new image
+        imageUri = selectedImage.uri;
+      }
+      // If selectedImage is undefined, keep existing image
+
+      await dispatch(updateUserProfile({ 
+        profileData, 
+        profileImageUri: imageUri 
+      })).unwrap();
+      Toast.success('Profile updated successfully');
+      navigation.goBack();
+    } catch (error) {
+      Toast.error('Failed to update profile');
+      console.error('Profile update error:', error);
+    }
   };
 
-  const handlePhoneNumber = text => {
+  const handlePhoneNumber = (text: string) => {
     const numericText = text.replace(/[^0-9]/g, '');
     setPhoneNumber(numericText);
     if (numericText.length < 10) {
@@ -61,7 +106,8 @@ const EditProfile = () => {
       setPhoneNumberError('');
     }
   };
-  const handleBio = text => {
+
+  const handleBio = (text: string) => {
     setBio(text);
     if (text.trim().length === 0) {
       setBioError('Bio cannot be empty');
@@ -70,7 +116,7 @@ const EditProfile = () => {
     }
   };
 
-  const handleMail = text => {
+  const handleMail = (text: string) => {
     setMail(text);
     const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!gmailRegex.test(text)) {
@@ -79,26 +125,11 @@ const EditProfile = () => {
       setMailError('');
     }
   };
-  // const handleName = text => {
-  //   setFname(text);
-  //   const name = text.trim();
-  //   if (name.length == 0) {
-  //     setNameError('Full name cannot be enpty');
-  //   } else if (name.length < 2) {
-  //     setNameError('Full name must be at least of 2 characters');
-  //   } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name)) {
-  //     setNameError('Only letters and single space is allowed');
-  //   } else {
-  //     setNameError('');
-  //   }
-  // };
 
-  const handleFullName = text => {
+  const handleFullName = (text: string) => {
     setFname(text);
 
     const name = text.trim();
-
-    // Split by single/multiple spaces
     const parts = name.split(' ').filter(Boolean);
 
     if (name.length === 0) {
@@ -111,6 +142,28 @@ const EditProfile = () => {
       setNameError('');
     }
   };
+
+  const handleImagePick = (image: {uri: string} | null) => {
+    if (image) {
+      setSelectedImage(image);
+      Toast.success('Profile image selected successfully');
+    } else {
+      setSelectedImage(null);
+      Toast.success('Profile image removed');
+    }
+  };
+
+  const openImagePicker = () => {
+    setShowImagePicker(true);
+  };
+
+  // Show current profile image - ADDED
+  const getProfileImageUri = (): string | undefined => {
+    if (selectedImage) return selectedImage.uri;
+    if (currentUser?.profileImage) return `file://${currentUser.profileImage}`;
+    return undefined;
+  };
+
   return (
     <View
       style={[
@@ -118,21 +171,13 @@ const EditProfile = () => {
         { backgroundColor: colors.editProfileContainer },
       ]}
     >
-      {/* <Header
-        title="Edit Profile"
-        leftComponent={
-          <Pressable onPress={handleBackPress}>
-            <Icon type="Ionicons" name="arrow-back" size={24} />
-          </Pressable>
-        }
-      /> */}
       <Header
         title="Edit Profile"
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
           <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24}  />
+            <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent} />
           </Pressable>
         }
       />
@@ -157,10 +202,32 @@ const EditProfile = () => {
               width: 150,
               borderRadius: 75,
               backgroundColor: colors.editProfileAvatarPlaceholder,
+              overflow: 'hidden',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
-          ></View>
+          >
+            {getProfileImageUri() ? (
+              <Image
+                source={{ uri: getProfileImageUri() }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 75,
+                }}
+                resizeMode="cover"
+              />
+            ) : (
+              <Icon
+                type="Ionicons"
+                name="person"
+                size={60}
+                color={colors.editProfileAvatarIcon || '#999'}
+              />
+            )}
+          </View>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <Pressable onPress={ImagePicker}>
+            <Pressable onPress={openImagePicker}>
               <LinearGradient
                 colors={[
                   colors.editProfileCameraButton,
@@ -175,7 +242,6 @@ const EditProfile = () => {
                   marginTop: -44,
                   position: 'relative',
                   elevation: 7,
-
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: 22.5,
@@ -233,6 +299,7 @@ const EditProfile = () => {
               </Text>
             ) : null}
           </View>
+
           <View style={{ width: '100%', marginTop: 20 }}>
             <View
               style={{ alignItems: 'flex-start', justifyContent: 'center' }}
@@ -243,6 +310,7 @@ const EditProfile = () => {
                 Email
               </Text>
             </View>
+            {/* MADE EMAIL READ-ONLY */}
             <TextInput
               value={mail}
               onChangeText={handleMail}
@@ -254,12 +322,17 @@ const EditProfile = () => {
                   backgroundColor: colors.editProfileInputBackground,
                   borderColor: colors.editProfileInputBorder,
                   color: colors.editProfileInputText,
+                  opacity: 0.7, // Make it look disabled
                 },
                 mailError
                   ? { borderColor: colors.editProfileInputBorderError }
                   : {},
               ]}
+              editable={false} // Make email non-editable
             />
+            <Text style={{ color: colors.editProfileFormLabel, fontSize: 12, marginTop: 2 }}>
+              Email cannot be changed
+            </Text>
             {mailError ? (
               <Text
                 style={{ color: colors.editProfileErrorText, marginTop: 5 }}
@@ -268,6 +341,7 @@ const EditProfile = () => {
               </Text>
             ) : null}
           </View>
+
           <View style={{ width: '100%', marginTop: 20 }}>
             <View
               style={{ alignItems: 'flex-start', justifyContent: 'center' }}
@@ -281,7 +355,6 @@ const EditProfile = () => {
             <TextInput
               value={phoneNumber}
               keyboardType="numeric"
-              // onChangeText={setPhoneNumber}
               onChangeText={handlePhoneNumber}
               maxLength={10}
               placeholder="+91 9876543210"
@@ -343,6 +416,7 @@ const EditProfile = () => {
             ) : null}
           </View>
         </View>
+
         <View
           style={{
             width: '95%',
@@ -358,11 +432,7 @@ const EditProfile = () => {
               {
                 width: '90%',
                 opacity: pressed ? 0.85 : 1,
-
-                // Android
                 elevation: 20,
-
-                // iOS
               },
             ]}
           >
@@ -376,7 +446,6 @@ const EditProfile = () => {
                 borderRadius: 25,
                 alignItems: 'center',
                 justifyContent: 'center',
-                opacity:colors.editProfileSaveButtonPressed
               }}
             >
               <Text style={{ color: colors.editProfileSaveButtonText, fontSize: 18, fontWeight: 'bold' }}>
@@ -386,6 +455,14 @@ const EditProfile = () => {
           </Pressable>
         </View>
       </ScrollView>
+
+      {/* Image Picker Modal */}
+      <ImagePicker
+        visible={showImagePicker}
+        onClose={() => setShowImagePicker(false)}
+        onPick={handleImagePick}
+        showDelete={getProfileImageUri() !== undefined} // MODIFIED
+      />
     </View>
   );
 };
@@ -413,9 +490,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   overlappingContainer: {
-    marginTop: -85, // overlap amount
+    marginTop: -85,
     zIndex: 10,
-    elevation: 20, // Android
+    elevation: 20,
     position: 'relative',
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,

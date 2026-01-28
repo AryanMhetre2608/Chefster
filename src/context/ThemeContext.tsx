@@ -11,7 +11,9 @@ interface ThemeContextType {
     headerLeftComponent:string,
     headerRightComponent:string,
     headerTittle:string,
-    headerSubTittle:string
+    headerSubTittle:string,
+    headerAvatarPlaceholder: string,
+    headerAvatarIcon: string,
 
     // ===== BACKGROUNDS =====
     headerTitleColor:string;
@@ -185,8 +187,11 @@ interface ThemeContextType {
     profileAvatar: string;
     profileAvatarBorder: string;
     profileAvatarPlaceholder: string;
+    profileAvatarIcon: string;
     profileName: string;
     profileEmail: string;
+    profilePhone: string;
+    profileBio: string;
     profileInfoContainer: string;
     
     // Profile Feature Items
@@ -213,6 +218,7 @@ interface ThemeContextType {
     editProfileAvatarContainer: string;      // Avatar container background
     editProfileAvatarBorder: string;         // Avatar border color
     editProfileAvatarPlaceholder: string;    // Avatar placeholder background
+    editProfileAvatarIcon: string;           // Avatar placeholder icon color
     editProfileCameraButton: string;         // Camera button gradient start
     editProfileCameraButtonEnd: string;      // Camera button gradient end
     editProfileCameraIcon: string;           // Camera icon color
@@ -710,6 +716,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     headerRightComponent:'#FFFFFF',
     headerTittle:'#FFFFFF',
     headerSubTittle:'#FFFFFF',
+    headerAvatarPlaceholder: '#E0E0E0',
+    headerAvatarIcon: '#999999',
 
 
     // ===== BACKGROUNDS =====
@@ -884,8 +892,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     profileAvatar: '#F0F0F0',
     profileAvatarBorder: '#E0E0E0',
     profileAvatarPlaceholder: '#CCCCCC',
+    profileAvatarIcon: '#999999',
     profileName: '#000000',
     profileEmail: '#666666',
+    profilePhone: '#888888',
+    profileBio: '#777777',
     profileInfoContainer: '#FFFFFF',
     
     // Profile Feature Items
@@ -912,6 +923,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     editProfileAvatarContainer: '#FFFFFF',      // Avatar container background
     editProfileAvatarBorder: '#E0E0E0',         // Avatar border color
     editProfileAvatarPlaceholder: '#F5F5F5',    // Avatar placeholder background
+    editProfileAvatarIcon: '#CCCCCC',           // Avatar placeholder icon color
     editProfileCameraButton: '#FF8A00',         // Camera button gradient start
     editProfileCameraButtonEnd: '#FF6A00',      // Camera button gradient end
     editProfileCameraIcon: '#FFFFFF',           // Camera icon color
@@ -1370,6 +1382,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     headerRightComponent:'#000000',
     headerTittle:'#000000',
     headerSubTittle:'#000000',
+    headerAvatarPlaceholder: '#3D3D3D',
+    headerAvatarIcon: '#AAAAAA',
 
 
     headerGoBack:'#000000',
@@ -1545,8 +1559,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     profileAvatar: '#3D3D3D',
     profileAvatarBorder: '#555555',
     profileAvatarPlaceholder: '#666666',
+    profileAvatarIcon: '#AAAAAA',
     profileName: '#FFFFFF',
     profileEmail: '#AAAAAA',
+    profilePhone: '#CCCCCC',
+    profileBio: '#BBBBBB',
     profileInfoContainer: '#2D2D2D',
     
     // Profile Feature Items
@@ -1573,6 +1590,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     editProfileAvatarContainer: '#2D2D2D',      // Avatar container background
     editProfileAvatarBorder: '#555555',         // Avatar border color
     editProfileAvatarPlaceholder: '#3D3D3D',    // Avatar placeholder background
+    editProfileAvatarIcon: '#888888',           // Avatar placeholder icon color
     editProfileCameraButton: '#FF8A00',         // Camera button gradient start
     editProfileCameraButtonEnd: '#FF6A00',      // Camera button gradient end
     editProfileCameraIcon: '#000000',           // Camera icon color

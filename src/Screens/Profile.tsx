@@ -4,21 +4,15 @@ import {
   FlatList,
   Pressable,
   StyleSheet,
+  Image,
 } from 'react-native';
-import React from 'react';
-// import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { RootState } from '../redux/Store';
-// import {
-//   addToFavorites,
-//   removeFromFavorites,
-// } from '../redux/slice/favoritesSlice';
-// import foodJson from '../data/dataset.json';
-// import Toast from '../components/Toast';
+import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../redux/Store';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import foodJson from '../data/dataset.json';
-import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../context/ThemeContext';
 
 // Helper function to get the correct icon color for each profile feature
@@ -42,81 +36,19 @@ const getProfileFeatureIconColor = (featureName: string, colors: any) => {
 };
 
 const Profile = () => {
-  // const { user, logout } = useAuth();
-  const { colors } = useTheme()
+  const { colors } = useTheme();
+  const dispatch = useDispatch<AppDispatch>();
+  const { currentUser } = useSelector((state: RootState) => state.User);
 
   const profileFeatures = (foodJson as any).profilepageFeatures;
   const navigation = useNavigation<any>();
 
-  const renderItemsFeatures = ({ item }: { item: any }) => {
-    const handlePress = () => {
-      if (item.navigations === 'Favourites') {
-        navigation.navigate('Home', { 
-          screen: 'Favourites',
-          params: { from: 'Profile' }
-        });
-      } else if (item.navigations === 'EditProfile' || item.navigations === 'AboutUs' || item.navigations === 'PrivacyPolicy'||item.navigations === 'Logout'||item.navigations === 'Settings') {
-        navigation.navigate('Home', { 
-          screen: item.navigations,
-          params: { from: 'Profile' }
-        });
-      } else if (item.navigations) {
-        navigation.navigate(item.navigations, { from: 'Profile' });
-      }
-    };
-
-    return (
-      <Pressable
-        style={[styles.profileFeatures, {
-          backgroundColor: colors.profileFeatureBackground,
-          borderColor: colors.profileFeatureBorder,
-          shadowColor: colors.profileFeatureShadow,
-        }]}
-        onPress={handlePress}
-      >
-        <View
-          style={{
-            margin: 5,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',
-            backgroundColor: colors.profileFeatureBackground,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 10,
-              marginLeft: 15,
-            }}
-          >
-            {item.leftIconName ? (
-              <Icon
-                name={item.leftIconName}
-                size={Number(item.leftIconSize) || 24}
-                type={item.leftIconType}
-                color={getProfileFeatureIconColor(item.name, colors)}
-              />
-            ) : null}
-            <Text style={{ fontSize: 16 , color:colors.profileFeatureText }}>{item.name}</Text>
-          </View>
-
-          <View style={{ marginRight: 15 }}>
-            {item.rightIconName ? (
-              <Icon
-                name={item.rightIconName}
-                size={Number(item.rightIconSize) || 24}
-                type={item.rightIconType}
-                color={colors.profileChevronIcon}
-              />
-            ) : null}
-          </View>
-        </View>
-      </Pressable>
-    );
+  // Get profile image URI
+  const getProfileImageUri = (): string | undefined => {
+    if (currentUser?.profileImage) {
+      return `file://${currentUser.profileImage}`;
+    }
+    return undefined;
   };
 
   // const handleLogout = () => {
@@ -210,44 +142,109 @@ const Profile = () => {
     //   </View>
     // </View>
 
-    <View style={[styles.container , {backgroundColor:colors.background}]}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Header
         title="Profile"
-        
         height={180}
         titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        rightComponent={
+          <Icon
+            type="AntDesign"
+            name="edit"
+            color={colors.headerRightComponent}
+          />
+        }
+        onRightPress={() => navigation.navigate('EditProfile')}
+        rightComponentContainerStyle={{ marginBottom: '100%' }}
       />
-      <View style={[styles.profileContainer , {backgroundColor:colors.background}]} >
-        <View style={{marginTop:30}}>
-          <View style={{alignItems:"center" , justifyContent:"center"}}>
+      <View
+        style={[
+          styles.profileContainer,
+          { backgroundColor: colors.background },
+        ]}
+      >
+        <View style={{ marginTop: 30 }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <View
-          style={{
-            height: 120,
-            width: 120,
-            borderRadius: 60,
-            borderWidth: 0.5,
-            backgroundColor: colors.profileAvatar,
-            borderColor: colors.profileAvatarBorder,
-          }}
-        ></View>
+              style={{
+                height: 120,
+                width: 120,
+                borderRadius: 60,
+                borderWidth: 0.5,
+                backgroundColor: colors.profileAvatar,
+                borderColor: colors.profileAvatarBorder,
+                overflow: 'hidden',
+              }}
+            >
+              {getProfileImageUri() ? (
+                <Image
+                  source={{ uri: getProfileImageUri() }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 60,
+                  }}
+                  resizeMode="cover"
+                />
+              ) : (
+                <View
+                  style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Icon
+                    type="Ionicons"
+                    name="person"
+                    size={50}
+                    color={colors.profileAvatarIcon || '#999'}
+                  />
+                </View>
+              )}
+            </View>
           </View>
-          
-        <View style={styles.infoContainer}>
-        <Text style={{ fontWeight: 'bold', alignContent: 'center', color: colors.profileName }}>Name</Text>
-        <Text style={{ color: colors.profileEmail }}>Email</Text>
-      </View>
-      <View style={styles.featureContainer}>
-        <FlatList
-          data={profileFeatures}
-          keyExtractor={item => item.id}
-          renderItem={renderItemsFeatures}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+
+          <View style={styles.infoContainer}>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                alignContent: 'center',
+                color: colors.profileName,
+                fontSize: 25,
+              }}
+            >
+              {currentUser?.name || 'User Name'}
+            </Text>
+            <Text style={{ color: colors.profileEmail, marginTop: 5 }}>
+              {currentUser?.email || 'user@example.com'}
+            </Text>
+            {/* {currentUser?.phoneNumber ? (
+            <Text style={{ color: colors.profilePhone || colors.profileEmail, fontSize: 12, marginTop: 2 }}>
+              {currentUser.phoneNumber}
+            </Text>
+          ) : null} */}
+            {currentUser?.bio ? (
+              <View style={{ alignItems: 'center', justifyContent: 'center' , marginTop:30  }}>
+                <View style={{margin:20 , justifyContent:"center"}}>
+                  <Text>Bio</Text>
+                  <Text
+                    style={{
+                      color: colors.profileBio || colors.profileEmail,
+                      fontSize: 12,
+                      marginTop: 4,
+                      textAlign: 'center',
+                      paddingHorizontal: 20,
+                    }}
+                  >
+                    {currentUser.bio}
+                  </Text>
+                </View>
+              </View>
+            ) : null}
+          </View>
         </View>
-        
       </View>
-      
     </View>
   );
 };
@@ -257,10 +254,10 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor will be set inline with theme colors
   },
-  infoContainer:{
-    alignItems:"center",
-    justifyContent:"center",
-    marginTop:20
+  infoContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
   },
   content: {
     flex: 1,
@@ -293,11 +290,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
     // backgroundColor will be set inline with theme colors
-    flex:1
+    flex: 1,
   },
-  featureContainer:{
-    margin:20
-  }
+  featureContainer: {
+    margin: 20,
+  },
 });
 
 export default Profile;

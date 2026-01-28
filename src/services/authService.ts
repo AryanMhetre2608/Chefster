@@ -85,14 +85,13 @@ class AuthService {
     }
   }
 
-  // Login user with email and password
+  // Login user with email and password - MODIFIED FOR USER DATASET INTEGRATION
   async loginWithEmail(email: string, password: string): Promise<AuthResult> {
     try {
       const userCredential = await auth().signInWithEmailAndPassword(email, password);
-      return {
-        success: true,
-        user: userCredential.user
-      };
+      
+      // Return the Firebase user - Redux user slice will handle dataset operations
+      return this.handleSuccessfulLogin(userCredential.user);
     } catch (error: any) {
       let errorMessage = 'Login failed';
       
@@ -116,6 +115,63 @@ class AuthService {
       return {
         success: false,
         error: errorMessage
+      };
+    }
+  }
+
+  // Registration with dataset integration - MODIFIED
+  async registerWithEmailAndDataset(email: string, password: string): Promise<AuthResult> {
+    try {
+      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+      
+      // Send email verification
+      await userCredential.user.sendEmailVerification();
+      
+      // Return the Firebase user - Redux user slice will handle dataset operations
+      return this.handleSuccessfulLogin(userCredential.user);
+    } catch (error: any) {
+      let errorMessage = 'Registration failed';
+      
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          errorMessage = 'This email address is already in use';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email address';
+          break;
+        case 'auth/weak-password':
+          errorMessage = 'Password should be at least 6 characters';
+          break;
+        default:
+          errorMessage = error.message || 'Registration failed';
+      }
+      
+      return {
+        success: false,
+        error: errorMessage
+      };
+    }
+  }
+
+  // Handle successful Firebase authentication - ADDED
+  private handleSuccessfulLogin(firebaseUser: any): AuthResult {
+    try {
+      // Return Firebase user data - Redux user slice will handle local dataset operations
+      return { 
+        success: true, 
+        user: {
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName,
+          photoURL: firebaseUser.photoURL,
+          phoneNumber: firebaseUser.phoneNumber,
+          emailVerified: firebaseUser.emailVerified
+        }
+      };
+    } catch (error: any) {
+      return { 
+        success: false, 
+        error: error.message || 'Authentication processing failed'
       };
     }
   }

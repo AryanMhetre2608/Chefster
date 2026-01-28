@@ -5,16 +5,19 @@ import {
   TextInput,
   StyleSheet,
   Pressable,
-  Alert,
   ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 import authService from '../services/authService';
 import Toast from '../components/Toast';
 import { useTheme } from '../context/ThemeContext';
+import { loginUser } from '../redux/slice/userSlice';
+import { AppDispatch } from '../redux/Store';
 
 const Login = () => {
   const { colors } = useTheme(); 
+  const dispatch = useDispatch<AppDispatch>();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,25 +41,30 @@ const Login = () => {
     return true;
   };
 
+  // MODIFIED HANDLE LOGIN
   const handleLogin = async () => {
     if (!validateInputs()) return;
 
     setLoading(true);
     try {
+      // 1. Authenticate with Firebase
       const result = await authService.loginWithEmail(email.trim(), password);
       
       if (result.success) {
         // Check if email is verified
-        await authService.reloadUser(); // Reload to get latest verification status
+        await authService.reloadUser();
         
         if (authService.isEmailVerified()) {
-          Toast.success('Login successful!');
-          // AuthContext will automatically redirect to main app
+          // 2. Add/Get user from local dataset using Redux
+          const userData = await dispatch(loginUser(result.user)).unwrap();
+          
+          Toast.success(`Welcome back, ${userData.name}!`);
+          // Navigation handled by AuthContext
         } else {
-          Toast.warning('Please verify your email address before logging in. You will be redirected to the verification screen.');
+          Toast.warning('Please verify your email address before logging in.');
         }
       } else {
-        Toast.error(result.error || 'An error occurred during login');
+        Toast.error(result.error || 'Login failed');
       }
     } catch (error) {
       Toast.error('An unexpected error occurred');
@@ -84,44 +92,47 @@ const Login = () => {
     }
   };
 
-  
-
   return (
-    <View style={[styles.container , {backgroundColor:colors.loginMainBackground}]}>
-      <View style={[styles.card , {backgroundColor:colors.loginCardBackground , shadowColor:colors.loginCardShadow}]}>
-        <Text style={[styles.title , {color:colors.loginTitle}]}>Login Page</Text>
-        <Text style={[styles.subtitle , {color:colors.loginSubtitle}]}>
+    <View style={[styles.container, { backgroundColor: colors.loginMainBackground }]}>
+      <View style={[styles.card, { backgroundColor: colors.loginCardBackground, shadowColor: colors.loginCardShadow }]}>
+        <Text style={[styles.title, { color: colors.loginTitle }]}>Login Page</Text>
+        <Text style={[styles.subtitle, { color: colors.loginSubtitle }]}>
           Login to continue cooking amazing dishes
         </Text>
 
         {/* Email */}
-        
-          <TextInput
+        <TextInput
           placeholder="Email"
           placeholderTextColor={colors.loginInputPlaceholder}
-          style={[styles.input , {backgroundColor:colors.loginInputBackground , paddingHorizontal:15 , borderColor:colors.loginInputBorder , color:colors.loginInputText}]}
+          style={[styles.input, { 
+            backgroundColor: colors.loginInputBackground, 
+            paddingHorizontal: 15, 
+            borderColor: colors.loginInputBorder, 
+            color: colors.loginInputText 
+          }]}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
         />
-       
-       
 
         {/* Password */}
-        <View style={[styles.passwordBox , {backgroundColor:colors.loginPasswordContainer , borderColor:colors.loginPasswordBorder}]}>
+        <View style={[styles.passwordBox, { 
+          backgroundColor: colors.loginPasswordContainer, 
+          borderColor: colors.loginPasswordBorder 
+        }]}>
           <TextInput
             placeholder="Password"
             placeholderTextColor="#999"
-            style={[styles.passwordInput  , {color:colors.loginPasswordText}]}
+            style={[styles.passwordInput, { color: colors.loginPasswordText }]}
             secureTextEntry={secure}
             value={password}
             onChangeText={setPassword}
             autoCapitalize="none"
           />
           <Pressable onPress={() => setSecure(!secure)}>
-            <Text style={[styles.showText , {color:colors.loginShowHideText}]}>
+            <Text style={[styles.showText, { color: colors.loginShowHideText }]}>
               {secure ? 'Show' : 'Hide'}
             </Text>
           </Pressable>
@@ -129,28 +140,34 @@ const Login = () => {
 
         {/* Forgot Password */}
         <Pressable style={styles.forgot} onPress={handleForgotPassword}>
-          <Text style={[styles.forgotText , {color:colors.loginForgotPasswordText}]}>Forgot Password?</Text>
+          <Text style={[styles.forgotText, { color: colors.loginForgotPasswordText }]}>
+            Forgot Password?
+          </Text>
         </Pressable>
-        
 
         {/* Login Button */}
         <Pressable 
-          style={[[styles.button , {backgroundColor:colors.loginButtonBackground}], loading && styles.buttonDisabled]} 
+          style={[
+            [styles.button, { backgroundColor: colors.loginButtonBackground }], 
+            loading && styles.buttonDisabled
+          ]} 
           onPress={handleLogin}
           disabled={loading}
         >
           {loading ? (
             <ActivityIndicator color={colors.loginLoadingIndicator} />
           ) : (
-            <Text style={[styles.buttonText , {color:colors.loginButtonText}]}>Login</Text>
+            <Text style={[styles.buttonText, { color: colors.loginButtonText }]}>Login</Text>
           )}
         </Pressable>
 
         {/* Signup */}
         <View style={styles.signupBox}>
-          <Text style={[styles.signupText , {color:colors.loginSignupText}]}>Don’t have an account?</Text>
+          <Text style={[styles.signupText, { color: colors.loginSignupText }]}>
+            Don't have an account?
+          </Text>
           <Pressable onPress={() => navigation.navigate('Registration')}>
-            <Text style={[styles.signupLink , {color:colors.loginSignupLink}]}> Register</Text>
+            <Text style={[styles.signupLink, { color: colors.loginSignupLink }]}> Register</Text>
           </Pressable>
         </View>
       </View>
@@ -159,7 +176,6 @@ const Login = () => {
 };
 
 export default Login;
-
 
 const styles = StyleSheet.create({
   container: {
@@ -213,20 +229,6 @@ const styles = StyleSheet.create({
     color: '#FF7A00',
     fontWeight: '600',
   },
-  optionsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 12,
-  },
-  optionButton: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  optionText: {
-    color: '#FF7A00',
-    fontSize: 14,
-    textDecorationLine: 'underline',
-  },
   forgot: {
     alignSelf: 'flex-end',
     marginVertical: 12,
@@ -263,4 +265,3 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
-
