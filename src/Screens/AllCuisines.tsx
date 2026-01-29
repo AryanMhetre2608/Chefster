@@ -10,12 +10,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../redux/Store';
-import {
-  addRecipeToFavorites,
-  removeRecipeFromFavorites,
-} from '../redux/slice/userSlice';
+import { useFavorites } from '../hooks/useFavorites';
 import foodJson from '../data/dataset.json';
 import Toast from '../components/Toast';
 import Header from '../components/Header';
@@ -34,18 +29,14 @@ const AllCuisines = () => {
   const { colors } = useTheme()
   const navigation = useNavigation<any>();
   const route = useRoute<AllCuisinesRouteProp>();
-  const dispatch = useDispatch<AppDispatch>();
-  
-  // Get current user and favorites from Redux store
-  const { currentUser } = useSelector((state: RootState) => state.User);
-  const favoriteRecipes = currentUser?.favoriteRecipes || [];
+  const { isRecipeFavorite, toggleFavorite } = useFavorites();
 
   // Get the cuisine type from navigation params
   const cuisineType = route.params?.cuisineType || 'African';
   
   // Find the cuisine data based on the passed cuisineType
   const getCuisineData = () => {
-    const cuisineMap = {
+    const cuisineMap: Record<string, { dataKey: string; recipeKey: string }> = {
       'African': { dataKey: 'African', recipeKey: 'AfricanRecipes' },
       'American': { dataKey: 'American', recipeKey: 'AmericanRecipes' },
       'Asian': { dataKey: 'Asian', recipeKey: 'AsianRecipes' },
@@ -71,36 +62,24 @@ const AllCuisines = () => {
 
   const { foodData, recipes } = getCuisineData();
 
-  // Function to check if item is in favorites
-  const isFavorite = (itemId: string) => {
-    return favoriteRecipes.some(fav => fav.id === itemId);
-  };
-
-  // Function to toggle favorite
-  const toggleFavorite = async (item: any) => {
-    if (!currentUser) {
-      Toast.error('Please login to add favorites');
-      return;
-    }
-
+  // Function to handle favorite toggle
+  const handleToggleFavorite = async (item: any) => {
     const recipeId = item.navigation.replace('RecipeId', '');
     
     try {
-      if (isFavorite(recipeId)) {
-        // Remove from favorites
-        await dispatch(removeRecipeFromFavorites(recipeId)).unwrap();
-        Toast.success(`${item.name} removed from favorites`);
-      } else {
-        // Add to favorites
-        await dispatch(
-          addRecipeToFavorites({
-            id: recipeId,
-            name: item.name,
-            image: item.image,
-            cuisine: item.cuisine,
-          }),
-        ).unwrap();
+      const recipe = {
+        id: recipeId,
+        name: item.name,
+        image: item.image,
+        cuisine: item.cuisine,
+      };
+      
+      const wasAdded = await toggleFavorite(recipe);
+      
+      if (wasAdded) {
         Toast.success(`${item.name} added to favorites`);
+      } else {
+        Toast.success(`${item.name} removed from favorites`);
       }
     } catch (error) {
       Toast.error('Failed to update favorites');
@@ -111,7 +90,7 @@ const AllCuisines = () => {
   const renderItemSetup = ({ item, index }: any) => {
     const recipe = recipes[index];
     const recipeId = item.navigation.replace('RecipeId', '');
-    const isItemFavorite = isFavorite(recipeId);
+    const isItemFavorite = isRecipeFavorite(recipeId);
     
     return (
       <TouchableOpacity
@@ -142,7 +121,7 @@ const AllCuisines = () => {
           {/* Favorite Icon Button */}
           <Pressable
             style={styles.favoriteButton}
-            onPress={() => toggleFavorite(item)}
+            onPress={() => handleToggleFavorite(item)}
           >
             <Icon 
               type="MaterialIcons" 
@@ -160,16 +139,7 @@ const AllCuisines = () => {
 
   return (
     <View style={[styles.container, {backgroundColor: colors.allCuisinesMainBackground}]}>
-      <Header
-        title={`${foodData[0]?.cuisine || cuisineType} Cuisine`}
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
-        leftComponent={
-          <Pressable onPress={() => navigation.goBack()} style={{ marginBottom: 65 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent} />
-          </Pressable>
-        }
-      />
+      
       
       <ScrollView style={[styles.overlapingContent, {backgroundColor: colors.allCuisinesContentBackground}]}>
         
@@ -204,7 +174,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   overlapingContent: {
-    marginTop: -85,
     zIndex: 10,
     elevation: 20,
     position: 'relative',

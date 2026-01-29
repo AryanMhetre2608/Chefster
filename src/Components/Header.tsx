@@ -10,7 +10,6 @@ import {
   Image,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/Store';
 import { useTheme } from '../context/ThemeContext';
@@ -22,14 +21,13 @@ interface HeaderProps {
   onLeftPress?: () => void;
   leftComponent?: React.ReactElement;
   rightComponent?: React.ReactElement;
-  onRightPress?: () => void; // ✅ NEW
+  onRightPress?: () => void;
   rightComponentContainerStyle?: ViewStyle;
   avatarContainerStyle?: ViewStyle;
   titleStyle?: TextStyle;
   subTitleStyle?: TextStyle;
   subTitleContainerStyle?: ViewStyle;
   height?: number;
-  gradientColors?: string[];
   showUserAvatar?: boolean;
   onAvatarPress?: () => void;
 }
@@ -40,25 +38,19 @@ const Header = ({
   onLeftPress,
   leftComponent,
   rightComponent,
-  onRightPress, // ✅ NEW
+  onRightPress,
   rightComponentContainerStyle,
   avatarContainerStyle,
   titleStyle,
   subTitleStyle,
   subTitleContainerStyle,
-  height = 64,
-  gradientColors,
+  height = 100, // ✅ HEADER HEIGHT
   showUserAvatar = false,
   onAvatarPress,
 }: HeaderProps) => {
   const insets = useSafeAreaInsets();
   const { colors } = useTheme();
   const { currentUser } = useSelector((state: RootState) => state.User);
-
-  const finalGradientColors = gradientColors || [
-    colors.gradient1,
-    colors.gradient2,
-  ];
 
   const getProfileImageUri = (): string | undefined =>
     currentUser?.profileImage
@@ -90,19 +82,17 @@ const Header = ({
       style={[
         styles.container,
         {
-          shadowColor: colors.shadow,
-          paddingTop: insets.top,
+          paddingTop: insets.top, // safe area only
         },
       ]}
     >
-      <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
+      <StatusBar
+        translucent
+        barStyle="light-content"
+        backgroundColor="transparent"
+      />
 
-      <LinearGradient
-        colors={finalGradientColors}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={[styles.wrapper, { height }]}
-      >
+      <View style={[styles.wrapper, { height }]}>
         {/* LEFT */}
         <View style={styles.side}>
           {styledLeftComponent ? (
@@ -111,7 +101,9 @@ const Header = ({
             </Pressable>
           ) : onLeftPress ? (
             <Pressable style={styles.touchArea} onPress={onLeftPress}>
-              <Text style={[styles.icon, { color: colors.headerLeftComponent }]}>
+              <Text
+                style={[styles.icon, { color: colors.headerLeftComponent }]}
+              >
                 ←
               </Text>
             </Pressable>
@@ -122,13 +114,22 @@ const Header = ({
         <View style={styles.center}>
           <Text
             numberOfLines={1}
-            style={[styles.title, { color: colors.headerTittle }, titleStyle]}
+            style={[
+              styles.title,
+              { color: colors.headerTittle },
+              titleStyle,
+            ]}
           >
             {title}
           </Text>
 
           {subTitle ? (
-            <View style={[styles.subTitleContainer, subTitleContainerStyle]}>
+            <View
+              style={[
+                styles.subTitleContainer,
+                subTitleContainerStyle,
+              ]}
+            >
               <Text
                 numberOfLines={1}
                 style={[
@@ -149,32 +150,27 @@ const Header = ({
             <Pressable
               onPress={onAvatarPress}
               disabled={!onAvatarPress}
-              style={[
-                styles.avatarContainer,
-                avatarContainerStyle,
-              ]}
+              style={[styles.avatarContainer, avatarContainerStyle]}
             >
               {getProfileImageUri() ? (
-                <Image source={{ uri: getProfileImageUri() }} style={styles.avatar} />
+                <Image
+                  source={{ uri: getProfileImageUri() }}
+                  style={styles.avatar}
+                />
               ) : (
-                <View
-                  style={[
-                    styles.avatar,
-                    { backgroundColor: colors.headerAvatarPlaceholder || '#E0E0E0' },
-                  ]}
-                >
+                <View style={[styles.avatar, styles.avatarPlaceholder]}>
                   <Icon
                     type="Ionicons"
                     name="person"
                     size={22}
-                    color={colors.headerAvatarIcon || '#999'}
+                    color="#888"
                   />
                 </View>
               )}
             </Pressable>
           ) : styledRightComponent ? (
             <Pressable
-              onPress={onRightPress}               // ✅ HANDLER
+              onPress={onRightPress}
               disabled={!onRightPress}
               style={[
                 styles.rightComponentWrapper,
@@ -185,7 +181,7 @@ const Header = ({
             </Pressable>
           ) : null}
         </View>
-      </LinearGradient>
+      </View>
     </View>
   );
 };
@@ -194,18 +190,13 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
     zIndex: 1000,
   },
   wrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 12,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    alignItems: 'center',     // vertical center
+    justifyContent: 'center', // overall centering
+    paddingHorizontal: 16,
   },
   side: {
     width: 60,
@@ -225,35 +216,30 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '600',
-    letterSpacing: 0.4,
   },
   subTitleContainer: {
-    marginTop: 4,
+    marginTop: 6,
   },
   subTitle: {
     fontSize: 12,
-    fontWeight: '400',
-    opacity: 0.9,
+    opacity: 0.7,
   },
-
-  /* AVATAR BASE */
   avatarContainer: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   avatar: {
-    alignItems:"center",
-    justifyContent:"center",
     width: 40,
     height: 40,
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.3)',
   },
-
-  /* RIGHT COMPONENT BASE */
+  avatarPlaceholder: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EEE',
+  },
   rightComponentWrapper: {
     alignItems: 'center',
     justifyContent: 'center',

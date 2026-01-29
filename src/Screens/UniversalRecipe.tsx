@@ -9,12 +9,7 @@ import {
 import React from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/Store';
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from '../redux/slice/favoritesSlice';
+import { useFavorites } from '../hooks/useFavorites';
 import Toast from '../components/Toast';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
@@ -30,15 +25,10 @@ type RouteParams = {
 type UniversalRecipeRouteProp = RouteProp<RouteParams, 'UniversalRecipe'>;
 
 const UniversalRecipe = () => {
-    const { colors } = useTheme()
-  
+  const { colors } = useTheme()
   const route = useRoute<UniversalRecipeRouteProp>();
   const navigation = useNavigation<any>();
-  const dispatch = useDispatch();
-
-  const favoriteRecipes = useSelector(
-    (state: RootState) => state.Favourites.favoriteRecipes,
-  );
+  const { isRecipeFavorite, toggleFavorite } = useFavorites();
 
   const { recipeId } = route.params || { recipeId: '1' };
   const errorImg = (recipeData as any).recipeErrorImage;
@@ -78,6 +68,33 @@ const UniversalRecipe = () => {
 
   const recipe = findRecipe(recipeId);
 
+  // Function to handle favorite toggle
+  const handleToggleFavorite = async () => {
+    if (!recipe) return;
+    
+    try {
+      const recipeData = {
+        id: recipeId,
+        name: recipe.name,
+        image: recipe.image,
+        cuisine: recipe.cuisine || 'Unknown',
+      };
+      
+      const wasAdded = await toggleFavorite(recipeData);
+      
+      if (wasAdded) {
+        Toast.success(`${recipe.name} added to favorites`);
+      } else {
+        Toast.success(`${recipe.name} removed from favorites`);
+      }
+    } catch (error) {
+      Toast.error('Failed to update favorites');
+      console.error('Favorites error:', error);
+    }
+  };
+
+  const isCurrentRecipeFavorite = isRecipeFavorite(recipeId);
+
   if (!recipe) {
     return (
       <View style={styles.container}>
@@ -108,6 +125,17 @@ const UniversalRecipe = () => {
             style={{ height: '100%', width: '100%', borderRadius: 10 }}
             resizeMode='cover'
           />
+        
+        {/* Back Button */}
+        <Pressable 
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
+        </Pressable>
+        
+        {/* Favorite Button */}
+        
       </View>
       <ScrollView style={[styles.recipeContainer , {backgroundColor:colors.universalRecipeScrollBackground}]}>
          
@@ -190,7 +218,28 @@ const styles = StyleSheet.create({
   },
   imageContainer:{
     width:"100%",
-    height:"40%"
+    height:"40%",
+    position: 'relative',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    borderRadius: 20,
+    padding: 8,
+    zIndex: 10,
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    height:40,
+    width:40,
+    borderRadius: 20,
+    padding: 8,
+    zIndex: 10,
   },
   recipeContainer:{
     backgroundColor:"white",

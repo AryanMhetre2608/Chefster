@@ -10,26 +10,25 @@ import React from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/Store';
-import { removeFromFavorites } from '../redux/slice/favoritesSlice';
+import { useFavorites } from '../hooks/useFavorites';
 import Toast from '../components/Toast';
 import LinearGradient from 'react-native-linear-gradient';
 import { useTheme } from '../context/ThemeContext';
 
 const Favourites = () => {
   const { colors } = useTheme();
-
   const navigation = useNavigation<any>();
-  const dispatch = useDispatch();
   const route = useRoute<any>();
+  const { favorites, removeFromFavoritesList } = useFavorites();
 
-  const favoriteRecipes = useSelector(
-    (state: RootState) => state.Favourites.favoriteRecipes,
-  );
-
-  const handleRemoveFromFavorites = (recipeId: string) => {
-    dispatch(removeFromFavorites(recipeId));
+  const handleRemoveFromFavorites = async (recipeId: string, recipeName: string) => {
+    try {
+      await removeFromFavoritesList(recipeId);
+      Toast(`${recipeName} Removed from the favourites`);
+    } catch (error) {
+      Toast.error('Failed to remove from favorites');
+      console.error('Remove favorites error:', error);
+    }
   };
 
   const handleViewRecipe = (recipeId: string) => {
@@ -135,8 +134,7 @@ const Favourites = () => {
           </Pressable> */}
           <Pressable
             onPress={() => {
-              handleRemoveFromFavorites(item.id);
-              Toast(`${item.name} Removed from the favourites`);
+              handleRemoveFromFavorites(item.id, item.name);
             }}
             style={({ pressed }) => [
               {
@@ -192,13 +190,13 @@ const Favourites = () => {
         ]}
       >
         <View style={{ marginTop: 15 }}>
-          {favoriteRecipes.length === 0 ? (
+          {favorites.length === 0 ? (
             <View style={[styles.emptyContainer,{ backgroundColor: colors.favouritesContentBackground }]}>
               <Text style={styles.emptyText  }>No favorite recipes yet!</Text>
             </View>
           ) : (
             <FlatList
-              data={favoriteRecipes}
+              data={favorites}
               renderItem={renderFavoriteItem}
               keyExtractor={item => item.id}
               showsVerticalScrollIndicator={false}
@@ -229,7 +227,7 @@ const styles = StyleSheet.create({
 
     // 🔥 ADD THESE
     zIndex: 10,
-    elevation: 7,
+    
   },
   listContainer: {
     padding: 16,

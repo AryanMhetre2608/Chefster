@@ -197,7 +197,14 @@ const createStyles = (colors: any) => StyleSheet.create({
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
     zIndex: 10,
-    elevation: 7,
+    elevation: 25,
+    shadowColor: colors.text,
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowOpacity: 1.0,
+    shadowRadius: 8,
   },
   buttonContainer: {
     width: '100%',

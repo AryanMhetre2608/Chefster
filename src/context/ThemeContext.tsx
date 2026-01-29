@@ -720,12 +720,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const lightColors = {
-    headerLeftComponent:'#FFFFFF',
-    headerRightComponent:'#FFFFFF',
-    headerTittle:'#FFFFFF',
-    headerSubTittle:'#FFFFFF',
-    headerAvatarPlaceholder: '#E0E0E0',
-    headerAvatarIcon: '#999999',
+    headerLeftComponent:'#000000',
+    headerRightComponent:'#000000',
+    headerTittle:'#000000',
+    headerSubTittle:'#000000',
+    headerAvatarPlaceholder: '#3D3D3D',
+    headerAvatarIcon: '#AAAAAA',
 
 
     // ===== BACKGROUNDS =====
@@ -1394,12 +1394,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const darkColors = {
-    headerLeftComponent:'#000000',
-    headerRightComponent:'#000000',
-    headerTittle:'#000000',
-    headerSubTittle:'#000000',
-    headerAvatarPlaceholder: '#3D3D3D',
-    headerAvatarIcon: '#AAAAAA',
+    
+    headerLeftComponent:'#FFFFFF',
+    headerRightComponent:'#FFFFFF',
+    headerTittle:'#FFFFFF',
+    headerSubTittle:'#FFFFFF',
+    headerAvatarPlaceholder: '#E0E0E0',
+    headerAvatarIcon: '#999999',
 
 
     headerGoBack:'#000000',
