@@ -10,7 +10,40 @@
       "favoriteRecipes": [],
       "createdAt": "2026-01-28T07:04:05.862Z",
       "updatedAt": "2026-01-28T07:04:05.863Z"
+    },
+    {
+      "id": 1,
+      "email": "1@gmail.com",
+      "name": "User One",
+      "phoneNumber": "",
+      "bio": "",
+      "profileImage": null,
+      "favoriteRecipes": [],
+      "createdAt": "2026-01-29T10:30:00.000Z",
+      "updatedAt": "2026-01-29T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "email": "2@gmail.com",
+      "name": "User Two",
+      "phoneNumber": "",
+      "bio": "",
+      "profileImage": null,
+      "favoriteRecipes": [],
+      "createdAt": "2026-01-29T10:30:15.000Z",
+      "updatedAt": "2026-01-29T10:30:15.000Z"
+    },
+    {
+      "id": 3,
+      "email": "3@gmail.com",
+      "name": "User Three",
+      "phoneNumber": "",
+      "bio": "",
+      "profileImage": null,
+      "favoriteRecipes": [],
+      "createdAt": "2026-01-29T10:30:30.000Z",
+      "updatedAt": "2026-01-29T10:30:30.000Z"
     }
   ],
-  "nextUserId": 1
+  "nextUserId": 4
 }

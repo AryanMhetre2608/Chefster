@@ -63,18 +63,9 @@ const TermsOfService = () => {
       /> */}
       <Header
         title="Privacy Policy"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
-        leftComponent={
-          <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
-            <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent}/>
-          </Pressable>
-        }
-        rightComponent={
-          <Pressable style={{ marginBottom: 58 }}>
-            <Icon type="Octicons" name="shield-check" size={24} color={colors.headerRightComponent}/>
-          </Pressable>
-        }
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
+        
+        
       />
       <ScrollView style={[styles.overlapingContainer , {backgroundColor:colors.privacyPolicyOverlayContainer}]}>
         <View style={[styles.content , {backgroundColor:colors.privacyPolicyContent}]}>
@@ -562,7 +553,6 @@ export default TermsOfService;
 const styles = StyleSheet.create({
   overlapingContainer: {
     backgroundColor: '#f5f5f5',
-    marginTop: -85, // overlap amount
     zIndex: 20,
     elevation: 20,
     position: 'relative',

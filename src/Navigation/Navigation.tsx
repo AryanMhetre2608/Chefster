@@ -55,6 +55,11 @@ const SettingsStackNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SettingsScreen" component={Setting} />
       <Stack.Screen name='ChangePassword' component={ChangePassword}/>
+       <Stack.Screen name='AboutUs' component={AboutUs}/>
+      <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
+      <Stack.Screen name='TermsOfService' component={TermsOfService}/>
+      <Stack.Screen name='Contact_Us' component={ContactUs}/>
+      <Stack.Screen name='Logout' component={Logout}/>
     </Stack.Navigator>
   )
 }

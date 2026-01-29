@@ -100,8 +100,7 @@ const ChangePassword = () => {
     <View style={[styles.container , {backgroundColor:colors.background}]}>
       <Header
         title="Change Password"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <View style={[styles.overlappingContainer  , {backgroundColor:colors.changePasswordOverlayBackground}]}>
         <View
@@ -375,7 +374,6 @@ const styles = StyleSheet.create({
   overlappingContainer: {
     alignItems: 'center',
     flex: 1,
-    marginTop: -85,
     // backgroundColor will be set inline with theme colors
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,

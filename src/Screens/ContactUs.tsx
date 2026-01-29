@@ -80,8 +80,7 @@ const TermsOfService = () => {
     <View style={[styles.container, { backgroundColor: colors.contactUsMainBackground }]}>
       <Header
         title="Contact Us"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <ScrollView
         style={[
@@ -300,7 +299,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     margin: 0,
-    marginTop: -85,
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
     zIndex: 10,
@@ -342,7 +340,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   mainContainer: {
-    marginTop: -85,
     zIndex: 10,
     elevation: 20,
     position: 'relative',

@@ -30,8 +30,7 @@ const Logout = () => {
     <View style={styles.container}>
       <Header
         title="Logout"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <View style={[styles.overlappingContainer , {backgroundColor:colors.logoutOverlayContainer}]}>
         <View style={[styles.subContainer , {backgroundColor:colors.logoutSubContainer}]}>
@@ -187,7 +186,6 @@ const styles = StyleSheet.create({
 
     flex: 1,
     margin: 0,
-    marginTop: -85,
     backgroundColor: 'white',
 
     borderTopRightRadius: 45,

@@ -45,17 +45,19 @@ const EditProfile = () => {
   const [showImagePicker, setShowImagePicker] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{uri: string} | null>(null);
 
-  // Initialize form with current user data - ADDED
+  // Initialize form with current user data - IMPROVED
   useEffect(() => {
     if (currentUser) {
       setFname(currentUser.name || '');
       setMail(currentUser.email || '');
       setPhoneNumber(currentUser.phoneNumber || '');
       setBio(currentUser.bio || '');
+      // Reset selectedImage when user changes to show current profile image
+      setSelectedImage(undefined);
     }
   }, [currentUser]);
 
-  // MODIFIED HANDLE SAVE
+  // IMPROVED HANDLE SAVE
   const handleSave = async () => {
     if (!fname || !mail || !phoneNumber || !bio) {
       Toast.error('Please fill all fields');
@@ -79,16 +81,22 @@ const EditProfile = () => {
       if (selectedImage === null) {
         // User deleted the image
         imageUri = null;
+        console.log('Saving profile with image deletion');
       } else if (selectedImage) {
         // User selected a new image
         imageUri = selectedImage.uri;
+        console.log('Saving profile with new image:', imageUri);
+      } else {
+        // Keep existing image (selectedImage is undefined)
+        console.log('Saving profile keeping existing image');
       }
-      // If selectedImage is undefined, keep existing image
 
-      await dispatch(updateUserProfile({ 
+      const updatedUser = await dispatch(updateUserProfile({ 
         profileData, 
         profileImageUri: imageUri 
       })).unwrap();
+      
+      console.log('Profile updated successfully:', updatedUser);
       Toast.success('Profile updated successfully');
       navigation.goBack();
     } catch (error) {
@@ -146,9 +154,11 @@ const EditProfile = () => {
   const handleImagePick = (image: {uri: string} | null) => {
     if (image) {
       setSelectedImage(image);
+      console.log('Profile image selected:', image.uri);
       Toast.success('Profile image selected successfully');
     } else {
       setSelectedImage(null);
+      console.log('Profile image removed');
       Toast.success('Profile image removed');
     }
   };
@@ -157,10 +167,25 @@ const EditProfile = () => {
     setShowImagePicker(true);
   };
 
-  // Show current profile image - ADDED
+  // Show current profile image - FIXED WITH FILE EXISTENCE CHECK
   const getProfileImageUri = (): string | undefined => {
-    if (selectedImage) return selectedImage.uri;
-    if (currentUser?.profileImage) return `file://${currentUser.profileImage}`;
+    if (selectedImage) {
+      console.log('EditProfile: Using selected image:', selectedImage.uri);
+      return selectedImage.uri;
+    }
+    if (currentUser?.profileImage) {
+      let imageUri;
+      // Check if the path already has a protocol
+      if (currentUser.profileImage.startsWith('file://') || currentUser.profileImage.startsWith('content://')) {
+        imageUri = currentUser.profileImage;
+      } else {
+        // Add file:// prefix for local paths
+        imageUri = `file://${currentUser.profileImage}`;
+      }
+      console.log('EditProfile: Using current user image:', imageUri);
+      return imageUri;
+    }
+    console.log('EditProfile: No profile image available');
     return undefined;
   };
 
@@ -173,10 +198,9 @@ const EditProfile = () => {
     >
       <Header
         title="Edit Profile"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
-          <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
+          <Pressable onPress={handleBackPress}>
             <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent} />
           </Pressable>
         }
@@ -216,6 +240,13 @@ const EditProfile = () => {
                   borderRadius: 75,
                 }}
                 resizeMode="cover"
+                onError={(error) => {
+                  console.log('EditProfile: Image load error:', error.nativeEvent.error);
+                  console.log('EditProfile: Failed to load image URI:', getProfileImageUri());
+                }}
+                onLoad={() => {
+                  console.log('EditProfile: Image loaded successfully:', getProfileImageUri());
+                }}
               />
             ) : (
               <Icon
@@ -490,7 +521,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   overlappingContainer: {
-    marginTop: -85,
     zIndex: 10,
     elevation: 20,
     position: 'relative',

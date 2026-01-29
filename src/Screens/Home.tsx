@@ -57,10 +57,8 @@ const Home = () => {
       <Header
         title="Chefster"
         showUserAvatar={true}
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
         onAvatarPress={()=>navigation.navigate('Profile')}
-        avatarContainerStyle={{marginBottom:"100%"}}
         
       />
       <ScrollView style={[styles.overlappingContainer, {backgroundColor:colors.background}]} showsVerticalScrollIndicator={false}>
@@ -96,7 +94,6 @@ const styles = StyleSheet.create({
     
   },
   overlappingContainer: {
-    marginTop: -85,
     zIndex: 10,
     elevation: 20,
     position: 'relative',

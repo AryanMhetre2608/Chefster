@@ -24,16 +24,15 @@ const TermsOfService = () => {
       <Header
         title="Terms of Service"
       leftComponent={
-          <Pressable onPress={handleBackPress} style={{ marginBottom: 60 }}>
+          <Pressable onPress={handleBackPress}>
             <Icon type="Ionicons" name="arrow-back" size={24} color={colors.headerLeftComponent}/>
           </Pressable>
         }
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <ScrollView style={styles.content}>
         <View style={styles.subContent}>
-          <View style={{marginTop: 0  }}>
+          <View>
             <View
               style={{
                 flexDirection: 'row',
@@ -283,7 +282,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     margin: 0,
-    marginTop: -85,
     backgroundColor: 'white',
 
     borderTopRightRadius: 45,

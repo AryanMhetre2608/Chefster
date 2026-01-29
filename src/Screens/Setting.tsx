@@ -15,8 +15,7 @@ const Setting = () => {
     <View style={styles.container}>
       <Header
         title="Settings"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <View style={styles.overlappingContainer}>
         <View
@@ -31,10 +30,8 @@ const Setting = () => {
           {/* About App Button */}
           <Pressable
             style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
-            onPress={() => navigation.navigate('Home', { 
-              screen: 'AboutUs',
-              params: { from: 'Settings' }
-            })}
+              onPress={() => navigation.navigate('AboutUs', { from: 'Settings' })}
+
           >
             <View style={styles.iconContainer}>
               <Icon
@@ -56,10 +53,8 @@ const Setting = () => {
           {/* Contact Us Button */}
           <Pressable
             style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
-            onPress={() => navigation.navigate('Home', { 
-              screen: 'Contact_Us',
-              params: { from: 'Settings' }
-            })}
+           
+            onPress={() => navigation.navigate('Contact_Us', { from: 'Settings' })}
           >
             <View style={styles.iconContainer}>
               <Icon
@@ -79,10 +74,9 @@ const Setting = () => {
           {/* Privacy Policy Button */}
           <Pressable
             style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
-            onPress={() => navigation.navigate('Home', { 
-              screen: 'PrivacyPolicy',
-              params: { from: 'Settings' }
-            })}
+           
+            onPress={() => navigation.navigate('PrivacyPolicy', { from: 'Settings' })}
+            
           >
             <View style={styles.iconContainer}>
               <Icon
@@ -102,7 +96,7 @@ const Setting = () => {
           {/* Change Password Button */}
           <Pressable
             style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
-            onPress={() => navigation.navigate('ChangePassword')}
+            onPress={() => navigation.navigate('ChangePassword', { from: 'Settings' })}
           >
             <View style={styles.iconContainer}>
               <Icon
@@ -157,10 +151,7 @@ const Setting = () => {
           {/* Logout Button */}
           <Pressable
             style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
-            onPress={() => navigation.navigate('Home', { 
-              screen: 'Logout',
-              params: { from: 'Settings' }
-            })}
+            onPress={() => navigation.navigate('Logout', { from: 'Settings' })}
           >
             <View style={styles.iconContainer}>
               <Icon
@@ -192,7 +183,6 @@ const createStyles = (colors: any) => StyleSheet.create({
   overlappingContainer: {
     alignItems: 'center',
     flex: 1,
-    marginTop: -85,
     backgroundColor: colors.background,
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,

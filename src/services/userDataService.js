@@ -220,6 +220,10 @@ class UserDataService {
   // Update user profile
   async updateUserProfile(email, profileData, profileImageUri = undefined) {
     try {
+      console.log('UserDataService: Updating profile for:', email);
+      console.log('UserDataService: Profile data:', profileData);
+      console.log('UserDataService: Profile image URI:', profileImageUri);
+      
       const dataset = await this.readDataset();
       const userIndex = dataset.users.findIndex(user => user.email === email);
       
@@ -228,21 +232,26 @@ class UserDataService {
       }
 
       const user = dataset.users[userIndex];
+      console.log('UserDataService: Current user profile image:', user.profileImage);
       
       // Handle profile image
       let profileImagePath = user.profileImage;
       
       if (profileImageUri === null) {
         // User wants to delete the image
+        console.log('UserDataService: Deleting profile image');
         if (user.profileImage) {
           await this.deleteProfileImage(user.id);
         }
         profileImagePath = null;
       } else if (profileImageUri) {
         // User wants to update the image
+        console.log('UserDataService: Updating profile image');
         profileImagePath = await this.saveProfileImage(user.id, profileImageUri);
+      } else {
+        // Keep existing image
+        console.log('UserDataService: Keeping existing profile image');
       }
-      // If profileImageUri is undefined, keep existing image
 
       // Update user data
       const updatedUser = {
@@ -252,12 +261,14 @@ class UserDataService {
         updatedAt: new Date().toISOString(),
       };
 
+      console.log('UserDataService: Updated user data:', updatedUser);
+
       dataset.users[userIndex] = updatedUser;
       await this.writeDataset(dataset);
 
       return updatedUser;
     } catch (error) {
-      console.error('Error updating user profile:', error);
+      console.error('UserDataService: Error updating user profile:', error);
       throw new Error('Failed to update user profile');
     }
   }
@@ -265,16 +276,21 @@ class UserDataService {
   // Save profile image
   async saveProfileImage(userId, imageUri) {
     try {
+      console.log('UserDataService: Saving profile image for user', userId, 'from URI:', imageUri);
+      
       const imageExtension = imageUri.split('.').pop() || 'jpg';
       const imageName = `profile_${userId}.${imageExtension}`;
       const imagePath = `${this.profileImagesDir}/${imageName}`;
 
+      console.log('UserDataService: Copying image to:', imagePath);
+      
       // Copy image to app directory
       await RNFS.copyFile(imageUri, imagePath);
       
+      console.log('UserDataService: Profile image saved successfully at:', imagePath);
       return imagePath;
     } catch (error) {
-      console.error('Error saving profile image:', error);
+      console.error('UserDataService: Error saving profile image:', error);
       throw new Error('Failed to save profile image');
     }
   }

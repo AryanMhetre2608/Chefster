@@ -6,11 +6,13 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFavorites } from '../hooks/useFavorites';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/Store';
 import Toast from '../components/Toast';
 import LinearGradient from 'react-native-linear-gradient';
 import { useTheme } from '../context/ThemeContext';
@@ -20,6 +22,29 @@ const Favourites = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const { favorites, removeFromFavoritesList } = useFavorites();
+  const { currentUser } = useSelector((state: RootState) => state.User);
+
+  // Log favorites when component mounts or favorites change
+  useEffect(() => {
+    if (currentUser) {
+      console.log(`\n=== FAVORITES SCREEN FOR ${currentUser.email} ===`);
+      console.log(`👤 Current User: ${currentUser.name} (${currentUser.email})`);
+      console.log(`📊 Total Favorites: ${favorites.length}`);
+      if (favorites.length > 0) {
+        console.log('🍽️ Favorite Recipes:');
+        favorites.forEach((recipe, index) => {
+          console.log(`  ${index + 1}. ${recipe.name} (${recipe.cuisine}) - ID: ${recipe.id}`);
+        });
+      } else {
+        console.log('📭 No favorite recipes yet');
+      }
+      console.log('=== END FAVORITES ===\n');
+    } else {
+      console.log('\n=== FAVORITES SCREEN (NO USER LOGGED IN) ===');
+      console.log(`📊 Local Favorites: ${favorites.length}`);
+      console.log('=== END FAVORITES ===\n');
+    }
+  }, [favorites, currentUser]);
 
   const handleRemoveFromFavorites = async (recipeId: string, recipeName: string) => {
     try {
@@ -179,8 +204,7 @@ const Favourites = () => {
     >
       <Header
         title="Favourites"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
 
       <View
@@ -189,7 +213,7 @@ const Favourites = () => {
           { backgroundColor: colors.favouritesContentBackground },
         ]}
       >
-        <View style={{ marginTop: 15 }}>
+        <View style={{ marginTop: 15 , flex:1 }}>
           {favorites.length === 0 ? (
             <View style={[styles.emptyContainer,{ backgroundColor: colors.favouritesContentBackground }]}>
               <Text style={styles.emptyText  }>No favorite recipes yet!</Text>
@@ -219,7 +243,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: 0,
-    marginTop: -85,
     backgroundColor: 'white',
 
     borderTopRightRadius: 45,

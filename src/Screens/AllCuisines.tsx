@@ -74,14 +74,18 @@ const AllCuisines = () => {
         cuisine: item.cuisine,
       };
       
+      console.log(`\n🔄 TOGGLING FAVORITE: "${recipe.name}" (ID: ${recipeId})`);
       const wasAdded = await toggleFavorite(recipe);
       
       if (wasAdded) {
+        console.log(`✅ FAVORITE ADDED: "${item.name}" successfully added to favorites`);
         Toast.success(`${item.name} added to favorites`);
       } else {
+        console.log(`❌ FAVORITE REMOVED: "${item.name}" successfully removed from favorites`);
         Toast.success(`${item.name} removed from favorites`);
       }
     } catch (error) {
+      console.error('💥 FAVORITE ERROR:', error);
       Toast.error('Failed to update favorites');
       console.error('Favorites error:', error);
     }
@@ -93,6 +97,7 @@ const AllCuisines = () => {
     const isItemFavorite = isRecipeFavorite(recipeId);
     
     return (
+      
       <TouchableOpacity
         style={[styles.foodItemContainer , {backgroundColor:colors.allCuisinesFoodItemContainer , borderColor:colors.allCuisinesFoodItemBorder , shadowColor:colors.allCuisinesFoodItemShadow}]}
         onPress={() => {
@@ -102,6 +107,7 @@ const AllCuisines = () => {
       >
         <View style={styles.foodItemContent}>
           <View style={[styles.imageContainer , {backgroundColor:colors.allCuisinesFoodImage , borderColor:colors.allCuisinesFoodImageBorder}]}>
+            
             <Image
               source={{ uri: item.image }}
               style={styles.foodImage}
@@ -139,6 +145,11 @@ const AllCuisines = () => {
 
   return (
     <View style={[styles.container, {backgroundColor: colors.allCuisinesMainBackground}]}>
+      <Header
+        title="Recipes"
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
+        
+      />
       
       
       <ScrollView style={[styles.overlapingContent, {backgroundColor: colors.allCuisinesContentBackground}]}>
@@ -174,6 +185,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   overlapingContent: {
+
     zIndex: 10,
     elevation: 20,
     position: 'relative',

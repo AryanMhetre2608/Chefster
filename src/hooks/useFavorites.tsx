@@ -18,8 +18,11 @@ export const useFavorites = () => {
   // Get favorites based on whether user is logged in
   const getFavorites = () => {
     if (currentUser) {
-      return currentUser.favoriteRecipes || [];
+      const userFavorites = currentUser.favoriteRecipes || [];
+      console.log(`📋 Getting favorites for ${currentUser.email}: ${userFavorites.length} recipes`);
+      return userFavorites;
     }
+    console.log(`📋 Getting local favorites (no user logged in): ${favoriteRecipes.length} recipes`);
     return favoriteRecipes;
   };
 
@@ -33,14 +36,19 @@ export const useFavorites = () => {
   const addToFavoritesList = async (recipe: Recipe) => {
     try {
       if (currentUser) {
+        console.log(`🍽️ Adding "${recipe.name}" to favorites for user: ${currentUser.email}`);
         // User is logged in - use user slice
         await dispatch(addRecipeToFavorites(recipe)).unwrap();
+        console.log(`✅ Successfully added "${recipe.name}" to favorites for ${currentUser.email}`);
+        console.log(`📊 ${currentUser.email} now has ${(currentUser.favoriteRecipes || []).length + 1} favorite recipes`);
       } else {
+        console.log(`🍽️ Adding "${recipe.name}" to local favorites (no user logged in)`);
         // User not logged in - use favorites slice
         dispatch(addToFavorites(recipe));
+        console.log(`✅ Successfully added "${recipe.name}" to local favorites`);
       }
     } catch (error) {
-      console.error('Error adding to favorites:', error);
+      console.error('❌ Error adding to favorites:', error);
       throw error;
     }
   };
@@ -49,14 +57,21 @@ export const useFavorites = () => {
   const removeFromFavoritesList = async (recipeId: string) => {
     try {
       if (currentUser) {
+        const recipeToRemove = currentUser.favoriteRecipes?.find(r => r.id === recipeId);
+        const recipeName = recipeToRemove?.name || `Recipe ID: ${recipeId}`;
+        console.log(`🗑️ Removing "${recipeName}" from favorites for user: ${currentUser.email}`);
         // User is logged in - use user slice
         await dispatch(removeRecipeFromFavorites(recipeId)).unwrap();
+        console.log(`✅ Successfully removed "${recipeName}" from favorites for ${currentUser.email}`);
+        console.log(`📊 ${currentUser.email} now has ${(currentUser.favoriteRecipes || []).length - 1} favorite recipes`);
       } else {
+        console.log(`🗑️ Removing recipe ID "${recipeId}" from local favorites (no user logged in)`);
         // User not logged in - use favorites slice
         dispatch(removeFromFavorites(recipeId));
+        console.log(`✅ Successfully removed recipe from local favorites`);
       }
     } catch (error) {
-      console.error('Error removing from favorites:', error);
+      console.error('❌ Error removing from favorites:', error);
       throw error;
     }
   };

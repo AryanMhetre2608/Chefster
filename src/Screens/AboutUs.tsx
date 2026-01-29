@@ -37,18 +37,8 @@ const AboutUs = () => {
     >
       <Header
         title="About Chefster"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
-        leftComponent={
-          <Pressable onPress={handleBackPress} style={{ marginBottom: 65 }}>
-            <Icon
-              type="Ionicons"
-              name="arrow-back"
-              size={24}
-              color={colors.headerLeftComponent}
-            />
-          </Pressable>
-        }
+        titleStyle={{  fontWeight: 'bold', fontSize: 24 }}
+        
       />
 
       <ScrollView
@@ -59,7 +49,6 @@ const AboutUs = () => {
         ]}
         style={{
           backgroundColor: colors.background,
-          marginTop: -85, // overlap amount
           zIndex: 10,
           elevation: 20, // Android
           position: 'relative',

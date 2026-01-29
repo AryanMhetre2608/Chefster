@@ -42,11 +42,21 @@ const Profile = () => {
   const profileFeatures = (foodJson as any).profilepageFeatures;
   const navigation = useNavigation<any>();
 
-  // Get profile image URI
+  // Get profile image URI - FIXED WITH LOGGING
   const getProfileImageUri = (): string | undefined => {
     if (currentUser?.profileImage) {
-      return `file://${currentUser.profileImage}`;
+      let imageUri;
+      // Check if the path already has a protocol
+      if (currentUser.profileImage.startsWith('file://') || currentUser.profileImage.startsWith('content://')) {
+        imageUri = currentUser.profileImage;
+      } else {
+        // Add file:// prefix for local paths
+        imageUri = `file://${currentUser.profileImage}`;
+      }
+      console.log('Profile: Using profile image:', imageUri);
+      return imageUri;
     }
+    console.log('Profile: No profile image available');
     return undefined;
   };
 
@@ -107,8 +117,7 @@ const Profile = () => {
     <View style={[styles.container, { backgroundColor: colors.profileMainBackground }]}>
       <Header
         title="Profile"
-        height={180}
-        titleStyle={{ marginBottom: 65, fontWeight: 'bold', fontSize: 24 }}
+        titleStyle={{fontWeight: 'bold', fontSize: 24 }}
         rightComponent={
           <Icon
             type="AntDesign"
@@ -117,7 +126,6 @@ const Profile = () => {
           />
         }
         onRightPress={() => navigation.navigate('EditProfile')}
-        rightComponentContainerStyle={{ marginBottom: '100%' }}
       />
       <View
         style={[
@@ -147,6 +155,13 @@ const Profile = () => {
                     borderRadius: 60,
                   }}
                   resizeMode="cover"
+                  onError={(error) => {
+                    console.log('Profile: Image load error:', error.nativeEvent.error);
+                    console.log('Profile: Failed to load image URI:', getProfileImageUri());
+                  }}
+                  onLoad={() => {
+                    console.log('Profile: Image loaded successfully:', getProfileImageUri());
+                  }}
                 />
               ) : (
                 <View
@@ -208,7 +223,7 @@ const Profile = () => {
                     style={{
                       paddingTop: 15,
                       paddingHorizontal: 20,
-                      fontSize: 14,
+                      fontSize: 18,
                       fontWeight: '600',
                       color: colors.profileUserName,
                     }}
@@ -253,7 +268,6 @@ const styles = StyleSheet.create({
   profileContainer: {
     flex: 1,
     margin: 0,
-    marginTop: -85,
     // backgroundColor will be set inline with theme colors
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
