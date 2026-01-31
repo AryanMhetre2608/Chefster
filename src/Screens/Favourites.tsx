@@ -213,7 +213,7 @@ const Favourites = () => {
           { backgroundColor: colors.favouritesContentBackground  , shadowColor: colors.text,},
         ]}
       >
-        <View style={{ marginTop: 15 , flex:1 }}>
+        <View style={{flex:1 }}>
           {favorites.length === 0 ? (
             <View style={[styles.emptyContainer,{ backgroundColor: colors.favouritesContentBackground }]}>
               <Text style={styles.emptyText  }>No favorite recipes yet!</Text>

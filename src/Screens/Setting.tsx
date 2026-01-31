@@ -20,7 +20,7 @@ const Setting = () => {
       <View style={styles.overlappingContainer}>
         <View
           style={{
-            marginTop: 50,
+            
             width: '90%',
             height: 20,
             marginVertical: 20,
@@ -179,6 +179,7 @@ const createStyles = (colors: any) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+   
   },
   overlappingContainer: {
     alignItems: 'center',
