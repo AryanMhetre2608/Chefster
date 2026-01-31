@@ -5,6 +5,11 @@ interface ThemeContextType {
   isDarkMode: boolean;
   toggleTheme: () => void;
   colors: {
+    // ===== Splashscreen ====
+    splashGradient1:string,
+    splashGradient2:string,
+    splashGradient3:string,
+
 
 
     // ===== header go back button =====
@@ -720,6 +725,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const lightColors = {
+
+
+
+
+    splashGradient1:'#FF9800',
+    splashGradient2:'#FF7A00',
+    splashGradient3:'#FF6A00',
+
     headerLeftComponent:'#000000',
     headerRightComponent:'#000000',
     headerTittle:'#000000',
@@ -1394,6 +1407,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const darkColors = {
+
+
+    splashGradient1:"#1A0F00",
+    splashGradient2:"#2B1600",
+    splashGradient:"#402000",
+
     
     headerLeftComponent:'#FFFFFF',
     headerRightComponent:'#FFFFFF',

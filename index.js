@@ -16,15 +16,25 @@ import { persistor } from './src/redux/Store';
 import Loader from './src/components/Loader';
 import Login from './src/screens/Login'
 import Registration from './src/screens/Registration'
+import SplashScreen from './src/components/SplashScreen'
+import { useEffect, useState } from 'react';
 
 
 const Application = () => {
+  const [showApp , setShowApp] = useState(false)
+  useEffect(()=>{
+    const timer  =setTimeout(()=>{
+      setShowApp(true)
+    } , 3000)
+    return ()=>clearTimeout(timer)
+  })
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Provider store={Store}>
       <PersistGate loading={false} persistor={persistor}>
+      {showApp?<App/>:<SplashScreen/>}
 
-        <App/>
+        
       </PersistGate>
         
       </Provider>
