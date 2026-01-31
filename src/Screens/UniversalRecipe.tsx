@@ -127,12 +127,6 @@ const UniversalRecipe = () => {
           />
         
         {/* Back Button */}
-        <Pressable 
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Icon type="Ionicons" name="arrow-back" size={24} color="white" />
-        </Pressable>
         
         {/* Favorite Button */}
         
