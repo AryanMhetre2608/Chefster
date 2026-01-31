@@ -20,7 +20,7 @@ const SplashScreen = () => {
         style={styles.container}
       >
         <Image
-          source={require('../../assets/logo/App_Logo.png')}
+          source={require('../../assets/images/SplashScreenPic.png')}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    elevation:20
   },
   logo: {
     width: 150,
