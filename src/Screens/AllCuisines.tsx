@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
   },
   foodList: {
     paddingBottom: 20,
-    paddingTop: 30,
   },
   foodItemContainer: {
     borderWidth: 0.5,

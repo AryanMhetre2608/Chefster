@@ -125,7 +125,7 @@ const Favourites = () => {
                 borderRadius: 12,
                 overflow: 'hidden',
                 transform: [{ scale: pressed ? 0.98 : 1 }],
-                shadowColor:colors.favouritesButtonShadow
+                shadowColor:colors.favouritesButtonShadow,
                 
               },
             ]}
@@ -210,7 +210,7 @@ const Favourites = () => {
       <View
         style={[
           styles.container,
-          { backgroundColor: colors.favouritesContentBackground },
+          { backgroundColor: colors.favouritesContentBackground  , shadowColor: colors.text,},
         ]}
       >
         <View style={{ marginTop: 15 , flex:1 }}>
@@ -241,15 +241,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   container: {
+     alignItems: 'center',
     flex: 1,
-    margin: 0,
-    backgroundColor: 'white',
-
+    
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
-
-    // 🔥 ADD THESE
     zIndex: 10,
+    elevation: 25,
+    
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowOpacity: 1.0,
+    shadowRadius: 8,
     
   },
   listContainer: {
@@ -315,5 +320,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
+    width:"100%"
   },
 });
