@@ -105,7 +105,6 @@ const ChangePassword = () => {
       <View style={[styles.overlappingContainer  , {backgroundColor:colors.changePasswordOverlayBackground}]}>
         <View
           style={{
-            marginTop: 50,
             width: '90%',
             height: 20,
             marginVertical: 20,

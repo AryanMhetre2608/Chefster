@@ -353,6 +353,6 @@ const styles = StyleSheet.create({
   },
   form: {
     margin: 20,
-    marginTop: 40,
+    
   },
 });
