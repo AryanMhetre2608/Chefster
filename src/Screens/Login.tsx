@@ -185,25 +185,7 @@ const Login = () => {
           </Text>
         </Pressable>
 
-        <Pressable
-          style={[
-            styles.loginWGoogle,
-            {
-              backgroundColor: colors.loginPasswordContainer,
-              borderColor: colors.loginPasswordBorder,
-            },
-          ]}
-          onPress={()=>onGooglePress()}
-        >
-          <Icon
-            type="AntDesign"
-            name="google"
-            color={colors.loginPasswordText}
-          />
-          <Text style={{ color: colors.loginPasswordText, fontSize: 15 }}>
-            Continue with Google
-          </Text>
-        </Pressable>
+        
 
         {/* Login Button */}
         <Pressable
@@ -223,6 +205,26 @@ const Login = () => {
               Login
             </Text>
           )}
+        </Pressable>
+        <Pressable
+          style={[
+            styles.loginWGoogle,
+            {
+              backgroundColor: colors.loginPasswordContainer,
+              borderColor: colors.loginPasswordBorder,
+
+            },
+          ]}
+          onPress={()=>onGooglePress()}
+        >
+          <Icon
+            type="AntDesign"
+            name="google"
+            color={colors.loginPasswordText}
+          />
+          <Text style={{ color: colors.loginPasswordText, fontSize: 15 }}>
+            Continue with Google
+          </Text>
         </Pressable>
 
         {/* Signup */}
@@ -289,6 +291,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     height: 50,
     gap: 15,
+    marginTop:15
   },
   passwordBox: {
     flexDirection: 'row',
