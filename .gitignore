@@ -35,6 +35,9 @@ local.properties
 !debug.keystore
 .kotlin/
 
+# Gradle properties (contains sensitive passwords)
+gradle.properties
+
 # node.js
 #
 node_modules/

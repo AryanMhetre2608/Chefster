@@ -14,9 +14,11 @@ import Toast from '../components/Toast';
 import { useTheme } from '../context/ThemeContext';
 import { loginUser } from '../redux/slice/userSlice';
 import { AppDispatch } from '../redux/Store';
+import Icon from '../components/Icon';
+import { googleLogin } from '../functions/GoogleLogin';
 
 const Login = () => {
-  const { colors } = useTheme(); 
+  const { colors } = useTheme();
   const dispatch = useDispatch<AppDispatch>();
 
   const [email, setEmail] = useState('');
@@ -24,6 +26,14 @@ const Login = () => {
   const [secure, setSecure] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<any>();
+  const onGooglePress = async () => {
+    try {
+      const user = await googleLogin();
+      console.log('Logged in:', user?.email);
+    } catch {
+      console.log('Login cancelled or failed');
+    }
+  };
 
   const validateInputs = () => {
     if (!email.trim()) {
@@ -49,15 +59,15 @@ const Login = () => {
     try {
       // 1. Authenticate with Firebase
       const result = await authService.loginWithEmail(email.trim(), password);
-      
+
       if (result.success) {
         // Check if email is verified
         await authService.reloadUser();
-        
+
         if (authService.isEmailVerified()) {
           // 2. Add/Get user from local dataset using Redux
           const userData = await dispatch(loginUser(result.user)).unwrap();
-          
+
           Toast.success(`Welcome back, ${userData.name}!`);
           // Navigation handled by AuthContext
         } else {
@@ -93,9 +103,24 @@ const Login = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.loginMainBackground }]}>
-      <View style={[styles.card, { backgroundColor: colors.loginCardBackground, shadowColor: colors.loginCardShadow }]}>
-        <Text style={[styles.title, { color: colors.loginTitle }]}>Login Page</Text>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: colors.loginMainBackground },
+      ]}
+    >
+      <View
+        style={[
+          styles.card,
+          {
+            backgroundColor: colors.loginCardBackground,
+            shadowColor: colors.loginCardShadow,
+          },
+        ]}
+      >
+        <Text style={[styles.title, { color: colors.loginTitle }]}>
+          Login Page
+        </Text>
         <Text style={[styles.subtitle, { color: colors.loginSubtitle }]}>
           Login to continue cooking amazing dishes
         </Text>
@@ -104,12 +129,15 @@ const Login = () => {
         <TextInput
           placeholder="Email"
           placeholderTextColor={colors.loginInputPlaceholder}
-          style={[styles.input, { 
-            backgroundColor: colors.loginInputBackground, 
-            paddingHorizontal: 15, 
-            borderColor: colors.loginInputBorder, 
-            color: colors.loginInputText 
-          }]}
+          style={[
+            styles.input,
+            {
+              backgroundColor: colors.loginInputBackground,
+              paddingHorizontal: 15,
+              borderColor: colors.loginInputBorder,
+              color: colors.loginInputText,
+            },
+          ]}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -118,10 +146,15 @@ const Login = () => {
         />
 
         {/* Password */}
-        <View style={[styles.passwordBox, { 
-          backgroundColor: colors.loginPasswordContainer, 
-          borderColor: colors.loginPasswordBorder 
-        }]}>
+        <View
+          style={[
+            styles.passwordBox,
+            {
+              backgroundColor: colors.loginPasswordContainer,
+              borderColor: colors.loginPasswordBorder,
+            },
+          ]}
+        >
           <TextInput
             placeholder="Password"
             placeholderTextColor="#999"
@@ -132,7 +165,9 @@ const Login = () => {
             autoCapitalize="none"
           />
           <Pressable onPress={() => setSecure(!secure)}>
-            <Text style={[styles.showText, { color: colors.loginShowHideText }]}>
+            <Text
+              style={[styles.showText, { color: colors.loginShowHideText }]}
+            >
               {secure ? 'Show' : 'Hide'}
             </Text>
           </Pressable>
@@ -140,24 +175,53 @@ const Login = () => {
 
         {/* Forgot Password */}
         <Pressable style={styles.forgot} onPress={handleForgotPassword}>
-          <Text style={[styles.forgotText, { color: colors.loginForgotPasswordText }]}>
+          <Text
+            style={[
+              styles.forgotText,
+              { color: colors.loginForgotPasswordText },
+            ]}
+          >
             Forgot Password?
           </Text>
         </Pressable>
 
-        {/* Login Button */}
-        <Pressable 
+        <Pressable
           style={[
-            [styles.button, { backgroundColor: colors.loginButtonBackground }], 
-            loading && styles.buttonDisabled
-          ]} 
+            styles.loginWGoogle,
+            {
+              backgroundColor: colors.loginPasswordContainer,
+              borderColor: colors.loginPasswordBorder,
+            },
+          ]}
+          onPress={()=>onGooglePress()}
+        >
+          <Icon
+            type="AntDesign"
+            name="google"
+            color={colors.loginPasswordText}
+          />
+          <Text style={{ color: colors.loginPasswordText, fontSize: 15 }}>
+            Continue with Google
+          </Text>
+        </Pressable>
+
+        {/* Login Button */}
+        <Pressable
+          style={[
+            [styles.button, { backgroundColor: colors.loginButtonBackground }],
+            loading && styles.buttonDisabled,
+          ]}
           onPress={handleLogin}
           disabled={loading}
         >
           {loading ? (
             <ActivityIndicator color={colors.loginLoadingIndicator} />
           ) : (
-            <Text style={[styles.buttonText, { color: colors.loginButtonText }]}>Login</Text>
+            <Text
+              style={[styles.buttonText, { color: colors.loginButtonText }]}
+            >
+              Login
+            </Text>
           )}
         </Pressable>
 
@@ -167,7 +231,12 @@ const Login = () => {
             Don't have an account?
           </Text>
           <Pressable onPress={() => navigation.navigate('Registration')}>
-            <Text style={[styles.signupLink, { color: colors.loginSignupLink }]}> Register</Text>
+            <Text
+              style={[styles.signupLink, { color: colors.loginSignupLink }]}
+            >
+              {' '}
+              Register
+            </Text>
           </Pressable>
         </View>
       </View>
@@ -210,6 +279,16 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     fontSize: 16,
     color: '#000',
+  },
+  loginWGoogle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#DDD',
+    borderRadius: 25,
+    paddingHorizontal: 14,
+    height: 50,
+    gap: 15,
   },
   passwordBox: {
     flexDirection: 'row',
