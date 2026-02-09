@@ -93,21 +93,7 @@ const Logout = () => {
           </View>
         </View>
 
-        <View
-          style={{
-            marginTop: -10,
-            height: 'auto',
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Image
-            source={require('../../assets/images/CuisineList/Logout.png')}
-            style={{ height: 200, width: 200, backgroundColor:colors.logoutLogoContainer , resizeMode:'contain' , borderColor:colors.logoutLogoBorder , shadowColor:colors.logoutLogoShadow }}
-            resizeMode="contain"
-          />
-        </View>
+        
         <View
           style={{
             marginTop: 30,

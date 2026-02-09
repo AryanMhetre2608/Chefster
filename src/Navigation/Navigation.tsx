@@ -17,7 +17,6 @@ import Registration from '../screens/Registration'
 import Profile from '../screens/Profile'
 import AllCuisines from '../screens/AllCuisines'
 import EditProfile from '../screens/EditProfile'
-import AboutUs from '../screens/AboutUs'
 import PrivacyPolicy from '../screens/PrivacyPolicy'
 import TermsOfService from '../screens/TermsOfService'
 import Logout from '../screens/Logout'
@@ -39,7 +38,6 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Registration" component={Registration}/>
       <Stack.Screen name='Favourites' component={Favourites}/>
       <Stack.Screen name='EditProfile' component={EditProfile}/>
-      <Stack.Screen name='AboutUs' component={AboutUs}/>
       <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
       <Stack.Screen name='TermsOfService' component={TermsOfService}/>
       <Stack.Screen name='Logout' component={Logout}/>
@@ -55,7 +53,6 @@ const SettingsStackNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SettingsScreen" component={Setting} />
       <Stack.Screen name='ChangePassword' component={ChangePassword}/>
-       <Stack.Screen name='AboutUs' component={AboutUs}/>
       <Stack.Screen name='PrivacyPolicy' component={PrivacyPolicy}/>
       <Stack.Screen name='TermsOfService' component={TermsOfService}/>
       <Stack.Screen name='Contact_Us' component={ContactUs}/>

@@ -27,27 +27,7 @@ const Setting = () => {
             gap: 15,
           }}
         >
-          {/* About App Button */}
-          <Pressable
-            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
-              onPress={() => navigation.navigate('AboutUs', { from: 'Settings' })}
-
-          >
-            <View style={styles.iconContainer}>
-              <Icon
-                type="Feather"
-                name="info"
-                color={colors.textSecondary}
-                size={31}
-              />
-            </View>
-            <View style={styles.textContainer}>
-              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
-                About App
-              </Text>
-            </View>
-          </Pressable>
-          
+        
           
 
           {/* Contact Us Button */}
