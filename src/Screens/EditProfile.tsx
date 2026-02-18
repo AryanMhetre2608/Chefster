@@ -18,6 +18,7 @@ import Toast from '../components/Toast';
 import { useTheme } from '../context/ThemeContext';
 import { updateUserProfile } from '../redux/slice/userSlice';
 import { RootState, AppDispatch } from '../redux/Store';
+import { useTranslation } from 'react-i18next';
 
 const EditProfile = () => {
   const navigation = useNavigation<any>();
@@ -45,6 +46,10 @@ const EditProfile = () => {
   const [showImagePicker, setShowImagePicker] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{uri: string} | null>(null);
 
+  const { t } = useTranslation();
+  
+
+
   // Initialize form with current user data - IMPROVED
   useEffect(() => {
     if (currentUser) {
@@ -60,12 +65,12 @@ const EditProfile = () => {
   // IMPROVED HANDLE SAVE
   const handleSave = async () => {
     if (!fname || !mail || !phoneNumber || !bio) {
-      Toast.error('Please fill all fields');
+      Toast.error(`${t('Please fill all fields')}`);
       return;
     }
 
     if (nameError || mailError || phoneNumberError || bioError) {
-      Toast.error('Please fix errors before saving');
+      Toast.error(`${t('Please fix errors before saving')}`);
       return;
     }
 
@@ -96,11 +101,11 @@ const EditProfile = () => {
         profileImageUri: imageUri 
       })).unwrap();
       
-      console.log('Profile updated successfully:', updatedUser);
-      Toast.success('Profile updated successfully');
+      console.log(`${t('Profile updated successfully')}`, updatedUser);
+      Toast.success(`${t('Profile updated successfully')}`);
       navigation.goBack();
     } catch (error) {
-      Toast.error('Failed to update profile');
+      Toast.error(`${t('Failed to update profile')}`);
       console.error('Profile update error:', error);
     }
   };
@@ -109,7 +114,7 @@ const EditProfile = () => {
     const numericText = text.replace(/[^0-9]/g, '');
     setPhoneNumber(numericText);
     if (numericText.length < 10) {
-      setPhoneNumberError('Please enter the 10 digit number');
+      setPhoneNumberError(`${t('Please enter the 10 digit number')}`);
     } else {
       setPhoneNumberError('');
     }
@@ -118,7 +123,7 @@ const EditProfile = () => {
   const handleBio = (text: string) => {
     setBio(text);
     if (text.trim().length === 0) {
-      setBioError('Bio cannot be empty');
+      setBioError(`${t('Bio cannot be empty')}`);
     } else {
       setBioError('');
     }
@@ -128,7 +133,7 @@ const EditProfile = () => {
     setMail(text);
     const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!gmailRegex.test(text)) {
-      setMailError('Your mail is not valid');
+      setMailError(`${t('Your mail is not valid')}`);
     } else {
       setMailError('');
     }
@@ -141,11 +146,11 @@ const EditProfile = () => {
     const parts = name.split(' ').filter(Boolean);
 
     if (name.length === 0) {
-      setNameError('Full name cannot be empty');
+      setNameError(`${t('Full name cannot be empty')}`);
     } else if (parts.length !== 3) {
-      setNameError('Enter name in format: Name FatherName Surname');
+      setNameError(`${t('Enter name in format: Name FatherName Surname')}`);
     } else if (!/^[A-Za-z]+ [A-Za-z]+ [A-Za-z]+$/.test(name)) {
-      setNameError('Only letters allowed with single spaces');
+      setNameError(`${t('Only letters allowed with single spaces')}`);
     } else {
       setNameError('');
     }
@@ -155,11 +160,11 @@ const EditProfile = () => {
     if (image) {
       setSelectedImage(image);
       console.log('Profile image selected:', image.uri);
-      Toast.success('Profile image selected successfully');
+      Toast.success(`${'Profile image selected successfully'}`);
     } else {
       setSelectedImage(null);
-      console.log('Profile image removed');
-      Toast.success('Profile image removed');
+      console.log(`${'Profile image removed'}`);
+      Toast.success(`${'Profile image removed'}`);
     }
   };
 
@@ -197,7 +202,8 @@ const EditProfile = () => {
       ]}
     >
       <Header
-        title="Edit Profile"
+        title={t('Edit Profile')}
+
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
         leftComponent={
           <Pressable onPress={handleBackPress}>
@@ -302,13 +308,13 @@ const EditProfile = () => {
               <Text
                 style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
               >
-                Full Name
+                {t('Full Name')}
               </Text>
             </View>
             <TextInput
               value={fname}
               onChangeText={handleFullName}
-              placeholder="Name FatherName Surname"
+              placeholder={t('Name FatherName Surname')}
               placeholderTextColor={colors.editProfileInputPlaceholder}
               style={[
                 styles.textInputStyle,
@@ -338,7 +344,7 @@ const EditProfile = () => {
               <Text
                 style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
               >
-                Email
+                {t('Email')}
               </Text>
             </View>
             {/* MADE EMAIL READ-ONLY */}
@@ -362,7 +368,7 @@ const EditProfile = () => {
               editable={false} // Make email non-editable
             />
             <Text style={{ color: colors.editProfileFormLabel, fontSize: 12, marginTop: 2 }}>
-              Email cannot be changed
+              {t('Email cannot be changed')}
             </Text>
             {mailError ? (
               <Text
@@ -380,7 +386,7 @@ const EditProfile = () => {
               <Text
                 style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
               >
-                Phone Number
+               {t('Phone Number')}
               </Text>
             </View>
             <TextInput
@@ -418,13 +424,13 @@ const EditProfile = () => {
               <Text
                 style={{ color: colors.editProfileFormLabel, fontSize: 17 }}
               >
-                Bio
+                {t('Bio')}
               </Text>
             </View>
             <TextInput
               value={bio}
               onChangeText={handleBio}
-              placeholder="Your Bio"
+              placeholder={t('Your Bio')}
               placeholderTextColor={colors.editProfileInputPlaceholder}
               style={[
                 styles.textInputStyle,
@@ -480,7 +486,7 @@ const EditProfile = () => {
               }}
             >
               <Text style={{ color: colors.editProfileSaveButtonText, fontSize: 18, fontWeight: 'bold' }}>
-                Save Changes
+                {t('Save Changes')}
               </Text>
             </LinearGradient>
           </Pressable>

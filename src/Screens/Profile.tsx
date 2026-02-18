@@ -14,6 +14,7 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import foodJson from '../data/dataset.json';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 // Helper function to get the correct icon color for each profile feature
 const getProfileFeatureIconColor = (featureName: string, colors: any) => {
@@ -37,6 +38,7 @@ const getProfileFeatureIconColor = (featureName: string, colors: any) => {
 
 const Profile = () => {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const { currentUser } = useSelector((state: RootState) => state.User);
 
   const profileFeatures = (foodJson as any).profilepageFeatures;
@@ -116,7 +118,7 @@ const Profile = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.profileMainBackground }]}>
       <Header
-        title="Profile"
+        title={t('Profile')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
         rightComponent={
           <Icon
@@ -191,7 +193,7 @@ const Profile = () => {
                 fontSize: 25,
               }}
             >
-              {currentUser?.name || 'User Name'}
+              {currentUser?.name || `${t('User Name')}`}
             </Text>
             <Text style={{ color: colors.profileUserEmail, marginTop: 5 }}>
               {currentUser?.email || 'user@example.com'}
@@ -228,7 +230,7 @@ const Profile = () => {
                       color: colors.profileUserName,
                     }}
                   >
-                    Bio
+                    {t('Bio')}
                   </Text>
 
                   <Text

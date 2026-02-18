@@ -23,6 +23,7 @@ import Logout from '../screens/Logout'
 import Setting from '../screens/Setting'
 import ChangePassword from '../screens/ChangePassword'
 import { useTheme } from '../context/ThemeContext'
+import ChangeLanguage from '../screens/ChangeLanguage'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -57,6 +58,7 @@ const SettingsStackNavigator = () => {
       <Stack.Screen name='TermsOfService' component={TermsOfService}/>
       <Stack.Screen name='Contact_Us' component={ContactUs}/>
       <Stack.Screen name='Logout' component={Logout}/>
+      <Stack.Screen name='Language' component={ChangeLanguage}/>
     </Stack.Navigator>
   )
 }

@@ -1,0 +1,63 @@
+{
+  "Favourites": "पसंदीदा",
+  "View": "देखें",
+  "Remove": "हटाएं",
+  "No favorite recipes yet!": "अभी तक कोई पसंदीदा रेसिपी नहीं है!",
+  "Removed from the favourites": "पसंदीदा से हटा दिया गया",
+  "Failed to remove from favorites": "पसंदीदा से हटाने में विफल",
+
+
+  "Settings": "सेटिंग्स",
+  "Contact Us": "संपर्क करें",
+  "Privacy Policy": "गोपनीयता नीति",
+  "Change Password": "पासवर्ड बदलें",
+  "Language": "भाषा",
+  "Dark Mode": "डार्क मोड",
+  "Light Mode": "लाइट मोड",
+  "Logout": "लॉगआउट",
+
+  "Edit Profile": "प्रोफ़ाइल संपादित करें",
+  "Full Name": "पूरा नाम",
+  "Name FatherName Surname": "नाम पिता का नाम उपनाम",
+  "Full name cannot be empty": "पूरा नाम खाली नहीं हो सकता",
+  "Enter name in format: Name FatherName Surname": "नाम इस प्रारूप में दर्ज करें: नाम पिता का नाम उपनाम",
+  "Only letters allowed with single spaces": "केवल अक्षर और एकल स्पेस की अनुमति है",
+  "Email": "ईमेल",
+  "Email cannot be changed": "ईमेल बदला नहीं जा सकता",
+  "Your mail is not valid": "आपका ईमेल मान्य नहीं है",
+  "Phone Number": "फ़ोन नंबर",
+  "Please enter the 10 digit number": "कृपया 10 अंकों का नंबर दर्ज करें",
+  "Bio": "परिचय",
+  "Your Bio": "आपका परिचय",
+  "Bio cannot be empty": "परिचय खाली नहीं हो सकता",
+  "Save Changes": "परिवर्तन सहेजें",
+  "Please fill all fields": "कृपया सभी फ़ील्ड भरें",
+  "Please fix errors before saving": "सहेजने से पहले त्रुटियाँ ठीक करें",
+  "Profile updated successfully": "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई",
+  "Failed to update profile": "प्रोफ़ाइल अपडेट करने में विफल",
+  "Profile image selected successfully": "प्रोफ़ाइल चित्र सफलतापूर्वक चुना गया",
+  "Profile image removed": "प्रोफ़ाइल चित्र हटा दिया गया",
+
+  "Profile": "प्रोफ़ाइल",
+  "User Name": "उपयोगकर्ता का नाम",
+  "Bio": "परिचय",
+
+
+  "Contact Us": "संपर्क करें",
+  "Name": "नाम",
+  "Email": "ईमेल",
+  "Message": "संदेश",
+  "Enter your name": "अपना नाम दर्ज करें",
+  "Enter your email": "अपना ईमेल दर्ज करें",
+  "What would you like to tell us?": "आप हमें क्या बताना चाहेंगे?",
+  "Send Message": "संदेश भेजें",
+  "Error": "त्रुटि",
+  "App not found": "ऐप नहीं मिला",
+  "No email app found": "कोई ईमेल ऐप नहीं मिला",
+  "Please enter the name": "कृपया नाम दर्ज करें",
+  "Please enter the mail": "कृपया ईमेल दर्ज करें",
+  "Please enter the message": "कृपया संदेश दर्ज करें",
+  "Contact Us - Chefster App": "संपर्क करें - शेफस्टर ऐप"
+
+
+}

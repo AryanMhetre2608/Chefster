@@ -4,8 +4,11 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
+
 
 const Setting = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { isDarkMode, toggleTheme, colors } = useTheme();
 
@@ -14,7 +17,7 @@ const Setting = () => {
   return (
     <View style={styles.container}>
       <Header
-        title="Settings"
+        title={t('Settings')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <View style={styles.overlappingContainer}>
@@ -46,7 +49,8 @@ const Setting = () => {
             </View>
             <View style={styles.textContainer}>
               <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
-                Contact Us
+                
+                {t('Contact Us')}
               </Text>
             </View>
           </Pressable>
@@ -68,7 +72,7 @@ const Setting = () => {
             </View>
             <View style={styles.textContainer}>
               <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
-                Privacy Policy
+                {t('Privacy Policy')}
               </Text>
             </View>
           </Pressable>
@@ -88,7 +92,26 @@ const Setting = () => {
             </View>
             <View style={styles.textContainer}>
               <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
-                Change Password
+                {t('Change Password')}
+                
+              </Text>
+            </View>
+          </Pressable>
+          <Pressable
+            style={[styles.buttonContainer, { backgroundColor: colors.surface }]}
+            onPress={() => navigation.navigate('Language', { from: 'Settings' })}
+          >
+            <View style={styles.iconContainer}>
+              <Icon
+                type="Entypo"
+                name="language"
+                color={colors.textSecondary}
+                size={31}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
+                {t('Language')}
               </Text>
             </View>
           </Pressable>
@@ -123,7 +146,7 @@ const Setting = () => {
                   }
                 ]}
               >
-                {isDarkMode ? 'Dark Mode' : 'Light Mode'}
+                {isDarkMode ? `${t('Dark Mode')}`: `${t('Light Mode')}`}
               </Text>
             </View>
           </Pressable>
@@ -143,7 +166,7 @@ const Setting = () => {
             </View>
             <View style={styles.textContainer}>
               <Text style={[styles.buttonText, { color: colors.textSecondary }]}>
-                Logout
+                {t('Logout')}
               </Text>
             </View>
           </Pressable>

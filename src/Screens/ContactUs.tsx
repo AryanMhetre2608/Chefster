@@ -14,9 +14,11 @@ import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const TermsOfService = () => {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const [name, setName] = useState<any>(null);
   const [email, setEmail] = useState<any>(null);
   const [message, setMessage] = useState<any>(null);
@@ -25,14 +27,14 @@ const TermsOfService = () => {
     const instagramAppUrl = 'instagram://user?username=chefsterapp';
 
     Linking.openURL(instagramAppUrl).catch(() => {
-      Alert.alert('Error', 'App not found');
+      Alert.alert(`${t('Error')}`, `${t('App not found')}`);
     });
   };
   const openFacebook = () => {
     const facebookAppUrl = 'instagram://user?username=chefsterapp';
 
     Linking.openURL(facebookAppUrl).catch(() => {
-      Alert.alert('Error', 'App not found');
+      Alert.alert(`${t('Error')}`, `${t('App not found')}`);
     });
   };
   const sendMailFromIcon = (email: string, message: string) => {
@@ -45,41 +47,41 @@ const TermsOfService = () => {
     )}&body=${encodeURIComponent(body)}`;
 
     Linking.openURL(mailUrl).catch(() => {
-      Alert.alert('Error', 'No email app found');
+      Alert.alert(`${t('Error')}`, `${t('No email app found')}`);
     });
   };
 
   const sendMail = () => {
     if (!name) {
-      Alert.alert('Error', 'Please enter the name');
+      Alert.alert(`${t('Error')}`, `${t('Please enter the name')}`);
       return;
     }
 
     if (!email) {
-      Alert.alert('Error', 'Please enter the mail');
+      Alert.alert(`${t('Error')}`, `${t('Please enter the mail')}`);
       return;
     }
 
     if (!message) {
-      Alert.alert('Error', 'Please enter the message');
+      Alert.alert(`${t('Error')}`, `${t('Please enter the message')}`);
       return;
     }
 
     const to = 'rnmhetre2608@gmail.com';
-    const subject = 'Contact Us - Chefster App';
+    const subject ='Contact Us - Chefster App'
     const body = `From ${email} : ${message}`;
     const mailUrl = `mailto:${to}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`;
     Linking.openURL(mailUrl).catch(() => {
-      Alert.alert('Error', 'No email app found');
+      Alert.alert(`${t('Error')}`, `${t('No email app found')}`);
     });
   };
 
   return (
     <View style={[styles.container, { backgroundColor: colors.contactUsMainBackground }]}>
       <Header
-        title="Contact Us"
+        title={t('Contact Us')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <ScrollView
@@ -95,7 +97,7 @@ const TermsOfService = () => {
           ]}
         >
           <View>
-            <Text style={{ color: colors.contactUsFormLabel }}>Name</Text>
+            <Text style={{ color: colors.contactUsFormLabel }}>{t('Name')}</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -120,7 +122,7 @@ const TermsOfService = () => {
               <View>
                 <TextInput
                   value={name}
-                  placeholder="Enter your name"
+                  placeholder={t('Enter your name')}
                   onChangeText={setName}
                   placeholderTextColor={colors.contactUsInputPlaceholder}
                   style={{
@@ -133,7 +135,7 @@ const TermsOfService = () => {
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text style={{ color: colors.contactUsFormLabel }}>Email</Text>
+            <Text style={{ color: colors.contactUsFormLabel }}>{t('Email')}</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -154,7 +156,7 @@ const TermsOfService = () => {
               <View>
                 <TextInput
                   value={email}
-                  placeholder="Enter your email"
+                  placeholder={t('Enter your email')}
                   onChangeText={setEmail}
                   placeholderTextColor={colors.contactUsInputPlaceholder}
                   style={{color:colors.contactUsInputText , shadowColor:colors.contactUsInputShadow}}
@@ -164,7 +166,7 @@ const TermsOfService = () => {
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text style={{ color: colors.contactUsFormLabel }}>Message</Text>
+            <Text style={{ color: colors.contactUsFormLabel }}>{t('Message')}</Text>
             <View
               style={{
                 flexDirection: 'row',
@@ -189,7 +191,7 @@ const TermsOfService = () => {
               <View style={{ marginTop: 15, flex: 1 }}>
                 <TextInput
                   value={message}
-                  placeholder="What would you like to tell us?"
+                  placeholder={t('What would you like to tell us?')}
                   placeholderTextColor={colors.contactUsInputPlaceholder}
                   onChangeText={setMessage}
                   multiline
@@ -224,7 +226,7 @@ const TermsOfService = () => {
                   width: '100%',
                 }}
               >
-                <Text style={[styles.buttonText, { color: colors.contactUsSendButtonText }]}>Send Message</Text>
+                <Text style={[styles.buttonText, { color: colors.contactUsSendButtonText }]}>{t('Send Message')}</Text>
               </LinearGradient>
             </Pressable>
           </View>
