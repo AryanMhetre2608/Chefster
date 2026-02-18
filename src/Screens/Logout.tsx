@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 45,
     borderTopLeftRadius: 45,
 
-    // 🔥 ADD THESE
     zIndex: 10,
     elevation: 7,
   },

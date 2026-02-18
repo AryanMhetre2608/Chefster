@@ -16,9 +16,12 @@ import { RootState } from '../redux/Store';
 import Toast from '../components/Toast';
 import LinearGradient from 'react-native-linear-gradient';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const Favourites = () => {
+  
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const { favorites, removeFromFavoritesList } = useFavorites();
@@ -49,9 +52,9 @@ const Favourites = () => {
   const handleRemoveFromFavorites = async (recipeId: string, recipeName: string) => {
     try {
       await removeFromFavoritesList(recipeId);
-      Toast(`${recipeName} Removed from the favourites`);
+      Toast(`${recipeName} ${('Removed from the favourites')}`);
     } catch (error) {
-      Toast.error('Failed to remove from favorites');
+      Toast.error(`${t('Failed to remove from favorites')}`);
       console.error('Remove favorites error:', error);
     }
   };
@@ -143,7 +146,7 @@ const Favourites = () => {
               }}
             >
               <Text style={{ color: colors.favouritesViewButtonText, fontWeight: '600', fontSize: 16 }}>
-                View
+                {t("View")}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -186,7 +189,7 @@ const Favourites = () => {
               }}
             >
               <Text style={{ color: colors.favouritesRemoveButtonText, fontWeight: '600', fontSize: 16 }}>
-                Remove
+                {t('Remove')}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -203,7 +206,7 @@ const Favourites = () => {
       ]}
     >
       <Header
-        title="Favourites"
+        title={t('Favourites')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
 
@@ -216,7 +219,7 @@ const Favourites = () => {
         <View style={{flex:1 , marginTop: 15}}>
           {favorites.length === 0 ? (
             <View style={[styles.emptyContainer,{ backgroundColor: colors.favouritesContentBackground }]}>
-              <Text style={styles.emptyText  }>No favorite recipes yet!</Text>
+              <Text style={styles.emptyText  }>{t('No favorite recipes yet!')}</Text>
             </View>
           ) : (
             <FlatList
