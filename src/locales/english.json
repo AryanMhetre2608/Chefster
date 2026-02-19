@@ -89,7 +89,7 @@
 
 
 
-  
+
     "Privacy Policy": "Privacy Policy",
   "Last updated: January 2025": "Last updated: January 2025",
 
@@ -121,6 +121,78 @@
 
   "Error": "Error",
   "No email app found": "No email app found",
-  "Contact Us - Chefster App": "Contact Us - Chefster App"
+  "Contact Us - Chefster App": "Contact Us - Chefster App",
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "Login Page": "Login Page",
+  "Login to continue cooking amazing dishes": "Login to continue cooking amazing dishes",
+
+  "Email": "Email",
+  "Password": "Password",
+  "Show": "Show",
+  "Hide": "Hide",
+
+  "Forgot Password?": "Forgot Password?",
+  "Login": "Login",
+  "Continue with Google": "Continue with Google",
+
+  "Don't have an account?": "Don't have an account?",
+  "Register": "Register",
+
+  "Please enter your email": "Please enter your email",
+  "Please enter your password": "Please enter your password",
+  "Password must be at least 6 characters": "Password must be at least 6 characters",
+
+  "Welcome back": "Welcome back",
+  "Please verify your email address before logging in.": "Please verify your email address before logging in.",
+  "Login failed": "Login failed",
+  "An unexpected error occurred": "An unexpected error occurred",
+
+  "Please enter your email first": "Please enter your email first",
+  "Password reset email sent! Check your inbox.": "Password reset email sent! Check your inbox.",
+  "Failed to send reset email": "Failed to send reset email",
+
+
+
+
+
+
+
+  "Registration Page": "Registration Page",
+  "Register to start cooking amazing dishes": "Register to start cooking amazing dishes",
+
+  "Email": "Email",
+  "Password (min 6 characters)": "Password (min 6 characters)",
+  "Confirm Password": "Confirm Password",
+  "Show": "Show",
+  "Hide": "Hide",
+
+  "Register": "Register",
+  "Already have an account?": "Already have an account?",
+  "Log In": "Log In",
+
+  "Please enter your email": "Please enter your email",
+  "Please enter a valid email address": "Please enter a valid email address",
+  "Please enter your password": "Please enter your password",
+  "Password must be at least 6 characters": "Password must be at least 6 characters",
+  "Passwords do not match": "Passwords do not match",
+
+  "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.",
+
+  "An error occurred during registration": "An error occurred during registration",
+  "An unexpected error occurred": "An unexpected error occurred"
+
+
 
 }

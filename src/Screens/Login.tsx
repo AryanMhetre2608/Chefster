@@ -16,9 +16,13 @@ import { loginUser } from '../redux/slice/userSlice';
 import { AppDispatch } from '../redux/Store';
 import Icon from '../components/Icon';
 import { googleLogin } from '../functions/GoogleLogin';
+import { useTranslation } from 'react-i18next';
+
 
 const Login = () => {
   const { colors } = useTheme();
+  const { t } = useTranslation();
+
   const dispatch = useDispatch<AppDispatch>();
 
   const [email, setEmail] = useState('');
@@ -37,15 +41,15 @@ const Login = () => {
 
   const validateInputs = () => {
     if (!email.trim()) {
-      Toast.error('Please enter your email');
+      Toast.error(`${t('Please enter your email')}`);
       return false;
     }
     if (!password.trim()) {
-      Toast.error('Please enter your password');
+      Toast.error(`${t('Please enter your password')}`);
       return false;
     }
     if (password.length < 6) {
-      Toast.error('Password must be at least 6 characters');
+      Toast.error(`${t('Password must be at least 6 characters')}`);
       return false;
     }
     return true;
@@ -68,16 +72,16 @@ const Login = () => {
           // 2. Add/Get user from local dataset using Redux
           const userData = await dispatch(loginUser(result.user)).unwrap();
 
-          Toast.success(`Welcome back, ${userData.name}!`);
+          Toast.success(`${t('Welcome back')}, ${userData.name}!`);
           // Navigation handled by AuthContext
         } else {
-          Toast.warning('Please verify your email address before logging in.');
+          Toast.warning(`${t('Please verify your email address before logging in.')}`);
         }
       } else {
-        Toast.error(result.error || 'Login failed');
+        Toast.error(result.error || `${t('Login failed')}`);
       }
     } catch (error) {
-      Toast.error('An unexpected error occurred');
+      Toast.error(`${t('An unexpected error occurred')}`);
       console.error('Login error:', error);
     } finally {
       setLoading(false);
@@ -86,19 +90,19 @@ const Login = () => {
 
   const handleForgotPassword = async () => {
     if (!email.trim()) {
-      Toast.error('Please enter your email first');
+      Toast.error(`${t('Please enter your email first')}`);
       return;
     }
 
     try {
       const result = await authService.resetPassword(email.trim());
       if (result.success) {
-        Toast.success('Password reset email sent! Check your inbox.');
+        Toast.success(`${t('Password reset email sent! Check your inbox.')}`);
       } else {
-        Toast.error(result.error || 'Failed to send reset email');
+        Toast.error(result.error || `${t('Failed to send reset email')}`);
       }
     } catch (error) {
-      Toast.error('An unexpected error occurred');
+      Toast.error(`${t('An unexpected error occurred')}`);
     }
   };
 
@@ -119,15 +123,15 @@ const Login = () => {
         ]}
       >
         <Text style={[styles.title, { color: colors.loginTitle }]}>
-          Login Page
+          {t('Login Page')}
         </Text>
         <Text style={[styles.subtitle, { color: colors.loginSubtitle }]}>
-          Login to continue cooking amazing dishes
+          {t('Login to continue cooking amazing dishes')}
         </Text>
 
         {/* Email */}
         <TextInput
-          placeholder="Email"
+          placeholder={t('Email')}
           placeholderTextColor={colors.loginInputPlaceholder}
           style={[
             styles.input,
@@ -156,7 +160,7 @@ const Login = () => {
           ]}
         >
           <TextInput
-            placeholder="Password"
+            placeholder={t('Password')}
             placeholderTextColor="#999"
             style={[styles.passwordInput, { color: colors.loginPasswordText }]}
             secureTextEntry={secure}
@@ -168,7 +172,7 @@ const Login = () => {
             <Text
               style={[styles.showText, { color: colors.loginShowHideText }]}
             >
-              {secure ? 'Show' : 'Hide'}
+              {secure ? `${t('Show')}` : `${t('Hide')}`}
             </Text>
           </Pressable>
         </View>
@@ -181,7 +185,7 @@ const Login = () => {
               { color: colors.loginForgotPasswordText },
             ]}
           >
-            Forgot Password?
+            {t('Forgot Password?')}
           </Text>
         </Pressable>
 
@@ -202,7 +206,7 @@ const Login = () => {
             <Text
               style={[styles.buttonText, { color: colors.loginButtonText }]}
             >
-              Login
+              {t('Login')}
             </Text>
           )}
         </Pressable>
@@ -223,21 +227,21 @@ const Login = () => {
             color={colors.loginPasswordText}
           />
           <Text style={{ color: colors.loginPasswordText, fontSize: 15 }}>
-            Continue with Google
+            {t('Continue with Google')}
           </Text>
         </Pressable>
 
         {/* Signup */}
         <View style={styles.signupBox}>
           <Text style={[styles.signupText, { color: colors.loginSignupText }]}>
-            Don't have an account?
+            {t("Don't have an account?")}
           </Text>
           <Pressable onPress={() => navigation.navigate('Registration')}>
             <Text
               style={[styles.signupLink, { color: colors.loginSignupLink }]}
             >
               {' '}
-              Register
+              {t('Register')}
             </Text>
           </Pressable>
         </View>

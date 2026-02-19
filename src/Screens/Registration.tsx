@@ -10,6 +10,7 @@ import {
   Pressable,
   ActivityIndicator,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import authService from '../services/authService';
@@ -19,6 +20,7 @@ import { loginUser } from '../redux/slice/userSlice';
 
 const Registration = () => {
   const { colors } = useTheme(); 
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigation = useNavigation<any>(); 
   
@@ -31,28 +33,28 @@ const Registration = () => {
 
   const validateInputs = () => {
     if (!email.trim()) {
-      Toast.error('Please enter your email');
+      Toast.error(`${t('Please enter your email')}`);
       return false;
     }
     
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
-      Toast.error('Please enter a valid email address');
+      Toast.error(`${t('Please enter a valid email address')}`);
       return false;
     }
     
     if (!password.trim()) {
-      Toast.error('Please enter your password');
+      Toast.error(`${t('Please enter your password')}`);
       return false;
     }
     
     if (password.length < 6) {
-      Toast.error('Password must be at least 6 characters');
+      Toast.error(`${t('Password must be at least 6 characters')}`);
       return false;
     }
     
     if (password !== confirmPassword) {
-      Toast.error('Passwords do not match');
+      Toast.error(`${t('Passwords do not match')}`);
       return false;
     }
     
@@ -70,12 +72,12 @@ const Registration = () => {
         // Add user to local dataset using Redux
         await dispatch(loginUser(result.user));
         
-        Toast.success('Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.');
+        Toast.success(`${t('Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.')}`);
       } else {
-        Toast.error(result.error || 'An error occurred during registration');
+        Toast.error(result.error || `${t('An error occurred during registration')}`);
       }
     } catch (error) {
-      Toast.error('An unexpected error occurred');
+      Toast.error(`${t('An unexpected error occurred')}`);
       console.error('Registration error:', error);
     } finally {
       setLoading(false);
@@ -85,15 +87,15 @@ const Registration = () => {
   return (
     <View style={[styles.container, {backgroundColor:colors.registrationMainBackground}]}>
       <View style={[styles.card , {backgroundColor:colors.registrationCardBackground , shadowColor:colors.registrationCardShadow}]}>
-        <Text style={[styles.title , {color:colors.registrationTitle}]}>Registration Page</Text>
+        <Text style={[styles.title , {color:colors.registrationTitle}]}>{t('Registration Page')}</Text>
         <Text style={[styles.subtitle , {color:colors.registrationSubtitle}]}>
-          Register to start cooking amazing dishes
+          {t('Register to start cooking amazing dishes')}
         </Text>
 
 
        
           <TextInput
-          placeholder="Email"
+          placeholder={t('Email')}
           placeholderTextColor={colors.registrationInputPlaceholder}
           style={[styles.input , {backgroundColor:colors.registrationInputBackground , borderColor:colors.registrationInputBorder , color:colors.registrationInputText}]}
           value={email}
@@ -110,7 +112,7 @@ const Registration = () => {
         {/* Password */}
         <View style={[styles.passwordBox ,{backgroundColor:colors.registrationPasswordContainer , borderColor:colors.registrationPasswordBorder}]}>
           <TextInput
-            placeholder="Password (min 6 characters)"
+            placeholder={t('Password (min 6 characters)')}
             placeholderTextColor={colors.registrationInputPlaceholder}
             style={[styles.passwordInput , {color:colors.registrationPasswordText}]}
             secureTextEntry={secure}
@@ -120,7 +122,7 @@ const Registration = () => {
           />
           <Pressable onPress={() => setSecure(!secure)}>
             <Text style={[styles.showText , {color:colors.registrationShowHideText}]}>
-              {secure ? 'Show' : 'Hide'}
+              {secure ? `${t('Show')}` : `${t('Hide')}`}
             </Text>
           </Pressable>
         </View>
@@ -128,7 +130,7 @@ const Registration = () => {
         {/* Confirm Password */}
         <View style={[styles.passwordBox , {backgroundColor:colors.registrationPasswordContainer , borderColor:colors.registrationPasswordBorder}]}>
           <TextInput
-            placeholder="Confirm Password"
+            placeholder={t('Confirm Password')}
             placeholderTextColor={colors.registrationInputPlaceholder}
             style={[styles.passwordInput , {color:colors.registrationPasswordText}]}
             // style={styles.passwordInput}
@@ -139,7 +141,7 @@ const Registration = () => {
           />
           <Pressable onPress={() => setSecureConfirm(!secureConfirm)}>
             <Text style={[styles.showText ,  {color:colors.registrationShowHideText}]}>
-              {secureConfirm ? 'Show' : 'Hide'}
+              {secureConfirm ? `${t('Show')}` : `${t('Hide')}`}
             </Text>
           </Pressable>
         </View>
@@ -153,15 +155,15 @@ const Registration = () => {
           {loading ? (
             <ActivityIndicator color={colors.registrationLoadingIndicator} />
           ) : (
-            <Text style={[styles.buttonText , {color:colors.registrationButtonText}]}>Register</Text>
+            <Text style={[styles.buttonText , {color:colors.registrationButtonText}]}>{t('Register')}</Text>
           )}
         </Pressable>
 
         {/* Login link */}
         <View style={styles.signupBox}>
-          <Text style={[styles.signupText  , {color:colors.registrationLoginText}]}>Already have an account?</Text>
+          <Text style={[styles.signupText  , {color:colors.registrationLoginText}]}>{t('Already have an account?')}</Text>
           <Pressable onPress={() => navigation.navigate('Login')}>
-            <Text style={[styles.signupLink , {color:colors.registrationLoginLink}]}> Log In</Text>
+            <Text style={[styles.signupLink , {color:colors.registrationLoginLink}]}> {t('Log In')}</Text>
           </Pressable>
         </View>
       </View>

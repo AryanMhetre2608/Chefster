@@ -123,7 +123,69 @@
 
   "Error": "त्रुटी",
   "No email app found": "कोणतेही ईमेल अॅप सापडले नाही",
-  "Contact Us - Chefster App": "संपर्क करा - शेफस्टर अॅप"
+  "Contact Us - Chefster App": "संपर्क करा - शेफस्टर अॅप",
+
+
+
+
+
+
+
+
+  "Login Page": "लॉगिन पृष्ठ",
+  "Login to continue cooking amazing dishes": "अप्रतिम पदार्थ बनवणे सुरू ठेवण्यासाठी लॉगिन करा",
+
+  "Email": "ईमेल",
+  "Password": "पासवर्ड",
+  "Show": "दाखवा",
+  "Hide": "लपवा",
+
+  "Forgot Password?": "पासवर्ड विसरलात?",
+  "Login": "लॉगिन",
+  "Continue with Google": "Google द्वारे पुढे चालू ठेवा",
+
+  "Don't have an account?": "तुमच्याकडे खाते नाही का?",
+  "Register": "नोंदणी करा",
+
+  "Please enter your email": "कृपया तुमचा ईमेल प्रविष्ट करा",
+  "Please enter your password": "कृपया तुमचा पासवर्ड प्रविष्ट करा",
+  "Password must be at least 6 characters": "पासवर्ड किमान 6 अक्षरांचा असावा",
+
+  "Welcome back": "पुन्हा स्वागत आहे",
+  "Please verify your email address before logging in.": "लॉगिन करण्यापूर्वी कृपया तुमचा ईमेल पत्ता पडताळा.",
+  "Login failed": "लॉगिन अयशस्वी",
+  "An unexpected error occurred": "अनपेक्षित त्रुटी आढळली",
+
+  "Please enter your email first": "कृपया आधी तुमचा ईमेल प्रविष्ट करा",
+  "Password reset email sent! Check your inbox.": "पासवर्ड रीसेट ईमेल पाठवला! तुमचा इनबॉक्स तपासा.",
+  "Failed to send reset email": "रीसेट ईमेल पाठवण्यात अयशस्वी",
+
+
+
+
+ "Registration Page": "नोंदणी पृष्ठ",
+  "Register to start cooking amazing dishes": "अप्रतिम पदार्थ बनवायला सुरुवात करण्यासाठी नोंदणी करा",
+
+  "Email": "ईमेल",
+  "Password (min 6 characters)": "पासवर्ड (किमान 6 अक्षरे)",
+  "Confirm Password": "पासवर्डची पुष्टी करा",
+  "Show": "दाखवा",
+  "Hide": "लपवा",
+
+  "Register": "नोंदणी करा",
+  "Already have an account?": "तुमच्याकडे आधीपासून खाते आहे का?",
+  "Log In": "लॉग इन करा",
+
+  "Please enter your email": "कृपया तुमचा ईमेल प्रविष्ट करा",
+  "Please enter a valid email address": "कृपया वैध ईमेल पत्ता प्रविष्ट करा",
+  "Please enter your password": "कृपया तुमचा पासवर्ड प्रविष्ट करा",
+  "Password must be at least 6 characters": "पासवर्ड किमान 6 अक्षरांचा असावा",
+  "Passwords do not match": "पासवर्ड जुळत नाहीत",
+
+  "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "नोंदणी यशस्वी झाली! तुमच्या ईमेल पत्त्यावर पडताळणी ईमेल पाठवण्यात आला आहे. कृपया तुमचा इनबॉक्स तपासा आणि नोंदणी पूर्ण करण्यासाठी तुमचा ईमेल पडताळा.",
+
+  "An error occurred during registration": "नोंदणीदरम्यान त्रुटी आढळली",
+  "An unexpected error occurred": "अनपेक्षित त्रुटी आढळली"
 
 
 }

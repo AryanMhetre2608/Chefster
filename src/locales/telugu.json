@@ -121,5 +121,70 @@
 
   "Error": "లోపం",
   "No email app found": "ఇమెయిల్ యాప్ కనుగొనబడలేదు",
-  "Contact Us - Chefster App": "మమ్మల్ని సంప్రదించండి - చెఫ్స్టర్ యాప్"
+  "Contact Us - Chefster App": "మమ్మల్ని సంప్రదించండి - చెఫ్స్టర్ యాప్",
+
+
+
+
+
+
+
+
+    "Login Page": "లాగిన్ పేజీ",
+  "Login to continue cooking amazing dishes": "అద్భుతమైన వంటకాలు తయారు చేయడం కొనసాగించేందుకు లాగిన్ చేయండి",
+
+  "Email": "ఇమెయిల్",
+  "Password": "పాస్‌వర్డ్",
+  "Show": "చూపించు",
+  "Hide": "దాచు",
+
+  "Forgot Password?": "పాస్‌వర్డ్ మర్చిపోయారా?",
+  "Login": "లాగిన్",
+  "Continue with Google": "Google ద్వారా కొనసాగించండి",
+
+  "Don't have an account?": "మీకు ఖాతా లేదా?",
+  "Register": "నమోదు చేయండి",
+
+  "Please enter your email": "దయచేసి మీ ఇమెయిల్‌ను నమోదు చేయండి",
+  "Please enter your password": "దయచేసి మీ పాస్‌వర్డ్‌ను నమోదు చేయండి",
+  "Password must be at least 6 characters": "పాస్‌వర్డ్ కనీసం 6 అక్షరాలు ఉండాలి",
+
+  "Welcome back": "మళ్లీ స్వాగతం",
+  "Please verify your email address before logging in.": "లాగిన్ చేయడానికి ముందు దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి.",
+  "Login failed": "లాగిన్ విఫలమైంది",
+  "An unexpected error occurred": "అనుకోని లోపం సంభవించింది",
+
+  "Please enter your email first": "దయచేసి ముందుగా మీ ఇమెయిల్‌ను నమోదు చేయండి",
+  "Password reset email sent! Check your inbox.": "పాస్‌వర్డ్ రీసెట్ ఇమెయిల్ పంపబడింది! మీ ఇన్‌బాక్స్‌ను పరిశీలించండి.",
+  "Failed to send reset email": "రీసెట్ ఇమెయిల్ పంపడంలో విఫలమైంది",
+
+
+
+
+
+
+
+  "Registration Page": "నమోదు పేజీ",
+  "Register to start cooking amazing dishes": "అద్భుతమైన వంటకాలను తయారు చేయడం ప్రారంభించేందుకు నమోదు చేయండి",
+
+  "Email": "ఇమెయిల్",
+  "Password (min 6 characters)": "పాస్‌వర్డ్ (కనీసం 6 అక్షరాలు)",
+  "Confirm Password": "పాస్‌వర్డ్‌ను నిర్ధారించండి",
+  "Show": "చూపించు",
+  "Hide": "దాచు",
+
+  "Register": "నమోదు చేయండి",
+  "Already have an account?": "ఇప్పటికే మీకు ఖాతా ఉందా?",
+  "Log In": "లాగిన్ చేయండి",
+
+  "Please enter your email": "దయచేసి మీ ఇమెయిల్‌ను నమోదు చేయండి",
+  "Please enter a valid email address": "దయచేసి సరైన ఇమెయిల్ చిరునామాను నమోదు చేయండి",
+  "Please enter your password": "దయచేసి మీ పాస్‌వర్డ్‌ను నమోదు చేయండి",
+  "Password must be at least 6 characters": "పాస్‌వర్డ్ కనీసం 6 అక్షరాలు ఉండాలి",
+  "Passwords do not match": "పాస్‌వర్డ్‌లు సరిపోలడం లేదు",
+
+  "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "నమోదు విజయవంతమైంది! మీ ఇమెయిల్ చిరునామాకు ధృవీకరణ ఇమెయిల్ పంపబడింది. నమోదు పూర్తి చేయడానికి మీ ఇన్‌బాక్స్‌ను పరిశీలించి మీ ఇమెయిల్‌ను ధృవీకరించండి.",
+
+  "An error occurred during registration": "నమోదు సమయంలో లోపం సంభవించింది",
+  "An unexpected error occurred": "అనుకోని లోపం సంభవించింది"
 }

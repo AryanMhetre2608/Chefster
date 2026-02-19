@@ -87,6 +87,12 @@
   "New password is too weak": "नया पासवर्ड बहुत कमजोर है",
   "Please log out and log in again before changing password": "पासवर्ड बदलने से पहले कृपया लॉग आउट करके फिर से लॉग इन करें",
 
+
+
+
+
+
+
   "Privacy Policy": "गोपनीयता नीति",
   "Last updated: January 2025": "अंतिम अपडेट: जनवरी 2025",
 
@@ -118,7 +124,74 @@
 
   "Error": "त्रुटि",
   "No email app found": "कोई ईमेल ऐप नहीं मिला",
-  "Contact Us - Chefster App": "हमसे संपर्क करें - शेफस्टर ऐप"
+  "Contact Us - Chefster App": "हमसे संपर्क करें - शेफस्टर ऐप",
+
+
+
+
+
+
+
+  "Login Page": "लॉगिन पेज",
+  "Login to continue cooking amazing dishes": "बेहतरीन व्यंजन बनाने के लिए लॉगिन करें",
+
+  "Email": "ईमेल",
+  "Password": "पासवर्ड",
+  "Show": "दिखाएं",
+  "Hide": "छुपाएं",
+
+  "Forgot Password?": "पासवर्ड भूल गए?",
+  "Login": "लॉगिन",
+  "Continue with Google": "Google के साथ जारी रखें",
+
+  "Don't have an account?": "क्या आपका खाता नहीं है?",
+  "Register": "पंजीकरण करें",
+
+  "Please enter your email": "कृपया अपना ईमेल दर्ज करें",
+  "Please enter your password": "कृपया अपना पासवर्ड दर्ज करें",
+  "Password must be at least 6 characters": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए",
+
+  "Welcome back": "फिर से स्वागत है",
+  "Please verify your email address before logging in.": "लॉगिन करने से पहले कृपया अपना ईमेल पता सत्यापित करें।",
+  "Login failed": "लॉगिन विफल",
+  "An unexpected error occurred": "एक अप्रत्याशित त्रुटि हुई",
+
+  "Please enter your email first": "कृपया पहले अपना ईमेल दर्ज करें",
+  "Password reset email sent! Check your inbox.": "पासवर्ड रीसेट ईमेल भेजा गया! अपना इनबॉक्स देखें।",
+  "Failed to send reset email": "रीसेट ईमेल भेजने में विफल",
+
+
+
+
+
+
+
+
+
+
+  "Registration Page": "Registration Page",
+  "Register to start cooking amazing dishes": "Register to start cooking amazing dishes",
+
+  "Email": "Email",
+  "Password (min 6 characters)": "Password (min 6 characters)",
+  "Confirm Password": "Confirm Password",
+  "Show": "Show",
+  "Hide": "Hide",
+
+  "Register": "Register",
+  "Already have an account?": "Already have an account?",
+  "Log In": "Log In",
+
+  "Please enter your email": "Please enter your email",
+  "Please enter a valid email address": "Please enter a valid email address",
+  "Please enter your password": "Please enter your password",
+  "Password must be at least 6 characters": "Password must be at least 6 characters",
+  "Passwords do not match": "Passwords do not match",
+
+  "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.",
+
+  "An error occurred during registration": "An error occurred during registration",
+  "An unexpected error occurred": "An unexpected error occurred"
 
 
 

@@ -42,18 +42,7 @@ const ChangePassword = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+            
             <Pressable
             onPress={()=>{
                     setSelectedLanguage('en')
@@ -120,16 +109,6 @@ const ChangePassword = () => {
                 </View>
               </View>
             </Pressable>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -205,18 +184,6 @@ const ChangePassword = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
             <Pressable
              onPress={()=>{
                     setSelectedLanguage('mr')
@@ -284,17 +251,6 @@ const ChangePassword = () => {
                 </View>
               </View>
             </Pressable>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -370,24 +326,6 @@ const ChangePassword = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <Pressable
              onPress={()=>{
                    setSelectedLanguage('te')
@@ -455,9 +393,6 @@ const ChangePassword = () => {
                 </View>
               </View>
             </Pressable>
-
-
-
 
 
 

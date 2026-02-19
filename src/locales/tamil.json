@@ -123,7 +123,68 @@
 
   "Error": "பிழை",
   "No email app found": "மின்னஞ்சல் அப் கிடைக்கவில்லை",
-  "Contact Us - Chefster App": "எங்களை தொடர்பு கொள்ளுங்கள் - செஃப்ஸ்டர் அப்"
+  "Contact Us - Chefster App": "எங்களை தொடர்பு கொள்ளுங்கள் - செஃப்ஸ்டர் அப்",
+
+
+
+
+
+
+    "Login Page": "உள்நுழைவு பக்கம்",
+  "Login to continue cooking amazing dishes": "அற்புதமான உணவுகளை தயாரிக்க தொடர உள்நுழையவும்",
+
+  "Email": "மின்னஞ்சல்",
+  "Password": "கடவுச்சொல்",
+  "Show": "காட்டு",
+  "Hide": "மறை",
+
+  "Forgot Password?": "கடவுச்சொல் மறந்துவிட்டீர்களா?",
+  "Login": "உள்நுழைவு",
+  "Continue with Google": "Google மூலம் தொடரவும்",
+
+  "Don't have an account?": "உங்களிடம் கணக்கு இல்லையா?",
+  "Register": "பதிவு செய்யவும்",
+
+  "Please enter your email": "தயவுசெய்து உங்கள் மின்னஞ்சலை உள்ளிடவும்",
+  "Please enter your password": "தயவுசெய்து உங்கள் கடவுச்சொல்லை உள்ளிடவும்",
+  "Password must be at least 6 characters": "கடவுச்சொல் குறைந்தது 6 எழுத்துகள் இருக்க வேண்டும்",
+
+  "Welcome back": "மீண்டும் வரவேற்கிறோம்",
+  "Please verify your email address before logging in.": "உள்நுழைவதற்கு முன் தயவுசெய்து உங்கள் மின்னஞ்சல் முகவரியை சரிபார்க்கவும்.",
+  "Login failed": "உள்நுழைவு தோல்வி",
+  "An unexpected error occurred": "எதிர்பாராத பிழை ஏற்பட்டது",
+
+  "Please enter your email first": "தயவுசெய்து முதலில் உங்கள் மின்னஞ்சலை உள்ளிடவும்",
+  "Password reset email sent! Check your inbox.": "கடவுச்சொல் மீட்டமைப்பு மின்னஞ்சல் அனுப்பப்பட்டது! உங்கள் இன்பாக்ஸை சரிபார்க்கவும்.",
+  "Failed to send reset email": "மீட்டமைப்பு மின்னஞ்சலை அனுப்ப முடியவில்லை",
+
+
+
+
+
+  "Registration Page": "பதிவு பக்கம்",
+  "Register to start cooking amazing dishes": "அற்புதமான உணவுகளை சமைக்க தொடங்க பதிவு செய்யவும்",
+
+  "Email": "மின்னஞ்சல்",
+  "Password (min 6 characters)": "கடவுச்சொல் (குறைந்தது 6 எழுத்துகள்)",
+  "Confirm Password": "கடவுச்சொல்லை உறுதிப்படுத்தவும்",
+  "Show": "காட்டு",
+  "Hide": "மறை",
+
+  "Register": "பதிவு செய்யவும்",
+  "Already have an account?": "ஏற்கனவே கணக்கு உள்ளதா?",
+  "Log In": "உள்நுழைக",
+
+  "Please enter your email": "தயவுசெய்து உங்கள் மின்னஞ்சலை உள்ளிடவும்",
+  "Please enter a valid email address": "சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்",
+  "Please enter your password": "தயவுசெய்து உங்கள் கடவுச்சொல்லை உள்ளிடவும்",
+  "Password must be at least 6 characters": "கடவுச்சொல் குறைந்தது 6 எழுத்துகள் இருக்க வேண்டும்",
+  "Passwords do not match": "கடவுச்சொற்கள் பொருந்தவில்லை",
+
+  "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "பதிவு வெற்றிகரமாக முடிந்தது! உங்கள் மின்னஞ்சல் முகவரிக்கு சரிபார்ப்பு மின்னஞ்சல் அனுப்பப்பட்டுள்ளது. பதிவு செயல்முறையை முடிக்க உங்கள் இன்பாக்ஸை சரிபார்த்து மின்னஞ்சலை உறுதிப்படுத்தவும்.",
+
+  "An error occurred during registration": "பதிவின் போது பிழை ஏற்பட்டது",
+  "An unexpected error occurred": "எதிர்பாராத பிழை ஏற்பட்டது"
 
 
 

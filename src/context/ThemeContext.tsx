@@ -388,6 +388,26 @@ interface ThemeContextType {
     changePasswordErrorText: string;         // Error message color
     changePasswordWarningText: string;       // Warning message color
     
+    // ===== CHANGE LANGUAGE PAGE COLORS =====
+    // Main Layout & Containers
+    changeLanguageMainBackground: string;    // Main screen background
+    changeLanguageContentBackground: string; // Content area background
+    changeLanguageOverlayBackground: string; // Overlapping container background
+    
+    // Language Card
+    changeLanguageCardBackground: string;    // Language selection card background
+    changeLanguageCardShadow: string;        // Language selection card shadow
+    changeLanguageCardBorder: string;        // Language selection card border
+    
+    // Language Options
+    changeLanguageOptionText: string;        // Language option text color
+    changeLanguageOptionTextActive: string;  // Active language option text color
+    
+    // Radio Buttons
+    changeLanguageRadioInactive: string;     // Inactive radio button border
+    changeLanguageRadioActive: string;       // Active radio button background
+    changeLanguageRadioInner: string;        // Active radio button inner circle
+    
     // ===== PRIVACY POLICY PAGE COLORS =====
     // Main Layout
     privacyPolicyContainer: string;          // Main container background
@@ -1110,6 +1130,26 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     changePasswordErrorText: '#F44336',         // Error message color (red)
     changePasswordWarningText: '#FF9800',       // Warning message color (orange)
     
+    // ===== CHANGE LANGUAGE PAGE COLORS (LIGHT) =====
+    // Main Layout & Containers
+    changeLanguageMainBackground: '#FFFFFF',    // Main screen background
+    changeLanguageContentBackground: '#FFFFFF', // Content area background
+    changeLanguageOverlayBackground: '#FFFFFF', // Overlapping container background
+    
+    // Language Card
+    changeLanguageCardBackground: '#FFFFFF',    // Language selection card background
+    changeLanguageCardShadow: '#000000',        // Language selection card shadow
+    changeLanguageCardBorder: '#E0E0E0',        // Language selection card border
+    
+    // Language Options
+    changeLanguageOptionText: '#000000',        // Language option text color
+    changeLanguageOptionTextActive: '#FF6A00',  // Active language option text color
+    
+    // Radio Buttons
+    changeLanguageRadioInactive: '#000000',     // Inactive radio button border
+    changeLanguageRadioActive: '#FF6A00',       // Active radio button background
+    changeLanguageRadioInner: '#FFFFFF',        // Active radio button inner circle
+    
     // Settings
     settingsBackground: '#F8F9FA',
     settingsCard: '#FFFFFF',
@@ -1790,6 +1830,26 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     changePasswordSuccessText: '#66BB6A',       // Success message color (light green)
     changePasswordErrorText: '#EF5350',         // Error message color (light red)
     changePasswordWarningText: '#FFA726',       // Warning message color (light orange)
+    
+    // ===== CHANGE LANGUAGE PAGE COLORS (DARK) =====
+    // Main Layout & Containers
+    changeLanguageMainBackground: '#121212',    // Main screen background
+    changeLanguageContentBackground: '#1E1E1E', // Content area background
+    changeLanguageOverlayBackground: '#1E1E1E', // Overlapping container background
+    
+    // Language Card
+    changeLanguageCardBackground: '#2D2D2D',    // Language selection card background
+    changeLanguageCardShadow: '#000000',        // Language selection card shadow
+    changeLanguageCardBorder: '#444444',        // Language selection card border
+    
+    // Language Options
+    changeLanguageOptionText: '#FFFFFF',        // Language option text color
+    changeLanguageOptionTextActive: '#FF8A00',  // Active language option text color
+    
+    // Radio Buttons
+    changeLanguageRadioInactive: '#AAAAAA',     // Inactive radio button border
+    changeLanguageRadioActive: '#FF8A00',       // Active radio button background
+    changeLanguageRadioInner: '#FFFFFF',        // Active radio button inner circle
     
     // Settings
     settingsBackground: '#1E1E1E',
