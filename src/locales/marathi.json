@@ -57,5 +57,73 @@
   "Please enter the name": "कृपया नाव प्रविष्ट करा",
   "Please enter the mail": "कृपया ईमेल प्रविष्ट करा",
   "Please enter the message": "कृपया संदेश प्रविष्ट करा",
-  "Contact Us - Chefster App": "आमच्याशी संपर्क साधा - शेफस्टर अॅप"
+  "Contact Us - Chefster App": "आमच्याशी संपर्क साधा - शेफस्टर अॅप",
+
+
+
+  "Logout": "लॉगआउट",
+  "Logout?": "लॉगआउट करायचे आहे का?",
+  "Are you sure you want to logout": "आपण खरोखर लॉगआउट करू इच्छिता",
+  "from your account": "आपल्या खात्यातून",
+  "Cancel": "रद्द करा",
+  "Success": "यशस्वी",
+  "Logged out successfully": "यशस्वीरित्या लॉगआउट झाले",
+  "Error": "त्रुटी",
+  "Failed to logout. Please try again.": "लॉगआउट करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+
+
+  "Change Password": "पासवर्ड बदला",
+  "Current Password": "सध्याचा पासवर्ड",
+  "New Password": "नवीन पासवर्ड",
+  "Confirm New Password": "नवीन पासवर्डची पुष्टी करा",
+  "Changing...": "बदल सुरू आहे...",
+  "Changing Password...": "पासवर्ड बदलला जात आहे...",
+  "Please fill all fields": "कृपया सर्व फील्ड भरा",
+  "New passwords do not match": "नवीन पासवर्ड जुळत नाहीत",
+  "New password must be at least 6 characters": "नवीन पासवर्ड किमान 6 अक्षरांचा असावा",
+  "New password must be different from current password": "नवीन पासवर्ड सध्याच्या पासवर्डपेक्षा वेगळा असावा",
+  "No user logged in": "कोणताही वापरकर्ता लॉगिन केलेला नाही",
+  "Password changed successfully": "पासवर्ड यशस्वीरित्या बदलला",
+  "Failed to change password": "पासवर्ड बदलण्यात अयशस्वी",
+  "Current password is incorrect": "सध्याचा पासवर्ड चुकीचा आहे",
+  "New password is too weak": "नवीन पासवर्ड खूप कमकुवत आहे",
+  "Please log out and log in again before changing password": "पासवर्ड बदलण्यापूर्वी कृपया लॉगआउट करून पुन्हा लॉगिन करा",
+
+
+
+  
+  "Privacy Policy": "गोपनीयता धोरण",
+  "Last updated: January 2025": "शेवटचे अद्यतन: जानेवारी 2025",
+
+  "1. Data Collection": "1. माहिती संकलन",
+  "At Chefster , we collect certain information to provide and improve our service, including:": "Chefster येथे, आम्ही आमची सेवा प्रदान करण्यासाठी आणि सुधारण्यासाठी काही माहिती गोळा करतो, त्यामध्ये:",
+  "Personal information (e.g., name, email address) for account creation and communication.": "खाते तयार करण्यासाठी आणि संवादासाठी वैयक्तिक माहिती (उदा., नाव, ईमेल पत्ता).",
+  "Recipe Preferences, dietary restrictions, and saved items to personalize your experience.": "आपला अनुभव वैयक्तिक करण्यासाठी रेसिपी आवडी, आहार निर्बंध आणि जतन केलेले आयटम.",
+  "Usage data and device information for app optimization and analytics.": "अॅप ऑप्टिमायझेशन आणि विश्लेषणासाठी वापर डेटा आणि डिव्हाइस माहिती.",
+
+  "2. How we use your data": "2. आम्ही तुमची माहिती कशी वापरतो",
+  "We use the collected data to enhance your Chefster experience. This includes:": "तुमचा Chefster अनुभव सुधारण्यासाठी आम्ही संकलित माहिती वापरतो. यामध्ये समाविष्ट आहे:",
+  "Personalizing recipe recommendations based on your preferences.": "तुमच्या आवडीनुसार रेसिपी शिफारसी वैयक्तिक करणे.",
+  "Improving app functionality and developing new features.": "अॅपची कार्यक्षमता सुधारणे आणि नवीन वैशिष्ट्ये विकसित करणे.",
+  "Communicating important updates, newsletters, and promotional offers (which you can pop-out of).": "महत्त्वाच्या अद्यतने, न्यूजलेटर आणि प्रचारात्मक ऑफर्सबद्दल माहिती देणे (ज्यातून तुम्ही बाहेर पडू शकता).",
+  "Analyzing user trends to better understand our community needs.": "आमच्या समुदायाच्या गरजा समजून घेण्यासाठी वापरकर्ता ट्रेंडचे विश्लेषण करणे.",
+
+  "3. Your Rights": "3. तुमचे अधिकार",
+  "You have full control over your data. Chefster respects your rights to:": "तुमच्या माहितीवर तुमचे पूर्ण नियंत्रण आहे. Chefster तुमचे पुढील अधिकार मान्य करते:",
+  "Access, update, or delete your personal information at any time via app settings.": "अॅप सेटिंग्जद्वारे तुमची वैयक्तिक माहिती कधीही पाहणे, अद्यतनित करणे किंवा हटवणे.",
+  "Withdraw consent for data processing and opt-out of marketing communications.": "डेटा प्रक्रिया करण्यासाठी दिलेली संमती मागे घेणे आणि मार्केटिंग संदेशांमधून बाहेर पडणे.",
+  "Request a copy of your data in a portable format.": "तुमच्या माहितीची प्रत पोर्टेबल स्वरूपात मागवणे.",
+
+  "4. Contact Us": "4. आमच्याशी संपर्क साधा",
+  "Object to the processing your data under certain circumstances.": "काही परिस्थितींमध्ये तुमच्या डेटाच्या प्रक्रियेवर आक्षेप नोंदवा.",
+  "Email us at": "आम्हाला ईमेल करा",
+  "We are commited to addressing your inquiries promptly.": "तुमच्या चौकशींना त्वरित उत्तर देण्यासाठी आम्ही वचनबद्ध आहोत.",
+
+  "Questions? Reach out to us": "प्रश्न आहेत का? आमच्याशी संपर्क साधा",
+
+  "Error": "त्रुटी",
+  "No email app found": "कोणतेही ईमेल अॅप सापडले नाही",
+  "Contact Us - Chefster App": "संपर्क करा - शेफस्टर अॅप"
+
+
 }

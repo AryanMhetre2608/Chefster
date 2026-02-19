@@ -38,7 +38,27 @@ const ChangePassword = () => {
               elevation: 10,
             }}
           >
-            <View
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Pressable
+            onPress={()=>{
+                    setSelectedLanguage('en')
+                    i18n.changeLanguage('en');
+                }}
               style={{
                 height: '20%',
                 width: '100%',
@@ -63,11 +83,7 @@ const ChangePassword = () => {
                   marginRight: '15%',
                 }}
               >
-                <Pressable 
-                onPress={()=>{
-                    setSelectedLanguage('en')
-                    i18n.changeLanguage('en');
-                }}>
+                <View>
                   {selectedLanguage === 'en' ? (
                     <View
                       style={{
@@ -101,10 +117,28 @@ const ChangePassword = () => {
                       }}
                     />
                   )}
-                </Pressable>
+                </View>
               </View>
-            </View>
-            <View
+            </Pressable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Pressable
+            onPress={()=>{
+                   setSelectedLanguage('hi')
+                   i18n.changeLanguage('hi');
+                }}
               style={{
                 height: '20%',
                 width: '100%',
@@ -129,11 +163,8 @@ const ChangePassword = () => {
                   marginRight: '15%',
                 }}
               >
-                <Pressable
-                onPress={()=>{
-                   setSelectedLanguage('hi')
-                   i18n.changeLanguage('hi');
-                }}>
+                <View
+                >
                   {selectedLanguage === 'hi' ? (
                     <View
                       style={{
@@ -167,10 +198,30 @@ const ChangePassword = () => {
                       }}
                     />
                   )}
-                </Pressable>
+                </View>
               </View>
-            </View>
-            <View
+            </Pressable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Pressable
+             onPress={()=>{
+                    setSelectedLanguage('mr')
+                    i18n.changeLanguage('mr');
+                }}
               style={{
                 height: '20%',
                 width: '100%',
@@ -195,11 +246,8 @@ const ChangePassword = () => {
                   marginRight: '15%',
                 }}
               >
-                <Pressable
-                onPress={()=>{
-                    setSelectedLanguage('mr')
-                    i18n.changeLanguage('mr');
-                }}>
+                <View
+               >
                  {selectedLanguage === 'mr' ? (
                     <View
                       style={{
@@ -233,10 +281,29 @@ const ChangePassword = () => {
                       }}
                     />
                   )}
-                </Pressable>
+                </View>
               </View>
-            </View>
-            <View
+            </Pressable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Pressable
+            onPress={()=>{
+                   setSelectedLanguage('ta')
+                   i18n.changeLanguage('ta');
+                }}
               style={{
                 height: '20%',
                 width: '100%',
@@ -261,11 +328,8 @@ const ChangePassword = () => {
                   marginRight: '15%',
                 }}
               >
-                <Pressable
-                onPress={()=>{
-                   setSelectedLanguage('ta')
-                   i18n.changeLanguage('ta');
-                }}>
+                <View
+                >
                  {selectedLanguage === 'ta' ? (
                     <View
                       style={{
@@ -299,10 +363,36 @@ const ChangePassword = () => {
                       }}
                     />
                   )}
-                </Pressable>
+                </View>
               </View>
-            </View>
-            <View
+            </Pressable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Pressable
+             onPress={()=>{
+                   setSelectedLanguage('te')
+                   i18n.changeLanguage('te');
+                }}
               style={{
                 height: '20%',
                 width: '100%',
@@ -327,11 +417,8 @@ const ChangePassword = () => {
                   marginRight: '15%',
                 }}
               >
-                <Pressable
-                onPress={()=>{
-                   setSelectedLanguage('te')
-                   i18n.changeLanguage('te');
-                }}>
+                <View
+               >
                  {selectedLanguage === 'te' ? (
                     <View
                       style={{
@@ -365,9 +452,18 @@ const ChangePassword = () => {
                       }}
                     />
                   )}
-                </Pressable>
+                </View>
               </View>
-            </View>
+            </Pressable>
+
+
+
+
+
+
+
+
+
           </View>
         </View>
       </View>

@@ -58,5 +58,68 @@
   "Please enter the name": "దయచేసి పేరును నమోదు చేయండి",
   "Please enter the mail": "దయచేసి ఇమెయిల్‌ను నమోదు చేయండి",
   "Please enter the message": "దయచేసి సందేశాన్ని నమోదు చేయండి",
-  "Contact Us - Chefster App": "మమ్మల్ని సంప్రదించండి - చెఫ్స్టర్ అప్"
+  "Contact Us - Chefster App": "మమ్మల్ని సంప్రదించండి - చెఫ్స్టర్ అప్",
+
+  "Logout": "లాగ్ అవుట్",
+  "Logout?": "మీరు లాగ్ అవుట్ కావాలనుకుంటున్నారా?",
+  "Are you sure you want to logout": "మీరు నిజంగా లాగ్ అవుట్ కావాలనుకుంటున్నారా",
+  "from your account": "మీ ఖాతా నుండి",
+  "Cancel": "రద్దు చేయండి",
+  "Success": "విజయం",
+  "Logged out successfully": "విజయవంతంగా లాగ్ అవుట్ అయ్యారు",
+  "Error": "లోపం",
+  "Failed to logout. Please try again.": "లాగ్ అవుట్ కాలేదు. దయచేసి మళ్లీ ప్రయత్నించండి.",
+
+
+
+
+  "Change Password": "పాస్‌వర్డ్ మార్చండి",
+  "Current Password": "ప్రస్తుత పాస్‌వర్డ్",
+  "New Password": "కొత్త పాస్‌వర్డ్",
+  "Confirm New Password": "కొత్త పాస్‌వర్డ్‌ను నిర్ధారించండి",
+  "Changing...": "మారుస్తోంది...",
+  "Changing Password...": "పాస్‌వర్డ్ మార్చబడుతోంది...",
+  "Please fill all fields": "దయచేసి అన్ని ఫీల్డ్‌లను పూరించండి",
+  "New passwords do not match": "కొత్త పాస్‌వర్డ్‌లు సరిపోలడం లేదు",
+  "New password must be at least 6 characters": "కొత్త పాస్‌వర్డ్ కనీసం 6 అక్షరాలు ఉండాలి",
+  "New password must be different from current password": "కొత్త పాస్‌వర్డ్ ప్రస్తుత పాస్‌వర్డ్‌కు భిన్నంగా ఉండాలి",
+  "No user logged in": "ఏ వినియోగదారుడు లాగిన్ కాలేదు",
+  "Password changed successfully": "పాస్‌వర్డ్ విజయవంతంగా మార్చబడింది",
+  "Failed to change password": "పాస్‌వర్డ్ మార్చడంలో విఫలమైంది",
+  "Current password is incorrect": "ప్రస్తుత పాస్‌వర్డ్ తప్పుగా ఉంది",
+  "New password is too weak": "కొత్త పాస్‌వర్డ్ చాలా బలహీనంగా ఉంది",
+  "Please log out and log in again before changing password": "పాస్‌వర్డ్ మార్చే ముందు దయచేసి లాగ్ అవుట్ చేసి మళ్లీ లాగిన్ చేయండి",
+
+ "Privacy Policy": "గోప్యతా విధానం",
+  "Last updated: January 2025": "చివరి నవీకరణ: జనవరి 2025",
+
+  "1. Data Collection": "1. డేటా సేకరణ",
+  "At Chefster , we collect certain information to provide and improve our service, including:": "Chefster లో, మా సేవలను అందించడానికి మరియు మెరుగుపరచడానికి కొన్ని సమాచారాన్ని సేకరిస్తాము, ఇందులో:",
+  "Personal information (e.g., name, email address) for account creation and communication.": "ఖాతా సృష్టి మరియు కమ్యూనికేషన్ కోసం వ్యక్తిగత సమాచారం (ఉదా., పేరు, ఇమెయిల్ చిరునామా).",
+  "Recipe Preferences, dietary restrictions, and saved items to personalize your experience.": "మీ అనుభవాన్ని వ్యక్తిగతీకరించడానికి రెసిపీ అభిరుచులు, ఆహార పరిమితులు మరియు సేవ్ చేసిన అంశాలు.",
+  "Usage data and device information for app optimization and analytics.": "యాప్ ఆప్టిమైజేషన్ మరియు విశ్లేషణ కోసం వినియోగ డేటా మరియు పరికర సమాచారం.",
+
+  "2. How we use your data": "2. మీ డేటాను మేము ఎలా ఉపయోగిస్తాము",
+  "We use the collected data to enhance your Chefster experience. This includes:": "మీ Chefster అనుభవాన్ని మెరుగుపరచడానికి మేము సేకరించిన డేటాను ఉపయోగిస్తాము. ఇందులో:",
+  "Personalizing recipe recommendations based on your preferences.": "మీ అభిరుచుల ఆధారంగా రెసిపీ సూచనలను వ్యక్తిగతీకరించడం.",
+  "Improving app functionality and developing new features.": "యాప్ పనితీరును మెరుగుపరచడం మరియు కొత్త ఫీచర్లు అభివృద్ధి చేయడం.",
+  "Communicating important updates, newsletters, and promotional offers (which you can pop-out of).": "ముఖ్యమైన నవీకరణలు, న్యూస్‌లెటర్లు మరియు ప్రోత్సాహక ఆఫర్ల గురించి సమాచారాన్ని అందించడం (వాటినుంచి మీరు తప్పుకోవచ్చు).",
+  "Analyzing user trends to better understand our community needs.": "మా కమ్యూనిటీ అవసరాలను బాగా అర్థం చేసుకోవడానికి వినియోగదారుల ధోరణులను విశ్లేషించడం.",
+
+  "3. Your Rights": "3. మీ హక్కులు",
+  "You have full control over your data. Chefster respects your rights to:": "మీ డేటాపై మీకు పూర్తి నియంత్రణ ఉంది. Chefster మీ క్రింది హక్కులను గౌరవిస్తుంది:",
+  "Access, update, or delete your personal information at any time via app settings.": "యాప్ సెట్టింగ్స్ ద్వారా ఎప్పుడైనా మీ వ్యక్తిగత సమాచారాన్ని యాక్సెస్ చేయడం, నవీకరించడం లేదా తొలగించడం.",
+  "Withdraw consent for data processing and opt-out of marketing communications.": "డేటా ప్రాసెసింగ్‌కు ఇచ్చిన అనుమతిని ఉపసంహరించుకోవడం మరియు మార్కెటింగ్ కమ్యూనికేషన్ల నుండి తప్పుకోవడం.",
+  "Request a copy of your data in a portable format.": "మీ డేటా కాపీని పోర్టబుల్ ఫార్మాట్‌లో అభ్యర్థించడం.",
+
+  "4. Contact Us": "4. మమ్మల్ని సంప్రదించండి",
+  "Object to the processing your data under certain circumstances.": "కొన్ని పరిస్థితుల్లో మీ డేటా ప్రాసెసింగ్‌కు అభ్యంతరం వ్యక్తం చేయండి.",
+  "Email us at": "మాకు ఇమెయిల్ చేయండి",
+  "We are commited to addressing your inquiries promptly.": "మీ ప్రశ్నలకు త్వరితంగా స్పందించడానికి మేము కట్టుబడి ఉన్నాము.",
+
+  "Questions? Reach out to us": "ప్రశ్నలున్నాయా? మమ్మల్ని సంప్రదించండి",
+
+  "Error": "లోపం",
+  "No email app found": "ఇమెయిల్ యాప్ కనుగొనబడలేదు",
+  "Contact Us - Chefster App": "మమ్మల్ని సంప్రదించండి - చెఫ్స్టర్ యాప్"
 }

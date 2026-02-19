@@ -6,10 +6,12 @@ import Navigation from '../navigation/Navigation';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 
 const Logout = () => {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const { logout, user } = useAuth();
   const handleLogout = async () => {
@@ -19,17 +21,17 @@ const Logout = () => {
       console.log('Logout completed');
 
       // Optional: Show success message
-      Alert.alert('Success', 'Logged out successfully');
+      Alert.alert(`${t('Success')}`, `${t('Logged out successfully')}`);
     } catch (error) {
       console.error('Logout failed:', error);
-      Alert.alert('Error', 'Failed to logout. Please try again.');
+      Alert.alert(`${t('Error')}`, `${t('Failed to logout. Please try again.')}`);
     }
   };
 
   return (
     <View style={styles.container}>
       <Header
-        title="Logout"
+        title={t('Logout')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <View style={[styles.overlappingContainer , {backgroundColor:colors.logoutOverlayContainer}]}>
@@ -73,7 +75,7 @@ const Logout = () => {
                 color:colors.logoutMainTitle
               }}
             >
-              Logout?
+              {t('Logout?')}
             </Text>
           </View>
           <View
@@ -85,10 +87,10 @@ const Logout = () => {
             }}
           >
             <Text style={{ color: colors.logoutDescription, fontSize: 17 }}>
-              Are you sure you want to logout
+              {t('Are you sure you want to logout')}
             </Text>
             <Text style={{ color: colors.logoutDescription, fontSize: 17 }}>
-              from your account
+              {t('from your account')}
             </Text>
           </View>
         </View>
@@ -132,7 +134,7 @@ const Logout = () => {
               }}
             >
               <Text style={{ color: colors.logoutButtonText, fontSize: 16, fontWeight: '600' }}>
-                Logout
+                {t('Logout')}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -151,7 +153,7 @@ const Logout = () => {
             onPress={() => navigation.goBack()}
           >
             <Text style={{ color: colors.logoutCancelText, fontSize: 16, fontWeight: '600' }}>
-              Cancel
+              {t('Cancel')}
             </Text>
           </Pressable>
         </View>

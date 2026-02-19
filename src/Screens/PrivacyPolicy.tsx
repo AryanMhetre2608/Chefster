@@ -12,11 +12,13 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '../context/ThemeContext';
 
 const TermsOfService = () => {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   
@@ -30,7 +32,7 @@ const TermsOfService = () => {
     )}&body=${encodeURIComponent(body)}`;
 
     Linking.openURL(mailUrl).catch(() => {
-      Alert.alert('Error', 'No email app found');
+      Alert.alert(`${t('Error')}`, `${t('No email app found')}`);
     });
   };
 
@@ -62,14 +64,14 @@ const TermsOfService = () => {
         }
       /> */}
       <Header
-        title="Privacy Policy"
+        title={t('Privacy Policy')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
         
         
       />
       <ScrollView style={[styles.overlapingContainer , {backgroundColor:colors.privacyPolicyOverlayContainer}]}>
         <View style={[styles.content , {backgroundColor:colors.privacyPolicyContent}]}>
-          <Text style={{ color: colors.privacyPolicyLastUpdated }}>Last updated: January 2025</Text>
+          <Text style={{ color: colors.privacyPolicyLastUpdated }}>{t('Last updated: January 2025')}</Text>
           <View>
             <View style={[styles.policyContainer, {backgroundColor: colors.privacyPolicySection , borderColor:colors.privacyPolicySectionBorder , shadowColor: colors.privacyPolicySectionShadow}]}>
               <View
@@ -96,15 +98,14 @@ const TermsOfService = () => {
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
-                    1. Data Collection
+                    {t('1. Data Collection')}
                   </Text>
                 </View>
               </View>
               <View style={{ marginTop: -7 }}>
                 <View style={{ marginHorizontal: 15 }}>
                   <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
-                    At Chefster , we collect certain information to provide and
-                    improve our service, including:
+                    {t('At Chefster , we collect certain information to provide and improve our service, including:')}
                   </Text>
                 </View>
                 <View
@@ -135,8 +136,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
-                        Personal information (e.g., name, email address) for
-                        account creation and communication.
+                        {t('Personal information (e.g., name, email address) for account creation and communication.')}
                       </Text>
                     </View>
                   </View>
@@ -160,8 +160,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Recipe Preferences, dietary restrictions, and saved
-                        items to personalize your experience.
+                        {t('Recipe Preferences, dietary restrictions, and saved items to personalize your experience.')}
                       </Text>
                     </View>
                   </View>
@@ -185,8 +184,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Usage data and device information for app optimization
-                        and analytics.
+                        {t('Usage data and device information for app optimization and analytics.')}
                       </Text>
                     </View>
                   </View>
@@ -214,18 +212,18 @@ const TermsOfService = () => {
                     margin: 13,
                   }}
                 >
-                  <Text style={{ color: colors.privacyPolicyNumberText }}>1</Text>
+                  <Text style={{ color: colors.privacyPolicyNumberText }}>2</Text>
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
-                    2. How we use your data
+                    {t('2. How we use your data')}
                   </Text>
                 </View>
               </View>
               <View style={{ marginTop: -7 }}>
                 <View style={{ marginHorizontal: 15 }}>
                   <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
-                    We use the collected data to enhance your Chefster experience. This includes:
+                   {t('We use the collected data to enhance your Chefster experience. This includes:')}
                   </Text>
                 </View>
                 <View
@@ -256,7 +254,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
-                        Personalizing recipe recommendations based on your preferences.
+                        {t('Personalizing recipe recommendations based on your preferences.')}
                       </Text>
                     </View>
                   </View>
@@ -280,7 +278,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Improving app functionality and developing new features.
+                        {t('Improving app functionality and developing new features.')}
                       </Text>
                     </View>
                   </View>
@@ -304,7 +302,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Communicating important updates, newsletters, and promotional offers (which you can pop-out of).
+                        {t('Communicating important updates, newsletters, and promotional offers (which you can pop-out of).')}
                       </Text>
                     </View>
                   </View>
@@ -328,7 +326,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Analyzing user trends to better understand our community needs.
+                         {t('Analyzing user trends to better understand our community needs.')}
                       </Text>
                     </View>
                   </View>
@@ -360,14 +358,14 @@ const TermsOfService = () => {
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
-                    3. Your Rights
+                    {t('3. Your Rights')}
                   </Text>
                 </View>
               </View>
               <View style={{ marginTop: -7 }}>
                 <View style={{ marginHorizontal: 15 }}>
                   <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
-                    You have full control over your data. Chefster respects your rights to:
+                    {t('You have full control over your data. Chefster respects your rights to:')}
                   </Text>
                 </View>
                 <View
@@ -398,7 +396,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13  , color:colors.privacyPolicyBodyText}}>
-                        Access, update, or delete your personal information at any time via app settings.
+                        {t('Access, update, or delete your personal information at any time via app settings.')}
                       </Text>
                     </View>
                   </View>
@@ -422,7 +420,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Withdraw consent for data processing and opt-out of marketing communications.
+                        {t('Withdraw consent for data processing and opt-out of marketing communications.')}
                       </Text>
                     </View>
                   </View>
@@ -446,7 +444,7 @@ const TermsOfService = () => {
                       style={{ justifyContent: 'center', alignItems: 'center' }}
                     >
                       <Text style={{ fontSize: 13, color:colors.privacyPolicyBodyText }}>
-                        Request a copy of your data in a portable format.
+                        {t('Request a copy of your data in a portable format.')}
                       </Text>
                     </View>
                   </View>
@@ -480,7 +478,7 @@ const TermsOfService = () => {
                 </LinearGradient>
                 <View style={{ marginLeft: -5 }}>
                   <Text style={{ fontWeight: 'bold', fontSize: 17, color: colors.privacyPolicySectionTitle }}>
-                    4. Contact Us
+                    {t('4. Contact Us')}
                   </Text>
                 </View>
               </View>
@@ -488,7 +486,7 @@ const TermsOfService = () => {
                 <View>
                   <View style={{ marginHorizontal: 15 }}>
                     <Text style={{color:colors.privacyPolicyContactText}}>
-                      Object to the processing your data under certain circumstances.
+                      {t('Object to the processing your data under certain circumstances.')}
                     </Text>
                   </View>
 
@@ -501,7 +499,7 @@ const TermsOfService = () => {
                       justifyContent: 'flex-start',
                     }}
                   >
-                    <Text style={{ fontSize: 13 , color:colors.privacyPolicyContactText }}>Email us at </Text>
+                    <Text style={{ fontSize: 13 , color:colors.privacyPolicyContactText }}>{t('Email us at')}</Text>
                     <Pressable onPress={sendMail}>
                       <Text
                         style={{
@@ -516,7 +514,7 @@ const TermsOfService = () => {
                   </View>
                   <View style={{ marginHorizontal: 15 }}>
                     <Text style={{ fontSize: 13 , color:colors.privacyPolicyContactText }}>
-                      We are commited to addressing your inquiries promptly.
+                      {t('We are commited to addressing your inquiries promptly.')}
                     </Text>
                   </View>
                 </View>
@@ -535,7 +533,7 @@ const TermsOfService = () => {
           }}
         >
           <Text style={{ color:colors.privacyPolicyFooterText, fontSize: 13 }}>
-            Questions? Reach out to us
+            {t('Questions? Reach out to us')}
           </Text>
           <Pressable onPress={sendMail}>
             <Text style={{ textDecorationLine: 'underline' , textDecorationColor:colors.privacyPolicyEmailLinkUnderline, color: colors.privacyPolicyFooterLink }}>

@@ -55,5 +55,72 @@
   "Please enter the name": "Please enter the name",
   "Please enter the mail": "Please enter the mail",
   "Please enter the message": "Please enter the message",
+  "Contact Us - Chefster App": "Contact Us - Chefster App",
+
+
+  "Logout": "Logout",
+  "Logout?": "Logout?",
+  "Are you sure you want to logout": "Are you sure you want to logout",
+  "from your account": "from your account",
+  "Cancel": "Cancel",
+  "Success": "Success",
+  "Logged out successfully": "Logged out successfully",
+  "Error": "Error",
+  "Failed to logout. Please try again.": "Failed to logout. Please try again.",
+
+
+  "Change Password": "Change Password",
+  "Current Password": "Current Password",
+  "New Password": "New Password",
+  "Confirm New Password": "Confirm New Password",
+  "Changing...": "Changing...",
+  "Changing Password...": "Changing Password...",
+  "Please fill all fields": "Please fill all fields",
+  "New passwords do not match": "New passwords do not match",
+  "New password must be at least 6 characters": "New password must be at least 6 characters",
+  "New password must be different from current password": "New password must be different from current password",
+  "No user logged in": "No user logged in",
+  "Password changed successfully": "Password changed successfully",
+  "Failed to change password": "Failed to change password",
+  "Current password is incorrect": "Current password is incorrect",
+  "New password is too weak": "New password is too weak",
+  "Please log out and log in again before changing password": "Please log out and log in again before changing password",
+
+
+
+
+  
+    "Privacy Policy": "Privacy Policy",
+  "Last updated: January 2025": "Last updated: January 2025",
+
+  "1. Data Collection": "1. Data Collection",
+  "At Chefster , we collect certain information to provide and improve our service, including:": "At Chefster, we collect certain information to provide and improve our service, including:",
+  "Personal information (e.g., name, email address) for account creation and communication.": "Personal information (e.g., name, email address) for account creation and communication.",
+  "Recipe Preferences, dietary restrictions, and saved items to personalize your experience.": "Recipe preferences, dietary restrictions, and saved items to personalize your experience.",
+  "Usage data and device information for app optimization and analytics.": "Usage data and device information for app optimization and analytics.",
+
+  "2. How we use your data": "2. How we use your data",
+  "We use the collected data to enhance your Chefster experience. This includes:": "We use the collected data to enhance your Chefster experience. This includes:",
+  "Personalizing recipe recommendations based on your preferences.": "Personalizing recipe recommendations based on your preferences.",
+  "Improving app functionality and developing new features.": "Improving app functionality and developing new features.",
+  "Communicating important updates, newsletters, and promotional offers (which you can pop-out of).": "Communicating important updates, newsletters, and promotional offers (which you can opt out of).",
+  "Analyzing user trends to better understand our community needs.": "Analyzing user trends to better understand our community needs.",
+
+  "3. Your Rights": "3. Your Rights",
+  "You have full control over your data. Chefster respects your rights to:": "You have full control over your data. Chefster respects your rights to:",
+  "Access, update, or delete your personal information at any time via app settings.": "Access, update, or delete your personal information at any time via app settings.",
+  "Withdraw consent for data processing and opt-out of marketing communications.": "Withdraw consent for data processing and opt out of marketing communications.",
+  "Request a copy of your data in a portable format.": "Request a copy of your data in a portable format.",
+
+  "4. Contact Us": "4. Contact Us",
+  "Object to the processing your data under certain circumstances.": "Object to the processing of your data under certain circumstances.",
+  "Email us at": "Email us at",
+  "We are commited to addressing your inquiries promptly.": "We are committed to addressing your inquiries promptly.",
+
+  "Questions? Reach out to us": "Questions? Reach out to us",
+
+  "Error": "Error",
+  "No email app found": "No email app found",
   "Contact Us - Chefster App": "Contact Us - Chefster App"
+
 }

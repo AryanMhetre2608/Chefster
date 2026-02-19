@@ -13,11 +13,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import auth from '@react-native-firebase/auth';
 import { useTheme } from '../context/ThemeContext';
 import Toast from '../components/Toast';
+import { useTranslation } from 'react-i18next';
+
   
 
 
 const ChangePassword = () => {
   const { colors } = useTheme()
+  const { t } = useTranslation();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassWord, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -30,22 +33,22 @@ const ChangePassword = () => {
   const handleChangePassword = async () => {
     // Validation
     if (!currentPassword || !newPassWord || !confirmNewPassword) {
-      Toast.error('Please fill all fields');
+      Toast.error(`${t('Please fill all fields')}`);
       return;
     }
 
     if (newPassWord !== confirmNewPassword) {
-      Toast.error('New passwords do not match');
+      Toast.error(`${t('New passwords do not match')}`);
       return;
     }
 
     if (newPassWord.length < 6) {
-      Toast.warning('New password must be at least 6 characters');
+      Toast.warning(`${t('New password must be at least 6 characters')}`);
       return;
     }
 
     if (currentPassword === newPassWord) {
-      Toast.warning('New password must be different from current password');
+      Toast.warning(`${t('New password must be different from current password')}`);
       return;
     }
 
@@ -55,7 +58,7 @@ const ChangePassword = () => {
       const user = auth().currentUser;
 
       if (!user || !user.email) {
-        Toast.error('No user logged in');
+        Toast.error(`${t('No user logged in')}`);
         setLoading(false);
         return;
       }
@@ -70,7 +73,7 @@ const ChangePassword = () => {
       // Update password
       await user.updatePassword(newPassWord);
 
-      Toast.success('Password changed successfully');
+      Toast.success(`${t('Password changed successfully')}`);
 
       // Clear form and navigate back after success message
       setTimeout(() => {
@@ -81,14 +84,14 @@ const ChangePassword = () => {
       }, 2000);
 
     } catch (error: any) {
-      let errorMessage = 'Failed to change password';
+      let errorMessage = `${t('Failed to change password')}`;
 
       if (error.code === 'auth/wrong-password') {
-        errorMessage = 'Current password is incorrect';
+        errorMessage = `${t('Current password is incorrect')}`;
       } else if (error.code === 'auth/weak-password') {
-        errorMessage = 'New password is too weak';
+        errorMessage = `${t('New password is too weak')}`;
       } else if (error.code === 'auth/requires-recent-login') {
-        errorMessage = 'Please log out and log in again before changing password';
+        errorMessage = `${t('Please log out and log in again before changing password')}`;
       }
 
       Toast.error(errorMessage);
@@ -99,7 +102,7 @@ const ChangePassword = () => {
   return (
     <View style={[styles.container , {backgroundColor:colors.background}]}>
       <Header
-        title="Change Password"
+        title={t('Change Password')}
         titleStyle={{fontWeight: 'bold', fontSize: 24 }}
       />
       <View style={[styles.overlappingContainer  , {backgroundColor:colors.changePasswordOverlayBackground}]}>
@@ -147,7 +150,7 @@ const ChangePassword = () => {
               }}
             >
               <TextInput
-                placeholder="Current Password"
+                placeholder={t('Current Password')}
                 value={currentPassword}
                 onChangeText={setCurrentPassword}
                 placeholderTextColor={colors.changePasswordInputPlaceholder}
@@ -215,7 +218,7 @@ const ChangePassword = () => {
               }}
             >
               <TextInput
-                placeholder="New Password"
+                placeholder={t('New Password')}
                 value={newPassWord}
                 onChangeText={setNewPassword}
                 placeholderTextColor={colors.changePasswordInputPlaceholder}
@@ -283,7 +286,7 @@ const ChangePassword = () => {
               }}
             >
               <TextInput
-                placeholder="Confirm New Password"
+                placeholder={t('Confirm New Password')}
                 value={confirmNewPassword}
                 onChangeText={setConfirmNewPassword}
                 placeholderTextColor={colors.changePasswordInputPlaceholder}
@@ -342,7 +345,7 @@ const ChangePassword = () => {
               <Text
                 style={{ color:colors.changePasswordButtonText, fontWeight: 'bold', fontSize: 20 }}
               >
-                {loading ? 'Changing...' : 'Change Password'}
+                {loading ? `${t('Changing...')}` : `${t('Change Password')}`}
               </Text>
             </LinearGradient>
           </Pressable>
@@ -353,7 +356,7 @@ const ChangePassword = () => {
           <View style={[styles.loadingOverlay, { backgroundColor: colors.changePasswordLoadingBackground }]}>
             <View style={styles.loadingContent}>
               <Text style={[styles.loadingText, { color: colors.changePasswordLoadingText }]}>
-                Changing Password...
+                {t('Changing Password...')}
               </Text>
             </View>
           </View>
