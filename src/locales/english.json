@@ -191,7 +191,33 @@
   "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.",
 
   "An error occurred during registration": "An error occurred during registration",
-  "An unexpected error occurred": "An unexpected error occurred"
+  "An unexpected error occurred": "An unexpected error occurred",
+
+
+
+
+
+  "Servings": "Servings",
+  "Prep": "Prep",
+  "Cook": "Cook",
+
+  "Ingredients": "Ingredients",
+  "Instructions": "Instructions",
+  "Serving Suggestions": "Serving Suggestions",
+
+  "Recipe not found for ID": "Recipe not found for ID",
+
+  "added to favorites": "added to favorites",
+  "removed from favorites": "removed from favorites",
+  "Failed to update favorites": "Failed to update favorites",
+
+
+
+
+
+  "Home": "Home",
+  "Favourites": "Favourites",
+  "Settings": "Settings"
 
 
 

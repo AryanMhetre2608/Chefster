@@ -191,7 +191,34 @@
   "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.",
 
   "An error occurred during registration": "An error occurred during registration",
-  "An unexpected error occurred": "An unexpected error occurred"
+  "An unexpected error occurred": "An unexpected error occurred",
+
+
+
+
+
+   "Servings": "परोसने की संख्या",
+  "Prep": "तैयारी",
+  "Cook": "पकाने का समय",
+
+  "Ingredients": "सामग्री",
+  "Instructions": "निर्देश",
+  "Serving Suggestions": "परोसने के सुझाव",
+
+  "Recipe not found for ID": "इस ID के लिए रेसिपी नहीं मिली",
+
+  "added to favorites": "पसंदीदा में जोड़ा गया",
+  "removed from favorites": "पसंदीदा से हटाया गया",
+  "Failed to update favorites": "पसंदीदा अपडेट करने में विफल",
+
+
+
+
+
+  "Home": "होम",
+  "Favourites": "पसंदीदा",
+  "Settings": "सेटिंग्स"
+
 
 
 

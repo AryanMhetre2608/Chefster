@@ -185,7 +185,31 @@
   "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "नोंदणी यशस्वी झाली! तुमच्या ईमेल पत्त्यावर पडताळणी ईमेल पाठवण्यात आला आहे. कृपया तुमचा इनबॉक्स तपासा आणि नोंदणी पूर्ण करण्यासाठी तुमचा ईमेल पडताळा.",
 
   "An error occurred during registration": "नोंदणीदरम्यान त्रुटी आढळली",
-  "An unexpected error occurred": "अनपेक्षित त्रुटी आढळली"
+  "An unexpected error occurred": "अनपेक्षित त्रुटी आढळली",
+
+
+
+
+    "Servings": "परोसे",
+  "Prep": "तयारी",
+  "Cook": "शिजवण्याचा वेळ",
+
+  "Ingredients": "साहित्य",
+  "Instructions": "सूचना",
+  "Serving Suggestions": "सर्व्हिंग सूचना",
+
+  "Recipe not found for ID": "या ID साठी रेसिपी सापडली नाही",
+
+  "added to favorites": "आवडत्यांमध्ये जोडले",
+  "removed from favorites": "आवडत्यांमधून काढले",
+  "Failed to update favorites": "आवडते अपडेट करण्यात अयशस्वी",
+
+
+
+
+    "Home": "मुख्यपृष्ठ",
+  "Favourites": "आवडते",
+  "Settings": "सेटिंग्ज"
 
 
 }

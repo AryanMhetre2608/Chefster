@@ -186,5 +186,30 @@
   "Registration successful! A verification email has been sent to your email address. Please check your inbox and verify your email to complete the registration.": "నమోదు విజయవంతమైంది! మీ ఇమెయిల్ చిరునామాకు ధృవీకరణ ఇమెయిల్ పంపబడింది. నమోదు పూర్తి చేయడానికి మీ ఇన్‌బాక్స్‌ను పరిశీలించి మీ ఇమెయిల్‌ను ధృవీకరించండి.",
 
   "An error occurred during registration": "నమోదు సమయంలో లోపం సంభవించింది",
-  "An unexpected error occurred": "అనుకోని లోపం సంభవించింది"
+  "An unexpected error occurred": "అనుకోని లోపం సంభవించింది",
+
+
+
+  "Servings": "పరిమాణాలు",
+  "Prep": "తయారీ",
+  "Cook": "వండే సమయం",
+
+  "Ingredients": "పదార్థాలు",
+  "Instructions": "విధానం",
+  "Serving Suggestions": "వడ్డింపు సూచనలు",
+
+  "Recipe not found for ID": "ఈ ID కోసం రెసిపీ కనుగొనబడలేదు",
+
+  "added to favorites": "ఇష్టమైన వాటిలో చేర్చబడింది",
+  "removed from favorites": "ఇష్టమైన వాటిలో నుండి తొలగించబడింది",
+  "Failed to update favorites": "ఇష్టమైన వాటిని నవీకరించడంలో విఫలమైంది",
+
+
+
+
+
+
+  "Home": "హోమ్",
+  "Favourites": "ఇష్టమైనవి",
+  "Settings": "సెట్టింగ్స్"
 }

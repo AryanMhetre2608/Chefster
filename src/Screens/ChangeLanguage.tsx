@@ -1,21 +1,25 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
+import { useTheme } from '../context/ThemeContext';
 
 import i18n from '../locales/i18n'
 const ChangePassword = () => {
+  const { colors } = useTheme()
+  
+
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
   useEffect(() => {
   i18n.changeLanguage(selectedLanguage);
 }, [selectedLanguage]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container , {backgroundColor:colors.changeLanguageMainBackground}]}>
       <Header
         title="Language"
         titleStyle={{ fontWeight: 'bold', fontSize: 24 }}
       />
-      <View style={styles.overlappingContainer}>
+      <View style={[styles.overlappingContainer , {backgroundColor:colors.changeLanguageOverlayBackground}]}>
         <View
           style={{
             width: '100%',
@@ -27,7 +31,7 @@ const ChangePassword = () => {
           }}
         >
           <View
-            style={{
+            style={[{
               width: '85%',
               height: 400,
               backgroundColor: 'white',
@@ -36,13 +40,14 @@ const ChangePassword = () => {
               marginBottom: 160,
               borderRadius: 25,
               elevation: 10,
-            }}
+            } , {backgroundColor:colors.changeLanguageCardBackground , shadowColor:colors.changeLanguageCardShadow , borderColor:colors.changeLanguageCardBorder}
+          ]}
           >
 
 
 
 
-            
+
             <Pressable
             onPress={()=>{
                     setSelectedLanguage('en')
@@ -63,7 +68,7 @@ const ChangePassword = () => {
                   marginLeft: '15%',
                 }}
               >
-                <Text style={{ fontSize: 20 }}>English</Text>
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'en' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>English</Text>
               </View>
               <View
                 style={{
@@ -81,12 +86,12 @@ const ChangePassword = () => {
                         height: 28,
                         width: 28,
                         borderRadius: 14,
-                        backgroundColor: '#FF6A00',
+                        backgroundColor: colors.changeLanguageRadioActive,
                       }}
                     >
                       <View
                         style={{
-                          backgroundColor: 'white',
+                          backgroundColor: colors.changeLanguageRadioInner,
                           height: 10,
                           width: 10,
                           borderRadius: 5,
@@ -101,7 +106,7 @@ const ChangePassword = () => {
                         height: 28,
                         width: 28,
                         borderWidth: 1,
-                        borderColor: 'black',
+                        borderColor: colors.changeLanguageRadioInactive,
                         borderRadius: 14,
                       }}
                     />
@@ -113,7 +118,7 @@ const ChangePassword = () => {
 
 
 
-            <Pressable
+            {/* <Pressable
             onPress={()=>{
                    setSelectedLanguage('hi')
                    i18n.changeLanguage('hi');
@@ -133,7 +138,7 @@ const ChangePassword = () => {
                   marginLeft: '15%',
                 }}
               >
-                <Text style={{ fontSize: 20 }}>Hindi (हिन्दी)</Text>
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'hi' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Hindi (हिन्दी)</Text>
               </View>
               <View
                 style={{
@@ -179,12 +184,78 @@ const ChangePassword = () => {
                   )}
                 </View>
               </View>
+            </Pressable> */}
+             <Pressable
+            onPress={()=>{
+                    setSelectedLanguage('hi')
+                    i18n.changeLanguage('hi');
+                }}
+              style={{
+                height: '20%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+              }}
+            >
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: '15%',
+                }}
+              >
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'hi' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Hindi (हिन्दी)</Text>
+              </View>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginRight: '15%',
+                }}
+              >
+                <View>
+                  {selectedLanguage === 'hi' ? (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderRadius: 14,
+                        backgroundColor: colors.changeLanguageRadioActive,
+                      }}
+                    >
+                      <View
+                        style={{
+                          backgroundColor: colors.changeLanguageRadioInner,
+                          height: 10,
+                          width: 10,
+                          borderRadius: 5,
+                        }}
+                      />
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderWidth: 1,
+                        borderColor: colors.changeLanguageRadioInactive,
+                        borderRadius: 14,
+                      }}
+                    />
+                  )}
+                </View>
+              </View>
             </Pressable>
 
 
 
 
-            <Pressable
+            {/* <Pressable
              onPress={()=>{
                     setSelectedLanguage('mr')
                     i18n.changeLanguage('mr');
@@ -204,7 +275,7 @@ const ChangePassword = () => {
                   marginLeft: '15%',
                 }}
               >
-                <Text style={{ fontSize: 20 }}>Marathi (मराठी)</Text>
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'mr' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Marathi (मराठी)</Text>
               </View>
               <View
                 style={{
@@ -250,12 +321,79 @@ const ChangePassword = () => {
                   )}
                 </View>
               </View>
+            </Pressable> */}
+
+             <Pressable
+            onPress={()=>{
+                    setSelectedLanguage('mr')
+                    i18n.changeLanguage('mr');
+                }}
+              style={{
+                height: '20%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+              }}
+            >
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: '15%',
+                }}
+              >
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'mr' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Marathi (मराठी)</Text>
+              </View>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginRight: '15%',
+                }}
+              >
+                <View>
+                  {selectedLanguage === 'mr' ? (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderRadius: 14,
+                        backgroundColor: colors.changeLanguageRadioActive,
+                      }}
+                    >
+                      <View
+                        style={{
+                          backgroundColor: colors.changeLanguageRadioInner,
+                          height: 10,
+                          width: 10,
+                          borderRadius: 5,
+                        }}
+                      />
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderWidth: 1,
+                        borderColor: colors.changeLanguageRadioInactive,
+                        borderRadius: 14,
+                      }}
+                    />
+                  )}
+                </View>
+              </View>
             </Pressable>
 
 
 
 
-            <Pressable
+            {/* <Pressable
             onPress={()=>{
                    setSelectedLanguage('ta')
                    i18n.changeLanguage('ta');
@@ -275,7 +413,7 @@ const ChangePassword = () => {
                   marginLeft: '15%',
                 }}
               >
-                <Text style={{ fontSize: 20 }}>Tamil (தமிழ்)</Text>
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'ta' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Tamil (தமிழ்)</Text>
               </View>
               <View
                 style={{
@@ -321,12 +459,79 @@ const ChangePassword = () => {
                   )}
                 </View>
               </View>
+            </Pressable> */}
+             <Pressable
+            onPress={()=>{
+                    setSelectedLanguage('ta')
+                    i18n.changeLanguage('ta');
+                }}
+              style={{
+                height: '20%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+              }}
+            >
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: '15%',
+                }}
+              >
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'ta' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Tamil (தமிழ்)</Text>
+              </View>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginRight: '15%',
+                }}
+              >
+                <View>
+                  {selectedLanguage === 'ta' ? (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderRadius: 14,
+                        backgroundColor: colors.changeLanguageRadioActive,
+                      }}
+                    >
+                      <View
+                        style={{
+                          backgroundColor: colors.changeLanguageRadioInner,
+                          height: 10,
+                          width: 10,
+                          borderRadius: 5,
+                        }}
+                      />
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderWidth: 1,
+                        borderColor: colors.changeLanguageRadioInactive,
+                        borderRadius: 14,
+                      }}
+                    />
+                  )}
+                </View>
+              </View>
             </Pressable>
+            
 
 
 
 
-            <Pressable
+            {/* <Pressable
              onPress={()=>{
                    setSelectedLanguage('te')
                    i18n.changeLanguage('te');
@@ -346,7 +551,7 @@ const ChangePassword = () => {
                   marginLeft: '15%',
                 }}
               >
-                <Text style={{ fontSize: 20 }}>Telugu (తెలుగు)</Text>
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'te' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Telugu (తెలుగు)</Text>
               </View>
               <View
                 style={{
@@ -386,6 +591,72 @@ const ChangePassword = () => {
                         width: 28,
                         borderWidth: 1,
                         borderColor: 'black',
+                        borderRadius: 14,
+                      }}
+                    />
+                  )}
+                </View>
+              </View>
+            </Pressable> */}
+             <Pressable
+            onPress={()=>{
+                    setSelectedLanguage('te')
+                    i18n.changeLanguage('te');
+                }}
+              style={{
+                height: '20%',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+              }}
+            >
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: '15%',
+                }}
+              >
+                <Text style={[{ fontSize: 20 } , {color: selectedLanguage === 'te' ? colors.changeLanguageOptionTextActive:colors.changeLanguageOptionText}]}>Telugu (తెలుగు)</Text>
+              </View>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginRight: '15%',
+                }}
+              >
+                <View>
+                  {selectedLanguage === 'te' ? (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderRadius: 14,
+                        backgroundColor: colors.changeLanguageRadioActive,
+                      }}
+                    >
+                      <View
+                        style={{
+                          backgroundColor: colors.changeLanguageRadioInner,
+                          height: 10,
+                          width: 10,
+                          borderRadius: 5,
+                        }}
+                      />
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 28,
+                        width: 28,
+                        borderWidth: 1,
+                        borderColor: colors.changeLanguageRadioInactive,
                         borderRadius: 14,
                       }}
                     />

@@ -15,6 +15,7 @@ import Header from '../components/Header';
 import Icon from '../components/Icon';
 import recipeData from '../data/dataset.json';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 type RouteParams = {
   UniversalRecipe: {
@@ -26,6 +27,8 @@ type UniversalRecipeRouteProp = RouteProp<RouteParams, 'UniversalRecipe'>;
 
 const UniversalRecipe = () => {
   const { colors } = useTheme()
+  const { t } = useTranslation();
+
   const route = useRoute<UniversalRecipeRouteProp>();
   const navigation = useNavigation<any>();
   const { isRecipeFavorite, toggleFavorite } = useFavorites();
@@ -83,12 +86,12 @@ const UniversalRecipe = () => {
       const wasAdded = await toggleFavorite(recipeData);
       
       if (wasAdded) {
-        Toast.success(`${recipe.name} added to favorites`);
+        Toast.success(`${recipe.name} ${t('added to favorites')}`);
       } else {
-        Toast.success(`${recipe.name} removed from favorites`);
+        Toast.success(`${recipe.name} ${t('removed from favorites')}`);
       }
     } catch (error) {
-      Toast.error('Failed to update favorites');
+      Toast.error(`${t('Failed to update favorites')}`);
       console.error('Favorites error:', error);
     }
   };
@@ -99,7 +102,7 @@ const UniversalRecipe = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.errorText}>
-          Recipe not found for ID: {recipeId}
+          {t('Recipe not found for ID')}: {recipeId}
         </Text>
         <View
           style={{
@@ -144,16 +147,16 @@ const UniversalRecipe = () => {
         <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground , shadowColor:colors.universalRecipeSectionShadow}]}>
           <Text style={[styles.title , {color:colors.universalRecipeSectionTitle}]}>{recipe.name}</Text>
           <View style={styles.infoRow}>
-            <Text style={styles.infoText}>Servings: {recipe.servings}</Text>
-            <Text style={styles.infoText}>Prep: {recipe.prepTime}</Text>
-            <Text style={styles.infoText}>Cook: {recipe.cookTime}</Text>
+            <Text style={styles.infoText}>{t('Servings')}: {recipe.servings}</Text>
+            <Text style={styles.infoText}>{t('Prep')}: {recipe.prepTime}</Text>
+            <Text style={styles.infoText}>{t('Cook')}: {recipe.cookTime}</Text>
           </View>
         </View>
 
           
 
           <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground}]}>
-            <Text style={[styles.sectionTitle , {color:colors.universalRecipeIngredientText}]}>Ingredients</Text>
+            <Text style={[styles.sectionTitle , {color:colors.universalRecipeIngredientText}]}>{t('Ingredients')}</Text>
             {recipe.ingredients.map((ingredient: any, index: number) => (
               <View key={index} style={styles.ingredientItem}>
                 <Text style={[styles.ingredientText , {color:colors.universalRecipeIngredientBullet}]}>
@@ -164,7 +167,7 @@ const UniversalRecipe = () => {
           </View>
 
           <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground}]}>
-            <Text style={[styles.sectionTitle , {color:colors.universalRecipeInstructionText}]}>Instructions</Text>
+            <Text style={[styles.sectionTitle , {color:colors.universalRecipeInstructionText}]}>{t('Instructions')}</Text>
             {recipe.instructions.map((instruction: string, index: number) => (
               <View key={index} style={styles.instructionItem}>
                 <Text style={[styles.stepNumber , {color:colors.universalRecipeStepNumber}]}>{index + 1}.</Text>
@@ -175,7 +178,7 @@ const UniversalRecipe = () => {
 
           {recipe.servingSuggestions && (
             <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground}]}>
-              <Text style={[styles.sectionTitle  , {color:colors.universalRecipeSuggestionText}]}>Serving Suggestions</Text>
+              <Text style={[styles.sectionTitle  , {color:colors.universalRecipeSuggestionText}]}>{t('Serving Suggestions')}</Text>
               
                 {recipe.servingSuggestions.map(
                 (suggestion: string, index: number) => (

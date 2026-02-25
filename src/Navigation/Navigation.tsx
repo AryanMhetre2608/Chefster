@@ -25,11 +25,15 @@ import ChangePassword from '../screens/ChangePassword'
 import { useTheme } from '../context/ThemeContext'
 import ChangeLanguage from '../screens/ChangeLanguage'
 
+import { useTranslation } from 'react-i18next';
+
+
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
 // Stack Navigator for Home and Recipe screens
 const HomeStackNavigator = () => {
+ 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomeScreen" component={Home} />
@@ -84,6 +88,7 @@ const TabNavigator = () => {
     
     checkAuthState();
   }, [dispatch]);
+  const { t } = useTranslation();
   
   return (
     <Tab.Navigator
@@ -114,7 +119,7 @@ const TabNavigator = () => {
         name='Home' 
         component={HomeStackNavigator}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: `${t('Home')}`,
           
           title: 'Chefster',
           tabBarIcon: ({ color, size  , focused }) => (
@@ -130,7 +135,8 @@ const TabNavigator = () => {
         name='Favourites' 
         component={Favourites}
         options={{
-          tabBarLabel: 'Favourites',
+          
+          tabBarLabel: `${t('Favourites')}`,
           
           title: 'Favourites',
           tabBarIcon: ({ color, size  , focused }) => (
@@ -146,7 +152,7 @@ const TabNavigator = () => {
         name='Settings' 
         component={SettingsStackNavigator}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: `${t('Settings')}`,
           
           title: 'Settings',
           tabBarIcon: ({ color, size  , focused }) => (
