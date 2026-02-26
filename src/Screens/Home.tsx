@@ -26,6 +26,26 @@ const Home = () => {
   const navigation = useNavigation<any>();
   const cuisineList = (foodJson as any).cuisineList
 
+
+  const getGreeting = () =>{
+    const currentHr = new Date().getHours()
+
+    if (currentHr>=5 && currentHr < 12){
+      return "Good Morning!"
+    }
+    else if (currentHr >= 12 && currentHr <17){
+      return "Good Afternoon!"
+
+    }
+    else if (currentHr >= 17 && currentHr < 21){
+      return 'Good Evening!'
+
+    } 
+    else{
+      return 'Good Night!'
+    }
+  }
+
  
 
   const renderItems = ({ item }) => (
@@ -63,6 +83,9 @@ const Home = () => {
       />
       <ScrollView style={[styles.overlappingContainer, {backgroundColor:colors.background}]} showsVerticalScrollIndicator={false}>
         <View style={{margin:15, marginTop: 15}}>
+          <View style={{height:'auto' , width:'100%' , marginVertical:15 , justifyContent:'center' , alignItems:'flex-start' }}>
+            <View><Text style={{ fontSize: 24, fontWeight: "bold"  , color:colors.greetingText}}>{getGreeting()}</Text></View>
+          </View>
           <FlatList
           data={cuisineList}
           renderItem={renderItems}

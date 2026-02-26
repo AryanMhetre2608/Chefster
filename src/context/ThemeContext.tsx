@@ -5,6 +5,9 @@ interface ThemeContextType {
   isDarkMode: boolean;
   toggleTheme: () => void;
   colors: {
+
+
+    greetingText:string,
     // ===== Splashscreen ====
     splashGradient1:string,
     splashGradient2:string,
@@ -747,7 +750,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const lightColors = {
 
 
-
+    
+    greetingText:'#000000',
 
     splashGradient1:'#FF9800',
     splashGradient2:'#FF7A00',
@@ -1448,7 +1452,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const darkColors = {
 
-
+    greetingText:'#FFFFFF',
     splashGradient1:"#1A0F00",
     splashGradient2:"#2B1600",
     splashGradient:"#402000",
