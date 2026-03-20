@@ -134,7 +134,7 @@ const UniversalRecipe = () => {
         {/* Favorite Button */}
         
       </View>
-      <ScrollView style={[styles.recipeContainer , {backgroundColor:colors.universalRecipeScrollBackground}]}>
+      <ScrollView style={[styles.recipeContainer , {backgroundColor:colors.universalRecipeScrollBackground ,  paddingBottom:500}]}>
          
       
         {/* <View style={styles.itemImage}>
@@ -144,7 +144,7 @@ const UniversalRecipe = () => {
           />
         </View> */}
 
-        <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground , shadowColor:colors.universalRecipeSectionShadow}]}>
+        <View style={[styles.section , {backgroundColor:colors.universalRecipeSectionBackground , shadowColor:colors.universalRecipeSectionShadow }]}>
           <Text style={[styles.title , {color:colors.universalRecipeSectionTitle}]}>{recipe.name}</Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoText}>{t('Servings')}: {recipe.servings}</Text>
@@ -245,7 +245,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
     width:"100%",
-    height:"60%"
+    height:"60%",
+    
   },
  
 

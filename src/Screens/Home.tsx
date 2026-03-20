@@ -82,7 +82,7 @@ const Home = () => {
         
       />
       <ScrollView style={[styles.overlappingContainer, {backgroundColor:colors.background}]} showsVerticalScrollIndicator={false}>
-        <View style={{margin:15, marginTop: 15}}>
+        <View style={{margin:15, marginTop: 15 , paddingBottom:80}}>
           <View style={{height:'auto' , width:'100%' , marginVertical:15 , justifyContent:'center' , alignItems:'flex-start' }}>
             <View><Text style={{ fontSize: 24, fontWeight: "bold"  , color:colors.greetingText}}>{getGreeting()}</Text></View>
           </View>
